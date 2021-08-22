@@ -18,21 +18,30 @@ steps:
   displayName: resolve tokens in iac.alerts.json
   inputs:
     ConnectedServiceName: ${{ parameters.serviceConnectionName }}
+    # does not work on linux with more than one fle
     command: multiple
     SourceFolder: $(Pipeline.Workspace)/${{ parameters.artifactName }}/app
     Contents: iac.alerts.json
     TokenPlaceholderPrefix: '{{'
     TokenPlaceholderSuffix: '}}'
+  env:
+    ProductPrefix: $(ProductPrefix)
+    EnvironmentSuffix: $(EnvironmentSuffix)
+    DocsUrl: $(DocsUrl)
 
 - task: TokenResolver@0
   displayName: resolve tokens in iac.infrastructure.json
   inputs:
     ConnectedServiceName: ${{ parameters.serviceConnectionName }}
+    # does not work on linux with more than one fle
     command: multiple
     SourceFolder: $(Pipeline.Workspace)/${{ parameters.artifactName }}/app
     Contents: iac.infrastructure.json
     TokenPlaceholderPrefix: '{{'
     TokenPlaceholderSuffix: '}}'
+  env:
+    ProductPrefix: $(ProductPrefix)
+    EnvironmentSuffix: $(EnvironmentSuffix)
 
 - task: AzurePowerShell@5
   displayName: deploy infrastructure
