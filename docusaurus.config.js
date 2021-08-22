@@ -116,8 +116,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // FUTURE add GitHub link here
-          // editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/tapioone/docs/edit/master/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
