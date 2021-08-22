@@ -6,7 +6,7 @@ darkCodeTheme.plain.backgroundColor = "#333333";
 module.exports = {
   title: 'tapio Developer Documentation',
   tagline: 'digital. wood. works.',
-  url: 'https://ambitious-glacier-0e4d34a03.azurestaticapps.net',
+  url: 'https://delightful-glacier-000742e03.azurestaticapps.net/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',

@@ -1,0 +1,10 @@
+{
+    "resources": [
+        {
+            "resourceType": "AvailabilityTest",
+            "name": "pingtest-swa{{ProductPrefix}}{{EnvironmentSuffix}}",
+            "appinsightsName": "ai{{ProductPrefix}}{{EnvironmentSuffix}}",
+            "url": "{{DocsUrl}}"
+        }
+    ]
+}

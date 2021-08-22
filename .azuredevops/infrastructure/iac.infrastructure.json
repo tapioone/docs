@@ -1,0 +1,9 @@
+{
+    "resources": [
+        {
+            "resourceType": "AppInsights",
+            "appInsightsName": "ai{{ProductPrefix}}{{EnvironmentSuffix}}",
+            "resourceGroupName": "{{ProductPrefix}}{{EnvironmentSuffix}}"
+        }
+    ]
+}

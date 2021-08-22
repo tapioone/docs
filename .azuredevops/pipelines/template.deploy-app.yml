@@ -1,0 +1,18 @@
+parameters:
+  - name: artifactName
+    type: string
+
+steps:
+
+- download: current
+  displayName: download artifact
+  artifact: ${{ parameters.artifactName }}
+
+- task: AzureStaticWebApp@0
+  inputs:
+    # Output_location / app_artifact_location is ignored when using this option
+    # This only applies to the app, not the api.
+    skip_app_build: true
+    app_location: $(Pipeline.Workspace)/${{ parameters.artifactName }}/
+    api_location: ''
+    azure_static_web_apps_api_token: $(AzureStaticWebAppDeploymentToken)

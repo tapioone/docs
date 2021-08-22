@@ -1,0 +1,177 @@
+resources:
+  repositories:
+    - repository: DeploymentRepository
+      type: git
+      name: tapio.Deployment
+      ref: master
+
+trigger:
+  branches:
+    include:
+      - master
+
+variables:
+  appDirectory: $(System.DefaultWorkingDirectory)
+  appArtifactName: app
+  infrastructureArtifactName: infrastructure
+
+pool:
+  # AzureStaticWebApp@0 requires Docker to be installed
+  vmImage: ubuntu-20.04
+
+stages:
+  - stage: build_app
+    dependsOn: []
+    jobs:
+      - job:
+        displayName: build
+        steps:
+          - checkout: self
+            clean: true
+
+          - task: Npm@1
+            displayName: "npm install"
+            inputs:
+              command: install
+              workingDir: ${{ variables.appDirectory }}
+
+          - task: Npm@1
+            displayName: "npm run build"
+            inputs:
+              command: custom
+              customCommand: "run build"
+              workingDir: ${{ variables.appDirectory }}
+
+          - publish: ${{ variables.appDirectory }}/build
+            artifact: ${{ variables.appArtifactName }}
+            displayName: publish artifact ${{ variables.appArtifactName }}
+
+  - stage: build_infrastructure
+    dependsOn: []
+    jobs:
+      - job:
+        displayName: build
+        steps:
+          - checkout: self
+            clean: true
+
+          - checkout: DeploymentRepository
+            clean: true
+
+          - task: CopyFiles@2
+            displayName: copy deployment components
+            inputs:
+              SourceFolder: $(System.DefaultWorkingDirectory)/tapio.Deployment/Components
+              contents: "**"
+              targetFolder: $(Build.ArtifactStagingDirectory)/${{ variables.infrastructureArtifactName }}/components
+
+          - task: CopyFiles@2
+            displayName: copy infrastructure files
+            inputs:
+              SourceFolder: $(System.DefaultWorkingDirectory)/docs/.azuredevops/infrastructure
+              contents: "**"
+              targetFolder: $(Build.ArtifactStagingDirectory)/${{ variables.infrastructureArtifactName }}/app
+
+          - publish: $(Build.ArtifactStagingDirectory)/${{ variables.infrastructureArtifactName }}
+            artifact: ${{ variables.infrastructureArtifactName }}
+            displayName: publish artifact ${{ variables.infrastructureArtifactName }}
+
+  - stage: whitesource
+    dependsOn: []
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - job:
+        displayName: scan
+        steps:
+          - checkout: self
+            clean: true
+
+          - task: Npm@1
+            displayName: "npm install"
+            inputs:
+              command: install
+              workingDir: ${{ variables.appDirectory }}
+
+          - task: Npm@1
+            displayName: "npm run build"
+            inputs:
+              command: custom
+              customCommand: "run build"
+              workingDir: ${{ variables.appDirectory }}
+
+          - task: WhiteSource@21
+            displayName: "WhiteSource Scan"
+            inputs:
+              projectName: tapio.PartnerUsageReporter
+              cwd: ${{ variables.appDirectory }}
+
+  - stage: deploy_preview
+    dependsOn:
+      - build_infrastructure
+      - build_app
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    variables:
+      - group: Docs-common
+      - group: Docs-preview
+    jobs:
+      - deployment: infrastructure
+        environment: Docs-preview
+        workspace:
+          clean: all
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: template.deploy-infrastructure.yml
+                  parameters:
+                    serviceConnectionName: tapio-devtest(SPN)
+                    artifactName: ${{ variables.infrastructureArtifactName }}
+                    resourceGroupName: $(ResourceGroupName)
+                    resourceGroupLocation: $(ResourceGroupLocation)
+      - deployment: app
+        dependsOn: infrastructure
+        environment: Docs-preview
+        workspace:
+          clean: all
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: template.deploy-app.yml
+                  parameters:
+                    artifactName: ${{ variables.appArtifactName }}
+
+
+  - stage: deploy_prod
+    dependsOn:
+      - deploy_preview
+    variables:
+      - group: Docs-common
+      - group: Docs-prod
+    jobs:
+      - deployment: infrastructure
+        environment: Docs-prod
+        workspace:
+          clean: all
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: template.deploy-infrastructure.yml
+                  parameters:
+                    serviceConnectionName: tapio-prod(SPN)
+                    artifactName: ${{ variables.infrastructureArtifactName }}
+                    resourceGroupName: $(ResourceGroupName)
+                    resourceGroupLocation: $(ResourceGroupLocation)
+      - deployment: app
+        dependsOn: infrastructure
+        environment: Docs-prod
+        workspace:
+          clean: all
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: template.deploy-app.yml
+                  parameters:
+                    artifactName: ${{ variables.appArtifactName }}

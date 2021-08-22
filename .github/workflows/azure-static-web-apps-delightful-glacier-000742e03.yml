@@ -1,9 +1,9 @@
 name: Validation & Preview CI/CD
 
 on:
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:

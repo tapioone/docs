@@ -1,0 +1,43 @@
+parameters:
+  - name: serviceConnectionName
+    type: string
+  - name: artifactName
+    type: string
+  - name: resourceGroupName
+    type: string
+  - name: resourceGroupLocation
+    type: string
+
+steps:
+
+- download: current
+  displayName: download artifact
+  artifact: ${{ parameters.artifactName }}
+
+- task: TokenResolver@0
+  displayName: resolve tokens
+  inputs:
+    ConnectedServiceName: ${{ parameters.serviceConnectionName }}
+    command: multiple
+    SourceFolder: $(Pipeline.Workspace)/${{ parameters.artifactName }}/app
+    Contents: |
+      iac.infrastructure.json
+      iac.alerts.json
+    TokenPlaceholderPrefix: '{{'
+    TokenPlaceholderSuffix: '}}'
+
+- task: AzurePowerShell@5
+  displayName: deploy infrastructure
+  inputs:
+    azureSubscription: ${{ parameters.serviceConnectionName }}
+    ScriptPath: $(Pipeline.Workspace)/${{ parameters.artifactName }}/components/Deploy.ps1
+    ScriptArguments: '-ResourceGroupName ${{ parameters.resourceGroupName }} -ResourceGroupLocation ${{ parameters.resourceGroupLocation }} -ConfigFilePath $(Pipeline.Workspace)/${{ parameters.artifactName }}/app/iac.infrastructure.json'
+    azurePowerShellVersion: LatestVersion
+
+- task: AzurePowerShell@5
+  displayName: deploy alerts
+  inputs:
+    azureSubscription: ${{ parameters.serviceConnectionName }}
+    ScriptPath: $(Pipeline.Workspace)/${{ parameters.artifactName }}/components/Deploy.ps1
+    ScriptArguments: '-ResourceGroupName ${{ parameters.resourceGroupName }} -ResourceGroupLocation ${{ parameters.resourceGroupLocation }} -ConfigFilePath $(Pipeline.Workspace)/${{ parameters.artifactName }}/app/iac.alerts.json'
+    azurePowerShellVersion: LatestVersion
