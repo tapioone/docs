@@ -30,9 +30,9 @@ stages:
             clean: true
 
           - task: Npm@1
-            displayName: "npm install"
+            displayName: "npm ci"
             inputs:
-              command: install
+              command: ci
               workingDir: ${{ variables.appDirectory }}
 
           - task: Npm@1
@@ -80,30 +80,17 @@ stages:
     dependsOn: []
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     jobs:
-      - job:
-        displayName: scan
-        steps:
-          - checkout: self
-            clean: true
-
-          - task: Npm@1
-            displayName: "npm install"
-            inputs:
-              command: install
-              workingDir: ${{ variables.appDirectory }}
-
-          - task: Npm@1
-            displayName: "npm run build"
-            inputs:
-              command: custom
-              customCommand: "run build"
-              workingDir: ${{ variables.appDirectory }}
-
-          - task: WhiteSource@21
-            displayName: "WhiteSource Scan"
-            inputs:
-              projectName: tapio.PartnerUsageReporter
-              cwd: ${{ variables.appDirectory }}
+      - template: BuildTemplates/jobs/whitesource.yml@DeploymentRepository
+        parameters:
+          productName: github.com/tapioone
+          projectName: github.com/tapioone/docs
+          scanDirectory: ${{ variables.appDirectory }}
+          preSteps:
+            - task: Npm@1
+              displayName: "npm ci"
+              inputs:
+                command: ci
+                workingDir: ${{ variables.appDirectory }}
 
   - stage: deploy_preview
     dependsOn:
