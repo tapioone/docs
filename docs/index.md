@@ -8,9 +8,9 @@ tapio is the digital ecosystem for the woodworking industry. It enables both sma
 
 To understand the concept behind tapio and to develop applications based on our ecosystem, follow the guides listed below.
 
-* If you're a machine manufacturer and you want to integrate you're machine into the tapio system, see our [Manufacturer-Section](./Manufacturer/)
-* If you're a application developer and you want to develop an app for the tapio ecosystem, see our [General-Section](./General/)
-* If you want to integrate our products in your products see our [Product-Section](./Products/) and our [General-Section](./General/)
+* If you're a machine manufacturer and you want to integrate you're machine into the tapio system, see our [Manufacturer-Section](./manufacturer/)
+* If you're a application developer and you want to develop an app for the tapio ecosystem, see our [General-Section](./general/)
+* If you want to integrate our products in your products see our [Product-Section](./products/) and our [General-Section](./general/)
 
 ______
 

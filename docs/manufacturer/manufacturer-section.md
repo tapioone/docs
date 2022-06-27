@@ -384,7 +384,7 @@ CloudConnectorId
 
 ### Response Model Description
 
-As a response to this query, you will retrieve cloud connector configuration file. For more information please follow this [link](./CloudConnector/Configuration).
+As a response to this query, you will retrieve cloud connector configuration file. For more information please follow this [link](./cloud-connector/configuration).
 
 ## Get CloudConnector by Id
 

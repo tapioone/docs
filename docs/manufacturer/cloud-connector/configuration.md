@@ -153,11 +153,11 @@ It is also possible to disable logging on the file system. You need to add the p
 
 ## Module Configuration
 
-Each module has a unique configuration model. Have a look at the [documentation](./Index#module-structure) of the module you want to configure.
+Each module has a unique configuration model. Have a look at the [documentation](./index#module-structure) of the module you want to configure.
 
 ### OPC UA Client Configuration
 
-Some modules like the [file transfer](../../machine-data/FileTransfer) or [call endpoint module](./CallEndpoint) contain a OPC UA client which has to be configured according to the documentation of the module in charge. Configuration patterns for [authentication](#authentication) and [node identifiers](#node-identifier) are reused in multiple modules.
+Some modules like the [file transfer](../../machine-data/file-transfer) or [call endpoint module](./call-endpoint) contain a OPC UA client which has to be configured according to the documentation of the module in charge. Configuration patterns for [authentication](#authentication) and [node identifiers](#node-identifier) are reused in multiple modules.
 
 #### Authentication
 

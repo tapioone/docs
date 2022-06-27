@@ -158,7 +158,7 @@ Execute a command using the REST API requires you to execute:
 
 - A `POST` request to execute the command on the following end-point `https://core.tapio.one/api/commanding`.
 
-> A [JWT Bearer token](https://tools.ietf.org/html/rfc7519) is required as authentication header and the `MachineCommanding`-Capability should be set, see [Register tapio Application](../General/RegisterTapioApplication) and [Authentication](../General/Authentication) for details.
+> A [JWT Bearer token](https://tools.ietf.org/html/rfc7519) is required as authentication header and the `MachineCommanding`-Capability should be set, see [Register tapio Application](../general/register-tapio-application) and [-authentication](../general/authentication) for details.
 > This function ensures that only one of the same command, e.g. EdgeHeating-On can be execute at the same time.
 > Use the ResourceId `https://tapiousers.onmicrosoft.com/CoreApi` for the token request otherwise you get an Unauthorized.
 >

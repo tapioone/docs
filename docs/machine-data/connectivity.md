@@ -5,7 +5,7 @@
 
 To make tapio a woodworking ecosystem, we needed a generic way, to send data from woodworking machines to the tapio ecosystem. We therefore created a piece of software, called the tapio CloudConnector. It gets installed either on a machine itself or on a windows computer, that's connected to the machine via ethernet and sends data to an Azure IoT Hub. Once the CloudConnector is configured via `.xml` configuration file, it's ready to send data.
 
-An advanced documentation on the tapio CloudConnector can be found in the [CloudConnector Documentation](../Manufacturer/CloudConnector)
+An advanced documentation on the tapio CloudConnector can be found in the [CloudConnector Documentation](../manufacturer/cloud-connector)
 
 ## Connection States
 

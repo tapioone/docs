@@ -7,8 +7,8 @@ It can be used to get the current state of tapio machines.
 
 ## Query Machine State
 
-> To be able to make requests to the State API, you first need to [register a tapio application](../General/RegisterTapioApplication) and assign machines to the application. **You won't receive data** for machines that are not assigned to your application.  
-> **Authentication** for State API is done via Azure AD B2C. See our [guide on authentication](../General/Authentication#non-interactive-authentication) for more details.
+> To be able to make requests to the State API, you first need to [register a tapio application](../general/register-tapio-application) and assign machines to the application. **You won't receive data** for machines that are not assigned to your application.  
+> **Authentication** for State API is done via Azure AD B2C. See our [guide on authentication](../general/authentication#non-interactive-authentication) for more details.
 
 You can retrieve the latest state of a machine using the following request:
 
@@ -45,8 +45,8 @@ Each machine query has the following properties:
 | Property | Description                                                                                                                  |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | tmid     | string: The tapio machine id                                                                                                 |
-| ks       | array of strings: List of [item data](./TapioDataCategories#item-data)  keys to return, returns **ALL** item data when empty |
-| excond   | optional bool: return also [condition](./TapioDataCategories#condition) states in response                                   |
+| ks       | array of strings: List of [item data](./tapio-data-categories#item-data)  keys to return, returns **ALL** item data when empty |
+| excond   | optional bool: return also [condition](./tapio-data-categories#condition) states in response                                   |
 | exitd    | optional bool: do not return any data item information in response, overrules `ks`                                           |
 
 Example request:
@@ -87,8 +87,8 @@ Each machine query has the following properties:
 | Property | Description                                                               |
 | -------- | ------------------------------------------------------------------------- |
 | tmid     | string: The tapio machine id                                              |
-| itds     | array of [item date](./TapioDataCategories#item-data): List of item data. |
-| conds    | array of [condition](./TapioDataCategories#condition): List of condition. |
+| itds     | array of [item date](./tapio-data-categories#item-data): List of item data. |
+| conds    | array of [condition](./tapio-data-categories#condition): List of condition. |
 
 ```json
 [
@@ -100,7 +100,7 @@ Each machine query has the following properties:
 ]
 ```
 
-The struct of [itds](./TapioDataCategories#item-data) and [conds](./TapioDataCategories#condition) are described.
+The struct of [itds](./tapio-data-categories#item-data) and [conds](./tapio-data-categories#condition) are described.
 
 ```json
 [
@@ -237,8 +237,8 @@ Each machine query has the following properties:
 | Property | Description                                                                                                                  |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | tmid     | string: The tapio machine id                                                                                                 |
-| ks       | array of strings: List of [item data](./TapioDataCategories#item-data)  keys to return, returns **ALL** item data when empty |
-| excond   | optional bool: return also [condition](./TapioDataCategories#condition) states in response                                   |
+| ks       | array of strings: List of [item data](./tapio-data-categories#item-data)  keys to return, returns **ALL** item data when empty |
+| excond   | optional bool: return also [condition](./tapio-data-categories#condition) states in response                                   |
 | exitd    | optional bool: do not return any data item information in response, overrules `ks`                                           |
 
 Example request:
@@ -306,6 +306,6 @@ Basic structure of response body is a `JSON` object:
 }
 ```
 
-You will find a detailed description on the response object within our documentation about [Data Categories - Last known state](./TapioDataCategories#last-known-state).
+You will find a detailed description on the response object within our documentation about [Data Categories - Last known state](./tapio-data-categories#last-known-state).
 
-[Read historical data](./HistoricalData)
+[Read historical data](./historical-data)

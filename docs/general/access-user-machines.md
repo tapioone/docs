@@ -9,7 +9,7 @@ If your application makes too many requests, HTTP status code `429` is returned.
 
 ## Decode the Access Token
 
-We start with collecting some information about the user that is currently logged-in. If you don't know how to enable tapio login in your application, read our guide about [authentication](./Authentication). When a user has successfully logged-in to our application, we receive an access token, which is used for authorization in further requests against tapio APIs. This access token also contains some information about the user. In our case, we need the email address of the user, to retrieve his user profile. To do so, we need to decode the access token (which is a [Json Web Token](https://jwt.io)) and access the `email` property of it.
+We start with collecting some information about the user that is currently logged-in. If you don't know how to enable tapio login in your application, read our guide about [authentication](./authentication). When a user has successfully logged-in to our application, we receive an access token, which is used for authorization in further requests against tapio APIs. This access token also contains some information about the user. In our case, we need the email address of the user, to retrieve his user profile. To do so, we need to decode the access token (which is a [Json Web Token](https://jwt.io)) and access the `email` property of it.
 
 ```javascript
 let accessToken = "eyJ0eXAiO..."; /// jwt token
@@ -304,4 +304,4 @@ Possible values for `deviceType`:
 - `Packaging`
 - `Handling`
 
-When iterating over all subscriptions from above, we can get all the machines the user has access to. We don't have any data sent from the machine yet, but what we have would be enough to built apps for machines with [limited tapio connectivity](../machine-data/Connectivity)
+When iterating over all subscriptions from above, we can get all the machines the user has access to. We don't have any data sent from the machine yet, but what we have would be enough to built apps for machines with [limited tapio connectivity](../machine-data/connectivity)

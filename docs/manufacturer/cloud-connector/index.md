@@ -44,8 +44,8 @@ You will be asked to accept our legal information when installing the CloudConne
 
 In order to connect your device to the tapio ecosystem you need to activate your tapio CloudConnector. Depending on your OS and CloudConnector version, you can choose between different options
 
-1. On Windows, you can use the activator application that is installed alongside the tapio CloudConnector. Find more information about the Activator application [here](./Activator).
-2. On Windows and Linux, you can use your browser to activate your CloudConnector. Find more information about browser based activation [here](./UI).
+1. On Windows, you can use the activator application that is installed alongside the tapio CloudConnector. Find more information about the Activator application [here](./activator).
+2. On Windows and Linux, you can use your browser to activate your CloudConnector. Find more information about browser based activation [here](./uI).
 
 > In any case, you can also use **EasyAdd** if you know the manufacturer serial number of your device.
 
@@ -63,7 +63,7 @@ user@example:~$ chmod +x install.sh # optional to make sure executable bit is se
 user@example:~$ sudo ./install.sh TapioCloudConnector.xml # path to a valid tapio CloudConnector configuration
 ```
 
-To install the CloudConnector UI (see [UI](./UI) for configuration):
+To install the CloudConnector UI (see [UI](./ui) for configuration):
 
 ```console
 user@example:~$ cd Tapio.CloudConnector.UI
@@ -110,7 +110,7 @@ The tapio CloudConnector has some requirements to the file system about write ri
 
 > If the system has the configuration stored in a read-only file system path, then the function for uploading a new config will not work.
 >
-> You want to provide a configuration with manufacture information which should not be able to change you need to use a split configuration where the `GlobalConfig` is stored in read-only file system (more information [here](./Configuration#Global-Configuration)).
+> You want to provide a configuration with manufacture information which should not be able to change you need to use a split configuration where the `GlobalConfig` is stored in read-only file system (more information [here](./configuration#-global--configuration)).
 
 ### Windows
 
@@ -134,7 +134,7 @@ The tapio CloudConnector has some requirements to the file system about write ri
 
 In case you want to provide a device as smart device you are able to use the split configuration feature. In such a use case you will have file system partition which are `read-only`. You have just to provide one partition where the CloudConnector has `write` permissions and there you will store the ConnectorConfig.xml. This file will be updated from the CloudConnector during the onboarding progress.
 
-![Virtualization of the different files](../../../static/img/docs/SplittetConfig.png "Virtualization of the different files")
+![Virtualization of the different files](../../../static/img/docs/splittetConfig.png "Virtualization of the different files")
 
 ## Module Structure
 
@@ -142,21 +142,21 @@ The CloudConnector is divided into several modules, which extend the CloudConnec
 
 | Module                                                            | Location | Config Type | Description                                                                                                                                                             |
 | ----------------------------------------------------------------- | -------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Call Endpoint Module](./CallEndpoint)                            | SDK      | XML         | Is used to communicate with tapio applications from software that's running on a tapio connected machine                                                                |
-| [Data Module](./DataModule)                                       | SDK      | XML/AUTO    | This Modules contains the OPC UA Source Modules, the Ping Module and the routing to the data endpoints                                                                  |
+| [Call Endpoint Module](./call-endpoint)                            | SDK      | XML         | Is used to communicate with tapio applications from software that's running on a tapio connected machine                                                                |
+| [Data Module](./data-module)                                       | SDK      | XML/AUTO    | This Modules contains the OPC UA Source Modules, the Ping Module and the routing to the data endpoints                                                                  |
 | Azure Iot Hub Module                                              | SDK      | XML         | This module is an endpoint for the data module to send the data via azure iot hub                                                                                       |
 | Batch Aggregation Module                                          | SDK      | XML         | This module is an endpoint for the data module to collect the data in zip archives and upload it via a batch upload module                                              |
 | Batch Upload Module                                               | SDK      | XML         | The module handles the upload of batch aggregation zip archives via core field api                                                                                      |
 | Backup Source Module                                              | SDK      | XML         | The is an OPC UA client based module to upload/list/download backup data from a OPC UA server, it uses a backup endpoint module for cloud communication                 |
 | Backup Endpoint Module                                            | SDK      | XML         | This module type handles the cloud communication with field api to upload/list/download backup files                                                                    |
-| [tapio Update Module](./UpdateModule)                             | SVC      | AUTO        | This module is part of the tapio CloudConnector and provide an auto update for the CloudConnector service. How to disable the auto update is described in this section. |
+| [tapio Update Module](./update-module)                             | SVC      | AUTO        | This module is part of the tapio CloudConnector and provide an auto update for the CloudConnector service. How to disable the auto update is described in this section. |
 | (Onboarding Module)                                               | SDK      | INTERNAL    | The onboarding module will run as default module to provide the onboarding functions for the activation ui                                                              |
 | (Diagnostic Module)                                               | SDK      | INTERNAL    | Provide diagnostic information via the OPC UA server built into the CloudConnector                                                                                      |
 | (Discovery Service Module)                                        | SDK      | INTERNAL    | Provide access to the core discovery service                                                                                                                            |
 | (OPC UA Server Module)                                            | SDK      | INTERNAL    | Host the internal OPC UA server parts like diagnostic info, onboarding and call endpoint module                                                                         |
 | [Health State Module](#internal-cloudconnector-diagnostic-server) | SDK      | INTERNAL    | This module provides the health state of the CloudConnector.                                                                                                            |
-| [File Transfer Module](../../machine-data/FileTransfer)           | SDK      | XML         | This module provides a function to receive large files (like a cutting plan) from tapio environment.                                                                    |
-| [Large File Upload Module](./LargeFileUploadModule)               | SDK      | XML         | This module provides a function to upload large files (like a high frequency measurement data) from tapio environment.                                                  |
+| [File Transfer Module](../../machine-data/file-transfer)           | SDK      | XML         | This module provides a function to receive large files (like a cutting plan) from tapio environment.                                                                    |
+| [Large File Upload Module](./large-file-upload-module)               | SDK      | XML         | This module provides a function to upload large files (like a high frequency measurement data) from tapio environment.                                                  |
 
 Location:
 
@@ -165,7 +165,7 @@ Location:
 
 Config Type:
 
-* XML - The module can be configured via the CloudConnector config xml file. See [configuration](./Configuration).
+* XML - The module can be configured via the CloudConnector config xml file. See [configuration](./configuration).
 * AUTO - The module has an pre configured static configuration
 * INTERNAL - The module configuration is created internally based on global settings
 
@@ -173,7 +173,7 @@ Config Type:
 
 To use the full feature set of tapio there the reported data has to satisfy the following constraints:
 
-* [Condition constraints](./ConditionConstraints)
+* [Condition constraints](./condition-constraints)
 
 ## How to update to a new configuration manually
 
@@ -249,4 +249,4 @@ The tapio CloudConnector executable is meant to be generic and fit the basic nee
 
 1. Checkout the log file in the directory: Windows `C:\ProgramData\tapio\CloudConnector\logs\`Linux `/opt/tapio/cloudconnector/logs` with the name `ServiceError_2020-08-10.log`. This file contains error information in case something went wrong during the startup of the CloudConnector.
 2. Check your configuration XML and check there aren't any XML syntax issue.
-3. Also an common error is a typo in the log level. [Allowed parameters](./Configuration#log-level)
+3. Also an common error is a typo in the log level. [Allowed parameters](./configuration#log-level)
