@@ -6,7 +6,7 @@ The data module transfers data from OPC UA servers to the cloud.
 
 Inside the DataModule multiple sources (OPC UA server) can be configured, the following XML snippets shows an example for an OPC UA Source configuration.
 
-```XML
+```xml
 <SourceOpcUa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Id>UniqueId01</Id>
   <ApplicationUri>urn:App</ApplicationUri>
@@ -83,7 +83,7 @@ With the `SourceEventItem` two kind of events can be configured:
 The basic condition type to produces the [condition messages](../../machine-data/tapio-data-categories#condition).
 Conditions are *persistent events* and can send regularly status updates via the condition refresh handling.
 
-```XML
+```xml
 <SourceItem xsi:type="SourceEventItem">
   <NodeId>ns=2;s=PublicInterface</NodeId>
   <Provider>PublicInterface.M5-C1</Provider>
@@ -102,7 +102,7 @@ Conditions are *persistent events* and can send regularly status updates via the
 
 The event type handles the non-persistent events and produces the [event data messages](../../machine-data/tapio-data-categories#event-data)
 
-```XML
+```xml
 <SourceItem xsi:type="SourceEventItem">
   <NodeId>ns=2;s=PublicInterface</NodeId>
   <Provider>PublicInterface.M5-C1</Provider>
@@ -125,7 +125,7 @@ The `SelectClause` has the following XML attributes (OPC UA):
 
 A value without attributes is **not allowed**:
 
-```XML
+```xml
 <SelectClause />
 ```
 
@@ -143,7 +143,7 @@ The select clauses defines the properties which will be transferred via the [Eve
 
 #### `SourceDataItem`
 
-```XML
+```xml
 <SourceItem xsi:type="SourceDataItem">
   <NodeId>ns=2;s=Simu.0000000001.0001-State.CurrentStateGroup</NodeId>
   <SrcKey>State.CurrentStateGroup</SrcKey>
@@ -161,7 +161,7 @@ The select clauses defines the properties which will be transferred via the [Eve
 
 #### `Targets`
 
-```XML
+```xml
 <Targets>
   <Target>AzureIoTHub</Target>
   <Target>BatchAggregation</Target>
