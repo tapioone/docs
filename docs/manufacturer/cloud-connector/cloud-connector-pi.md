@@ -66,7 +66,7 @@ Follow the [installation guide for linux](./index#installation-guide-for-linux).
 
 To access the CloudConnector UI you have to forward the local port `5555`. You can do that by creating an `SSH`-Tunnel with [PuTTY](https://www.putty.org/):
 
-![Putty SSH Tunnel](../../../static/img/docs/putty_ssh_tunnel_config.png)
+![Putty SSH Tunnel](../../../static/img/docs/putty-ssh-tunnel-config.png)
 
 Using the configuration above you can access the CloudConnector UI running on your Pi by opening `http://localhost:9001/` in your Webbrowser.
 

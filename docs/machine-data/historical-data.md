@@ -274,7 +274,7 @@ For a detailed description of the fields see [tapio data catagories](./tapio-dat
 
 The following picture represents the logic behind the condition query:
 
-![Virtualization of the condition aggregation data](../../static/img/docs/condition_query.png "-virtualization of the condition aggregation data")
+![Virtualization of the condition aggregation data](../../static/img/docs/condition-query.png "-virtualization of the condition aggregation data")
 
 The RTS start and RTS end timestamps of the condition defining the lifetime of one condition, if the value is outside of the queried range it will be set to `null`, also the rts end quality marker is set to `null` in this case.
 The quality marker of the rts end is used to differ between a explicit end send by the machine and an assumed

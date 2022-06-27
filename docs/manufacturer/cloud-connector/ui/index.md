@@ -18,7 +18,7 @@ the tapio logo will tell you the current state of your CloudConnector.
 If your CloudConnector is fully operational but not yet activated,
 your screen will look like this:
 
-![Active](../../../../static/img/docs/not_activated.png)
+![Active](../../../../static/img/docs/not-activated.png)
 
 Clicking the ```Activate now``` button will open up a new page
 that guides you through the activation process.

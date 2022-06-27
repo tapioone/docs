@@ -22,15 +22,15 @@ The historic occurrence of this condition instances can be queried with the hist
 
 Visual examples how the condition lifetime in the tapio systems are processed:
 
-![Normal condition behavior](../../../static/img/docs/opcua_condition_lifetime_1.png "Normal condition behavior")
+![Normal condition behavior](../../../static/img/docs/opcua-condition-lifetime-1.png "Normal condition behavior")
 
 The normal dataflow contains a condition active message with several condition refreshes until a condition inactive message is send.
 
-![Condition lifetime with changed properties](../../../static/img/docs/opcua_condition_lifetime_2.png "Condition lifetime with changed properties")
+![Condition lifetime with changed properties](../../../static/img/docs/opcua-condition-lifetime-2.png "Condition lifetime with changed properties")
 
 When a condition active/inactive message is received with non matching properties compared to the previous condition, or with a different SourceTimeStamp, the end of this previous condition is set to the received condition timestamp.
 
-![Condition lifetime assumed end](../../../static/img/docs/opcua_condition_lifetime_3.png "Condition lifetime assumed end")
+![Condition lifetime assumed end](../../../static/img/docs/opcua-condition-lifetime-3.png "Condition lifetime assumed end")
 
 When for condition no updates or refreshes are received the condition will be marked as inactive 10.5 minutes after the last matching message.
 
