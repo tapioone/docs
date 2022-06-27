@@ -4,6 +4,12 @@
             "resourceType": "AppInsights",
             "appInsightsName": "ai{{ProductPrefix}}{{EnvironmentSuffix}}",
             "resourceGroupName": "{{ProductPrefix}}{{EnvironmentSuffix}}"
+        },
+        {
+            "resourceType": "StaticWebApp",
+            "name": "swa{{ProductPrefix}}{{EnvironmentSuffix}}",
+            "resourceGroupName": "{{ProductPrefix}}{{EnvironmentSuffix}}",
+            "sku": "Free"
         }
     ]
 }
