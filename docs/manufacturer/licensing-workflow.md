@@ -20,7 +20,7 @@ In order to create a license, you first need to obtain the id of the application
 
 Each license is unique per application and machine. Consequently, you cannot issue multiple licenses for the same application to a single machine.
 
-> Altough ownership of a license can be bound to a specific machine, the usage for the customer can not. This means the customer is free to assign the license to any machine. To ensure that a certain machine is actually assigned to a specific machine refer to [access assigned machines](./access-assigned-machines).
+> Although ownership of a license can be bound to a specific machine, the usage for the customer can not. This means the customer is free to assign the license to any machine. To ensure that a certain machine is actually assigned to a specific machine refer to [access assigned machines](./access-assigned-machines).
 
 To create the license use the following route:
 
@@ -52,7 +52,7 @@ To create the license use the following route:
 
 201 - Created.
 
-```jsonc
+```json
 {
   "id": "c91d01ba-b4b8-4510-99d6-0c984f26420e" // The id of the created object.
 }
@@ -75,7 +75,7 @@ After creating a license, it can be retrieved using the unique combination of ap
 
 404 - NotFound.
 
-```jsonc
+```json
 {
     "id": "c91d01ba-b4b8-4510-99d6-0c984f26420e", // id of the license
     "createdAt": "2020-05-11T14:58:48.3777842+00:00", // creation date
@@ -109,7 +109,7 @@ The route uses continuation tokens for server-side paging. In order to access th
 
 200 - Ok
 
-```jsonc
+```json
 {
     "items": [
       {
@@ -151,7 +151,7 @@ To create a bundle for a customer you first have to retrieve a bundle definition
 
 #### Response Model
 
-```jsonc
+```json
 {
   "continuationToken": "",
   "data": [
@@ -191,7 +191,7 @@ To create a bundle you have to call the route with the following information. Af
 
 **Request body**
 
-```jsonc
+```json
 {
   "bundleDefinitionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Id of the bundle definition you want to create an instance of (required).
   "subscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Subscription id of the customer (required).
@@ -216,7 +216,7 @@ To create a bundle you have to call the route with the following information. Af
 401 - Unauthorized.
 409 - Conflict. e.g. the external id is already used.
 
-```jsonc
+```json
 {
   "id": "c91d01ba-b4b8-4510-99d6-0c984f26420e" 
 }
@@ -235,7 +235,7 @@ You can call this route to query all your created bundles.
 
 #### Response model
 
-```jsonc
+```json
 {
   "continuationToken": "string",
   "data": [
@@ -279,7 +279,7 @@ After you created a bundle you can query the bundle and can check the state of t
 
 #### Response model
 
-```jsonc
+```json
 {
   "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",  // Id of the bundle
   "salesChannel": { // Current sales channel
@@ -335,7 +335,7 @@ After the bundle was created successfully (provisioning state), you can hand it 
 
 **Request body**
 
-```jsonc
+```json
 {
   "subscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Subscription of the bundle owner (required).
   "period": "string", // Period of the bundle which have to match with the supportedPeriods of the bundle definition (ISO 8601 repeating intervals) (required).
@@ -388,7 +388,7 @@ Only works for shop-managed bundles. Gets the current shop expiry date of the bu
 
 #### Response model
 
-```jsonc
+```json
 {
     "expiryDate": "2021-10-26T00:00:00.000Z" // Expiry date as ISO 8601.
 }
@@ -406,7 +406,7 @@ Only works for shop-managed bundles. Sets the shop expiry date of the bundle.
 | -------- | ----------- | -------- | -------- |
 | id       | bundle id   | Guid     | yes      |
 
-```jsonc
+```json
 {
   "subscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Subscription id of the bundle owner. (required)
   "expiryDate": "2021-10-26T06:49:57.976Z" // Expiry date (relative to Coordinated Universal Time (UTC)). Must be at least 24h in the future(ISO 8601) (required). The system will just adapt the date and will ignore the concrete time. 
@@ -430,7 +430,7 @@ After creating a license for an application, the next step is to accept the term
 
 **Request body**
 
-```jsonc
+```json
 {
   "versionNumber": "1.0.0", // Semantic versioning. Version number needs to exist (optional).
   "contractNumber": "4711", // Your contract number (required).
@@ -454,7 +454,7 @@ After accepting the terms of use of an application, the last step is to assign t
 
 **Request body**
 
-```jsonc
+```json
 {
     "customerSubscriptionId": "aafb748b-e7ad-4b56-a45c-79a52bf4023d", // Id of the customer subscription (required).
     "applicationId": "aafb1932-e7ad-4b56-a45c-79a52bf4023d" // Application to which the machine is assigned (required).

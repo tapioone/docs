@@ -16,7 +16,7 @@ The following properties can be set via query parameter.
 
 ### Response model
 
-```jsonc
+```json
 [
   {
     "subscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -33,7 +33,7 @@ By calling the route you can create a new customer in tapio ecosystem.
 
 **Request body**
 
-```jsonc
+```json
 {
   "adminUsereMail": "john@Doe.net", // Email of the customer admin
   "adminUserTitle": "Mr", // Salutation of the customer (Mr, Mrs, Company) (optional)
@@ -58,7 +58,7 @@ By calling the route you can create a new customer in tapio ecosystem.
 
 ### Response model
 
-```jsonc
+```json
 {
   "subscriptionId": "f6874d67-c827-4be3-9c6b-c9ebfaa037db"
 }
@@ -178,7 +178,7 @@ The machine will be created in tapio ecosystem and tapioMachineId will be genera
 
 **Request body**
 
-```jsonc
+```json
 {
   "displayName": "Test Machine", // Display name of the machine
   "serialNumber": "1122334455667788", // Serial number of the machine
@@ -219,7 +219,7 @@ The machine will be created in tapio ecosystem and tapioMachineId will be genera
 
 ### Response model
 
-```jsonc
+```json
 {
   "tmid": "tdmtest1122334455667788", // tapioMachineId
   "displayName": "Test Machine", // Display name of the machine
@@ -260,7 +260,7 @@ To update machine, this route can be used. It uses JsonPatch approach, which all
 
 **Request body**
 
-```jsonc
+```json
 [
   {
     "value": "New DisplayName",
@@ -286,7 +286,7 @@ For connected machines you have to check if the capabilities array contains  `Ma
 
 200 - Ok.
 
-```jsonc
+```json
 {
   "capabilities": [
     "MachineAssignable",
@@ -309,7 +309,7 @@ To onboard a machine for a customer we have to use this route:
 
 **Request body**
 
-```jsonc
+```json
 {
   "customerSubscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Id of customer subscription
   "machineName": "string" // This is the name, which customer will see
@@ -336,7 +336,7 @@ To change the machines display name for the customer use
 
 **Request body**
 
-```jsonc
+```json
 {
   "customerSubscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Id of customer subscription
   "displayName": "string" // The new name of the machine in the customer subscription
@@ -353,7 +353,7 @@ To change the machines display name for the customer use
 
 **Request body**
 
-```jsonc
+```json
 {
   "displayName": "Test Machine", // Display name of the cloud connector
   "tmids": ["1122334455667788"], //  Serial number of the associated machines. Usually a cloud connector serves just a single machine.
@@ -365,7 +365,7 @@ To change the machines display name for the customer use
 
 CloudConnectorId
 
-```jsonc
+```json
 {
   "ccid":"Nob9tAIG6z6QnS4-GeF_KVPS3j-eGQnMKA9A8b4KA0Jvb5WtAlE6-T2eA2hk5MkEBj1_pB9GJANdCgO261bZZw"
 }
@@ -395,7 +395,7 @@ As a response to this query, you will retrieve cloud connector configuration fil
 
 ### Response model
 
-```jsonc
+```json
 {
   "cloudConnectorId": "Nob9tAIG6z6QnS4-GeF_KVPS3j-eGQnMKA9A8b4KA0Jvb5WtAlE6-T2eA2hk5MkEBj1_pB9GJANdCgO261bZZw",
   "displayName": "CloudConnector",
@@ -419,7 +419,7 @@ To update machine, this route can be used. It uses JsonPatch approach, which all
 
 **Request body**
 
-```jsonc
+```json
 [
   {
     "value": "tdmtest112233445566778822",
@@ -446,7 +446,7 @@ Updates or creates metadata for a specific manufacturer machine and all applicat
 
 **Request body**
 
-```jsonc
+```json
 {
     // Display template
 }
@@ -468,7 +468,7 @@ Updates or creates metadata for a specific manufacturer machine and specific app
 
 **Request body**
 
-```jsonc
+```json
 {
     // Display template
 }
@@ -487,7 +487,7 @@ Retrieving metadata for a specific manufacturer machine and all applications:
 
 ### Response model
 
-```jsonc
+```json
 {
     // Display template
 }
@@ -505,7 +505,7 @@ Retrieving metadata for a specific manufacturer machine and application:
 
 ### Response model
 
-```jsonc
+```json
 {
     // Display template
 }
@@ -525,7 +525,7 @@ Retrieving global metadata keys for specific machine:
 
 ### Response model
 
-```jsonc
+```json
 {
   "totalCount": 1,
   "results": [
@@ -549,7 +549,7 @@ Retrieving metadata keys for specific machine and application:
 
 ### Response model
 
-```jsonc
+```json
 {
   "totalCount": 1,
   "results": [
