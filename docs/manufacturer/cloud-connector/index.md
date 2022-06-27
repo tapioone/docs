@@ -134,7 +134,7 @@ The tapio CloudConnector has some requirements to the file system about write ri
 
 In case you want to provide a device as smart device you are able to use the split configuration feature. In such a use case you will have file system partition which are `read-only`. You have just to provide one partition where the CloudConnector has `write` permissions and there you will store the ConnectorConfig.xml. This file will be updated from the CloudConnector during the onboarding progress.
 
-![Virtualization of the different files](../../../static/img/docs/splittetConfig.png "Virtualization of the different files")
+![Virtualization of the different files](../../../static/img/docs/SplittetConfig.png "Virtualization of the different files")
 
 ## Module Structure
 

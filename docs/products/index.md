@@ -8,4 +8,3 @@ tapio provides a number of applications. To provide guidance for interoperabilit
 ____
 
 If you have any further questions on this guide, don't be shy to contact us at [developer@tapio.one](mailto:developer@tapio.one)
-
