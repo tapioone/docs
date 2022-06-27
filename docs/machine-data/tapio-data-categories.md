@@ -15,7 +15,7 @@ tapio connected machines currently expose three types of data to the ecosystem.
 
 ## Streaming Data
 
-The streaming data represents the real time information sent by a [CloudConnector](../Manufacturer/CloudConnector), the streaming data will be written to configured azure event hub endpoints in real time.
+The streaming data represents the real time information sent by a [CloudConnector](../manufacturer/cloud-connector), the streaming data will be written to configured azure event hub endpoints in real time.
 The format is a `JSON` based container with the following message types:
 
 | Message Type      | Description                                                                      |
@@ -308,7 +308,7 @@ The message has the following content:
 | downloadUri | string | An HTTPS URI to download the generic data file                                                                                                              |
 | expiry      | string | An ISO8601 string to specify the lifetime of the download link                                                                                              |
 | messageType | string | The type of the message. Available values `batch` or `generic`. |
-| sourceKey   | string | Key that is used to identify the data, which is defined in the [XML module configuration](./../Manufacturer/CloudConnector/LargeFileUploadModule).       |
+| sourceKey   | string | Key that is used to identify the data, which is defined in the [XML module configuration](./../manufacturer/cloud-connector/large-file-upload-module).       |
 
 ## Last known state
 

@@ -3,7 +3,7 @@
 
 This page contains an overview on all APIs that are currently available for third party developers, to integrate tapio ecosystem features within their applications.
 
-> Before using one of the APIs below, we highly recommend to read our [authentication guide](./Authentication)
+> Before using one of the APIs below, we highly recommend to read our [authentication guide](./authentication)
 
 ## Common URLs used to Authenticate
 
@@ -18,9 +18,9 @@ We're using some services provided by Microsoft, to authenticate applications an
 
 | API Name                     | Purpose                                                                       | Base Url                           | Detailed Documentation Available                                                                                                                                    | Authentication Flow    | ResourceId                                                  |
 | ---------------------------- | ----------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------------------------------------------------------- |
-| Core API                     | Retrieve machine states and send commands to a machine                        | `https://core.tapio.one/`          | [Access Machine States](../machine-data/StateApi), [Read Historical Data](../machine-data/HistoricalData), [Send Commands to a Machine](../machine-data/Commanding) | Client Credential Flow | `https://tapiousers.onmicrosoft.com/CoreApi`                |
-| Global Discovery Service API | Retrieve the profile of a user, including assigned subscriptions and machines | `https://globaldisco.tapio.one/`   | [Retrieve Machines of a User](./AccessUserMachines), [Global Customer Settings](./GlobalDiscoveryService)                                                           | Client Credential Flow | `https://tapiousers.onmicrosoft.com/GlobalDiscoveryService` |
-| Management API               | Create and manage your tapio machines                                         | `https://api.tapio.one/management` | [Manage your Machines](../Manufacturer)                                                                                                                             | Client Credential Flow | `https://tapiousers.onmicrosoft.com/ManagementApiGateway`   |
+| Core API                     | Retrieve machine states and send commands to a machine                        | `https://core.tapio.one/`          | [Access Machine States](../machine-data/state-api), [-read Historical Data](../machine-data/historical-data), [Send Commands to a Machine](../machine-data/Commanding) | Client Credential Flow | `https://tapiousers.onmicrosoft.com/CoreApi`                |
+| Global Discovery Service API | Retrieve the profile of a user, including assigned subscriptions and machines | `https://globaldisco.tapio.one/`   | [Retrieve Machines of a User](./access-user-machines), [-global Customer Settings](./global-discovery-service)                                                           | Client Credential Flow | `https://tapiousers.onmicrosoft.com/GlobalDiscoveryService` |
+| Management API               | Create and manage your tapio machines                                         | `https://api.tapio.one/management` | [Manage your Machines](../manufacturer)                                                                                                                             | Client Credential Flow | `https://tapiousers.onmicrosoft.com/ManagementApiGateway`   |
 
 Policies
 ______

@@ -11,8 +11,8 @@ If you are also an app developer, you are able to issue licenses for the applica
 
 ## General
 
-To be able to make requests to the manufacturer API, you first need to [register a tapio application](../General/RegisterTapioApplication) for your manufacturer subscription. **You won't be able to manage machines**  which are not machines you created.  
-**Authentication** for Management API is done via Azure AAD. See our [guide on authentication](../General/Authentication#non-interactive-authentication) for more details.
+To be able to make requests to the manufacturer API, you first need to [register a tapio application](../general/register-tapio-application) for your manufacturer subscription. **You won't be able to manage machines**  which are not machines you created.  
+**Authentication** for Management API is done via Azure AAD. See our [guide on authentication](../general/authentication#non-interactive-authentication) for more details.
 
 > Use `Content-Type: application/json;charset=UTF-8` in your request headers for all requests
 <!-- -->
@@ -22,14 +22,14 @@ To be able to make requests to the manufacturer API, you first need to [register
 
 ## Overview
 
-Go to [manufacturer routes](./ManufacturerSection), to get an overview over the existing routes.
+Go to [manufacturer routes](./manufacturer-section), to get an overview over the existing routes.
 
-See [machine onboarding workflow](./MachineOnboardingWorkflow), to view a description on how to onboard machines via the api,
+See [machine onboarding workflow](./machine-onboarding-workflow), to view a description on how to onboard machines via the api,
 
-Refer to [reporting workflow](./ReportingWorkflow), if you want to retrieve information on how your customer use your machines.
+Refer to [reporting workflow](./reporting-workflow), if you want to retrieve information on how your customer use your machines.
 
 If you're a developer and want to issue licenses for your applications, see the
-[licensing workflow](./LicensingWorkflow)
+[licensing workflow](./licensing-workflow)
 
-Finally, if you're an app developer and want to know if a certain machine is assigned to one of your applications, refer to [accessing assigned machines](./AccessAssignedMachines).
+Finally, if you're an app developer and want to know if a certain machine is assigned to one of your applications, refer to [accessing assigned machines](./access-assigned-machines).
 

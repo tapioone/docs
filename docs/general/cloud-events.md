@@ -294,7 +294,7 @@ Fired when something about the service partner relation of a subscription has be
 
 ## Data Deletion Required Event
 
-See [Customer Data](./CustomerData).
+See [Customer Data](./customer-data).
 
 `one.tapio.selfservice.application.customerdatadeletionrequired`
 

@@ -52,9 +52,9 @@ Inside the configuration there are the following options:
 | `ApplicationUri`§ | string                | OPC UA server address to connect using a local discovery service (OPC UA LDS).                 |
 | `OpcServer`§      | string                | OPC UA server address to connect directly. `<OpcServer>opc.tcp://localhost:4553</OpcUaServer>` |
 | `RemoteLds`       | string                | OPTIONAL OPC UA server address to connect using a remote discovery service.                    |
-| `Authentication`  | object                | OPTIONAL: See [OPC UA Client Configuration](./Configuration#opc-ua-client-configuration)       |
+| `Authentication`  | object                | OPTIONAL: See [OPC UA Client Configuration](./configuration#opc-ua-client-configuration)       |
 | `Groups`          | List of `SourceGroup` | See [`SourceGroup`](#sourcegroup)                                                              |
-| `Commanding`      | object                | For Commanding see [Commanding Configuration](../../machine-data/Commanding#configuration)     |
+| `Commanding`      | object                | For Commanding see [Commanding Configuration](../../machine-data/commanding#configuration)     |
 
 **§ Only one of the Options `ApplicationUri` or `OpcServer` has to be configured.**
 
@@ -81,7 +81,7 @@ With the `SourceEventItem` two kind of events can be configured:
 
 ##### Condition Type
 
-The basic condition type to produces the [condition messages](../../machine-data/TapioDataCategories#condition).
+The basic condition type to produces the [condition messages](../../machine-data/tapio-data-categories#condition).
 Conditions are *persistent events* and can send regularly status updates via the condition refresh handling.
 
 ```XML
@@ -94,14 +94,14 @@ Conditions are *persistent events* and can send regularly status updates via the
 
 | Entry              | Type                   | Description                                                                                                                  |
 | ------------------ | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `NodeId`           | object                 | The node id to listen for events, see [supported formats](./Configuration#node-identifier).                                  |
+| `NodeId`           | object                 | The node id to listen for events, see [supported formats](./configuration#node-identifier).                                  |
 | `Provider`         | string                 | Defines the provider grouping for received conditions, it is used as *Key* for condition refresh                             |
 | `SelectClauses`    | list of `SelectClause` | Optional, will be added as additional values, besides the pre-configured properties, see description of `SelectClause` below |
 | `UseConditionData` | bool                   | Disable the default condition type handling and use the event type handling; default is `true` (Condition Handling)          |
 
 ##### Event type
 
-The event type handles the non-persistent events and produces the [event data messages](../../machine-data/TapioDataCategories#event-data)
+The event type handles the non-persistent events and produces the [event data messages](../../machine-data/tapio-data-categories#event-data)
 
 ```XML
 <SourceItem xsi:type="SourceEventItem">
@@ -120,7 +120,7 @@ The `SelectClause` has the following XML attributes (OPC UA):
 
 | Entry         | Type    | Description                                                                                                    |
 | ------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
-| `eventTypeId` | string  | the event type node id, see [full node id](./Configuration#full-notation); default is `i=2041` (BaseEventType) |
+| `eventTypeId` | string  | the event type node id, see [full node id](./configuration#full-notation); default is `i=2041` (-base-event-type) |
 | `browsePath`  | string  | the browse path to select; default is `""`                                                                     |
 | `attribute`   | integer | the attribute to be used; default `13` (Value)                                                                 |
 
@@ -132,7 +132,7 @@ A value without attributes is **not allowed**:
 
 When `eventTypeId` is configured then also `browsePath` or `attribute` has to be configured.
 
-The select clauses defines the properties which will be transferred via the [EventData `vls`-property](../../machine-data/TapioDataCategories#event-data) or [ConditionData `vls`-property](../../machine-data/TapioDataCategories#condition) to the tapio system (based on `UseConditionData` property).
+The select clauses defines the properties which will be transferred via the [EventData `vls`-property](../../machine-data/tapio-data-categories#event-data) or [ConditionData `vls`-property](../../machine-data/tapio-data-categories#condition) to the tapio system (based on `UseConditionData` property).
 
 - Conditions: The select clauses will be used as additional clauses to the pre-configured select clauses.
 - Events: When no select clauses are configured a default set of the *OPC UA BaseEventType* properties is used, otherwise only the configured are used
@@ -153,8 +153,8 @@ The select clauses defines the properties which will be transferred via the [Eve
 
 | Entry              | Type             | Description                                                                                                                                     |
 | ------------------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `NodeId`           | object           | The node id of the data value; see [supported formats](./Configuration#node-identifier).                                                        |
-| `SrcKey`           | string           | The identifier(key) used for transferring the values to the tapio system [See `k`](../../machine-data/TapioDataCategories#item-data)            |
+| `NodeId`           | object           | The node id of the data value; see [supported formats](./configuration#node-identifier).                                                        |
+| `SrcKey`           | string           | The identifier(key) used for transferring the values to the tapio system [See `k`](../../machine-data/tapio-data-categories#item-data)            |
 | `TrimStrings`      | bool             | Optionally trim the string and remove whitespace and nul-characters; default is `false`                                                         |
 | `QueueSize`        | unsigned integer | Optional queue size of the item/event changes queue on the server; will be cleared on every receive from the client; default is `-1` (max(int)) |
 | `SamplingInterval` | integer          | Optional server sampling interval of the OPC UA item in ms; default is `-1` (sampling is the same as `UpdateIntervallInMs` )                    |

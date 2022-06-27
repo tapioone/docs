@@ -21,7 +21,7 @@ In order to create a license, you first need to obtain the id of the application
 
 Each license is unique per application and machine. Consequently, you cannot issue multiple licenses for the same application to a single machine.
 
-> Altough ownership of a license can be bound to a specific machine, the usage for the customer can not. This means the customer is free to assign the license to any machine. To ensure that a certain machine is actually assigned to a specific machine refer to [access assigned machines](./AccessAssignedMachines).
+> Altough ownership of a license can be bound to a specific machine, the usage for the customer can not. This means the customer is free to assign the license to any machine. To ensure that a certain machine is actually assigned to a specific machine refer to [access assigned machines](./access-assigned-machines).
 
 To create the license use the following route:
 
@@ -462,7 +462,7 @@ After accepting the terms of use of an application, the last step is to assign t
 }
 ```
 
-For a successful assignment, the machine must already exist in the customer subscription. For instructions how to onboard a machine, refer to [Machine Onboarding Workflow](./MachineOnboardingWorkflow).
+For a successful assignment, the machine must already exist in the customer subscription. For instructions how to onboard a machine, refer to [Machine Onboarding Workflow](./machine-onboarding-workflow).
 
 ### Response
 
@@ -470,7 +470,7 @@ For a successful assignment, the machine must already exist in the customer subs
 
 200 - Ok. If machine is already assigned.
 
-404 - Not found. The application assignment could not be created because there exists no free license for the specified applicationId in the specified customer subscription. Make sure that you have created a license for the machine (see [Create a License](#create-a-license)) and that the machine is onboarded in the customer subscription (see [Machine Onboarding Workflow](./MachineOnboardingWorkflow)).
+404 - Not found. The application assignment could not be created because there exists no free license for the specified applicationId in the specified customer subscription. Make sure that you have created a license for the machine (see [Create a License](#create-a-license)) and that the machine is onboarded in the customer subscription (see [Machine Onboarding Workflow](./machine-onboarding-workflow)).
 
 ## Unassign a machine from an application
 

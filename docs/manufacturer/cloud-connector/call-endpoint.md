@@ -25,7 +25,7 @@ To call another tapio resource through the CloudConnector, you first need to ada
 </Module>
 ```
 
-> Tip: [Configuring a NodeId](./Configuration#node-identifier).
+> Tip: [Configuring a NodeId](./configuration#node-identifier).
 
 The `NodeId` xml node defines the NodeId within OPC UA, that will accept a synchronous OPC UA call containing information about the tapio API to call.
 

@@ -3,7 +3,7 @@
 
 ## Introduction
 
-tapio's historic data API enables retrieving of historic machine data. You can retrieve historic data of your machines, for example to implement analytic solutions. As you might have already read something about [tapio Data Categories](./TapioDataCategories) you know that there is `streaming` and `batch` data. Both `streaming` and `batch` data are written into the historical database. The database archives three different sub-types of `streaming` and `batch` data: `Conditions`, `Item Data` and `Control messages`.  
+tapio's historic data API enables retrieving of historic machine data. You can retrieve historic data of your machines, for example to implement analytic solutions. As you might have already read something about [tapio Data Categories](./tapio-data-categories) you know that there is `streaming` and `batch` data. Both `streaming` and `batch` data are written into the historical database. The database archives three different sub-types of `streaming` and `batch` data: `Conditions`, `Item Data` and `Control messages`.  
 An example use case of this feature would be analyzing the electrical power consumption of a machine over a certain time range.
 
 The historic data processing may not contain the most recent data due offline machine state or ongoing processing procedure.
@@ -12,8 +12,8 @@ The historic data processing may not contain the most recent data due offline ma
 
 ## General
 
-To be able to make requests to the historic data API, you first need to [register a tapio application](../General/RegisterTapioApplication) and assign machines to the application. **You won't receive data** for machines that are not assigned to your application.  
-**Authentication** for State API is done via Azure AD B2C. See our [guide on authentication](../General/Authentication#non-interactive-authentication) for more details.
+To be able to make requests to the historic data API, you first need to [register a tapio application](../general/register-tapio-application) and assign machines to the application. **You won't receive data** for machines that are not assigned to your application.  
+**Authentication** for State API is done via Azure AD B2C. See our [guide on authentication](../general/authentication#non-interactive-authentication) for more details.
 
 > NOTE: Use `Content-Type: application/json;charset=UTF-8` in your request headers
 <!-- -->
@@ -21,7 +21,7 @@ To be able to make requests to the historic data API, you first need to [registe
 
 ## Read Source Keys
 
-We're sure you wonder what "source keys" are right now. When we talk about `source keys` in context of the historic data API, we mean the actual key of a machine data object. This could for example be something like `Energy!AirPressure`. You can read more about the data structure of machine data [in the detailed guide on machine data](./TapioDataCategories#item-data).  
+We're sure you wonder what "source keys" are right now. When we talk about `source keys` in context of the historic data API, we mean the actual key of a machine data object. This could for example be something like `Energy!AirPressure`. You can read more about the data structure of machine data [in the detailed guide on machine data](./tapio-data-categories#item-data).  
 This query won't return actual data, meaning for example values of `Energy!AirPressure`. It will return those source keys, for which historic data is available.
 
 You can retrieve the source keys that occurred in the past for a machine, using the following API route:
@@ -107,7 +107,7 @@ As a response to this query, you will retrieve an array of objects, wrapping the
 | Property          | Description                                                                                            | Datatype                                              |
 | ----------------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
 | key               | Name of the source key                                                                                 | string                                                |
-| value             | Historic data for the source key                                                                       | [HistoricItemData](./TapioDataCategories#item-data)[] |
+| value             | Historic data for the source key                                                                       | [HistoricItemData](./tapio-data-categories#item-data)[] |
 | moreDataAvailable | **true** when there there is more data available than returned. Increase limit or decrease date range. | bool                                                  |
 
 > When there is more data available for your key, you need to increase your limit or change the time span, in order to retrieve all the data. We currently do not support other sorting mechanisms or something like that.
@@ -254,7 +254,7 @@ Container:
 
 Entry:
 
-For a detailed description of the fields see [tapio data catagories](./TapioDataCategories#condition).
+For a detailed description of the fields see [tapio data catagories](./tapio-data-categories#condition).
 
 | Property            | Description                                                                                                          | Datatype |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -274,12 +274,12 @@ For a detailed description of the fields see [tapio data catagories](./TapioData
 
 The following picture represents the logic behind the condition query:
 
-![Virtualization of the condition aggregation data](../../static/img/docs/condition_query.png "Virtualization of the condition aggregation data")
+![Virtualization of the condition aggregation data](../../static/img/docs/condition_query.png "-virtualization of the condition aggregation data")
 
 The RTS start and RTS end timestamps of the condition defining the lifetime of one condition, if the value is outside of the queried range it will be set to `null`, also the rts end quality marker is set to `null` in this case.
 The quality marker of the rts end is used to differ between a explicit end send by the machine and an assumed
 end by the tapio core system. This uncertain quality marker can occur when the `inactive`-notification is lost,
 e.g. network errors. The other condition data represents the data received by the messages.
-See also [Condition Constraints](../Manufacturer/CloudConnector/ConditionConstraints) for a more detailed description of condition transfer.
+See also [Condition Constraints](../manufacturer/cloud-connector/condition-constraints) for a more detailed description of condition transfer.
 
 If you have any further questions regarding our historic data API, don't hesitate to contact [developer@tapio.one](mailto:developer@tapio.one?Subject=Question%20About%20Historic%20Data)

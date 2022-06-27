@@ -1,7 +1,7 @@
 
 # Large file upload module
 
-The large file upload module transfers files from a directory in the local filesystem to tapio. With this module you can upload any binary file. Data uploaded to tapio via this module will be transferred directly to the configured applications. The data is not persisted in our historic data store and therefore **cannot** be retrieved via the [Historic Data API](./../../machine-data/HistoricalData). The application will only retrieve the [`Generic data`](./../../machine-data/TapioDataCategories#generic-data) once.
+The large file upload module transfers files from a directory in the local filesystem to tapio. With this module you can upload any binary file. Data uploaded to tapio via this module will be transferred directly to the configured applications. The data is not persisted in our historic data store and therefore **cannot** be retrieved via the [Historic Data API](./../../machine-data/historical-data). The application will only retrieve the [`Generic data`](./../../machine-data/tapio-data-categories#generic-data) once.
 ## Large file upload module `FileCollectorConfig`
 
 ```XML

@@ -17,7 +17,7 @@ If your application makes too many requests, HTTP status code `429` is returned.
 | offset         | The offset is the position in the dataset of a particular record. Offset hast to be >= 0.                                       | int          | No        | 0       |
 | limit          | The limit defines the maximum of records which are requested. Limit has to be 1 >= 200.                                         | int          | No        | 25      |
 
-If your application is configured to receive CloudEvents, it will receive an [Application-Settings-Changed-CloudEvent](./CloudEvents#application-settings-updated-event) when there are new application settings available.
+If your application is configured to receive CloudEvents, it will receive an [Application-Settings-Changed-CloudEvent](./cloud-events#application-settings-updated-event) when there are new application settings available.
 
 ### Response Model Description
 

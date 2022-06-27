@@ -12,8 +12,8 @@ This way, large files can be transferred to the machine (like cutting plans) and
 
 ## General
 
-To be able to make requests to the Core TapioCore Web API, you first need to [configure your CloudConnector instance](#cloudconnector-configuration) and [register a tapio application](../General/RegisterTapioApplication) and assign machines to the application. **You won't be able to start download** for machines that are not assigned to your application or if machine is in "offline" state.  
-**Authentication** in TapioCore Web API is done via Azure AD B2C. See our [guide on authentication](../General/Authentication#non-interactive-authentication) for more details.
+To be able to make requests to the Core TapioCore Web API, you first need to [configure your CloudConnector instance](#cloudconnector-configuration) and [register a tapio application](../general/register-tapio-application) and assign machines to the application. **You won't be able to start download** for machines that are not assigned to your application or if machine is in "offline" state.  
+**Authentication** in TapioCore Web API is done via Azure AD B2C. See our [guide on authentication](../general/authentication#non-interactive-authentication) for more details.
 Also **do not modify** files inside `{dataDirectory}/persistentStorage/`.
 
 > The `persistentStorage`-directory is used internally to persist the state of file transfers during critical phases.
@@ -61,7 +61,7 @@ Add a module configuration section to your XML configuration file:
 | `OpcServer`           | string | OPC UA server address to connect directly.                                                                                                                                                    |
 | `RemoteLds`           | string | OPC UA server address to connect using a remote discovery service.                                                                                                                            |
 | `OpcUaMaxConnectTime` | string | Maximum time span the OPC UA client takes to try to establish a connection. Formatted like a [C# TimeSpan](https://docs.microsoft.com/en-us/dotnet/api/system.timespan?view=netstandard-2.0). |
-| `Authentication`      |   -    | [Authentication configuration.](../Manufacturer/CloudConnector/Configuration#authentication)                                                                                                  |
+| `Authentication`      |   -    | [Authentication configuration.](../manufacturer/cloud-connector/configuration#authentication)                                                                                                  |
 | `Downloads`           |   -    | List of [Download](#download-configuration-model) items.                                                                                                                                      |
 
 > Note: If you want to connect using an `ApplicationUri` the XML tag `OpcServer` has to be empty.
@@ -71,7 +71,7 @@ Add a module configuration section to your XML configuration file:
 | Property |  Type  | Description                                                                                                                                                               |
 | -------- | :----: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Id`     | string | Unique identifier of the download.                                                                                                                                        |
-| `NodeId` | string | The `NodeId` of the `TemporaryFileTransferType`-node on the destination OPC UA server. [Supported formats](../Manufacturer/CloudConnector/Configuration#node-identifier). |
+| `NodeId` | string | The `NodeId` of the `TemporaryFileTransferType`-node on the destination OPC UA server. [Supported formats](../manufacturer/cloud-connector/configuration#node-identifier). |
 
 ## WebAPI Interaction
 

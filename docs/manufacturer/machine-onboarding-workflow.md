@@ -73,7 +73,7 @@ In this step we have to download the cloud connector configuration file in xml f
 
 ### Response Model Description
 
-As a response to this query, you will retrieve the cloud connector configuration file. For more information, see [documentation of cloud connector configuration](./CloudConnector/Configuration).
+As a response to this query, you will retrieve the cloud connector configuration file. For more information, see [documentation of cloud connector configuration](./cloud-connector/configuration).
 
 ## Create Metadata for Application
 
@@ -104,7 +104,7 @@ If we want to create global metadata, we have to use this route:
 
 If we want to create metadata for a specific application, we have to use the route below.
 
-> Note that you need to know the application id, which is provided to you by tapio if you're an application developer. See also: [register a tapio application](../General/RegisterTapioApplication)
+> Note that you need to know the application id, which is provided to you by tapio if you're an application developer. See also: [register a tapio application](../general/register-tapio-application)
 > POST `https://api.tapio.one/management/manufacturer/machines/{tapioMachineId}/metadata/{applicationId}/keys/{key}`
 
 | Property       | Description                                | Datatype |
@@ -150,7 +150,7 @@ Then we can onboard machine for a customer. To do that we have to use the route:
 
 200 - Ok. If machine is already onboarded.
 
-> If you're a manufacturer and your customers have already onboarded machines in tapio, you can infer the customer subscription ids using the [reporting route](./ReportingWorkflow)
+> If you're a manufacturer and your customers have already onboarded machines in tapio, you can infer the customer subscription ids using the [reporting route](./reporting-workflow)
 
 ## Rename a Machine on behalf of the customer
 

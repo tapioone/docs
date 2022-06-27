@@ -3,7 +3,7 @@
 
 Starting with the sdk version TODO, the tapio CloudConnector
 comes with a browser based user interface that combines and
-replaces the previously used [Activator UI](../Activator)
+replaces the previously used [Activator UI](../activator)
 and Diagnostic UI.
 
 By default the user interface is available at port 5555 of the
@@ -35,7 +35,7 @@ On the expert view there is a section for uploading and downloading configuratio
 
 ![Config Section](../../../../static/img/docs/cloudconnector-ui-expert-config1.png)
 
-As described in [Distributed Configuration](../Configuration#distributed-configuration) there is the possibility to split
+As described in [Distributed Configuration](../configuration#distributed-configuration) there is the possibility to split
 the configuration up into three files. For each configuration file the UI provides a download and upload button.
 
 Procedure to update a configuration file:
@@ -64,7 +64,7 @@ Possible errors when uploading a configuration file:
 
 A single configuration CloudConnector can be changed to a split configuration by proceeding the following steps:
 
-1. Configure a global configuration to contain the the `source`-property as described in [Distributed Configuration](../Configuration#distributed-configuration)
+1. Configure a global configuration to contain the the `source`-property as described in [Distributed Configuration](../configuration#distributed-configuration)
 2. Upload the global configuration and restart the CloudConnector
    - To keep the CloudConnector functional keep the section contents
    Configure the configuration files for the different configuration sections
@@ -180,7 +180,7 @@ Examples for **`LogFileSize`**:
       CloudConnector service. Make sure the ```DiaOpcUaLdsName```
       or ```DiaOpcUaConcreteName``` configuration in your UI
       ```appsettings.json``` matches the
-      [configuration](../Configuration#global-configuration) of your
+      [configuration](../configuration#global-configuration) of your
       CloudConnector
     - In case these services run on different machines, make sure network
       connectivity is given
