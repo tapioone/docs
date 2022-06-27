@@ -7,15 +7,15 @@ Authentication in tapio is based on OAuth2 and Azure AD B2C. You should have a b
 
 This table contains information which applies across all authorization types.
 
-| Term            |                    Value/(Example)                    |                                                  Remark |
-| --------------- | :---------------------------------------------------: | ------------------------------------------------------: |
-| Tenant          |             `tapiousers.onmicrosoft.com`              |   Identification of the tapio directory in Azure AD B2C |
-| Tenant ID       |         32896ed7-d559-401b-85cf-167143d61be0          |   Identification of the tapio directory in Azure AD B2C |
-| Client ID       |                           -                           |          A guid that uniquely identifies an application |
+| Term            |                    Value/(Example)                    | Remark                                                  |
+| --------------- | :---------------------------------------------------: | ------------------------------------------------------- |
+| Tenant          |             `tapiousers.onmicrosoft.com`              | Identification of the tapio directory in Azure AD B2C   |
+| Tenant ID       |         32896ed7-d559-401b-85cf-167143d61be0          | Identification of the tapio directory in Azure AD B2C   |
+| Client ID       |                           -                           | A guid that uniquely identifies an application          |
 | Client Secret   |                           -                           | A secret value used in machine to machine communication |
-| Application URI | (`https://tapiousers.onmicrosoft.com/My-Application`) |               Human readable application identification |
-| Scopes          |       (openid APPLICATION_URI APPLICATION_URI)        |      Specifies the desired resource access during login |
-| Policy          |                 (B2C_1A_Tapio_Signin)                 |  The B2C policy which triggers the desired user journey |
+| Application URI | (`https://tapiousers.onmicrosoft.com/My-Application`) | Human readable application identification               |
+| Scopes          |       (openid APPLICATION_URI APPLICATION_URI)        | Specifies the desired resource access during login      |
+| Policy          |                 (B2C_1A_Tapio_Signin)                 | The B2C policy which triggers the desired user journey  |
 
 ### Interactive Authentication
 
