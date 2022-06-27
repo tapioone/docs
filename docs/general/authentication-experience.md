@@ -1,4 +1,3 @@
-
 # Authentication Experience
 
 This document aims to explain what user experience should be possible when using tapio authentication.

@@ -1,4 +1,3 @@
-
 # General machine onboarding workflow 
 
 This is the workflow, which describes, how manufacturers can create machine in tapio ecosystem, configure it and onboard the machine on behalf of customer.

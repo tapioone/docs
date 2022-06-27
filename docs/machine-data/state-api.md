@@ -1,4 +1,3 @@
-
 # Access the State of a Machine
 
 The tapio (core) State API is part of the tapio core system and provides information about the digital device twin of a machine inside tapio. You can retrieve the current state of a machine trough the State API. You won't receive realtime events, when the current state of a machine changes.

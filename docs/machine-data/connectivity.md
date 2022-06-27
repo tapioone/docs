@@ -1,4 +1,3 @@
-
 # tapio Connectivity
 
 ## tapio CloudConnector

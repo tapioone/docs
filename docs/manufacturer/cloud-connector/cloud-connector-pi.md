@@ -1,4 +1,3 @@
-
 # Install CloudConnector on a Raspberry Pi
 
 ## Install Raspbian

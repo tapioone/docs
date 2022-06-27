@@ -1,4 +1,3 @@
-
 # tapio Activator
 
 tapio Activator is a piece of software, which we're using to onboard your CloudConnector ( the physical world of woodworking machinery), with our digital ecosystem. It gets installed on the machine itself, or on a computer, which has network access to the machine.

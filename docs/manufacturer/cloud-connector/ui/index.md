@@ -1,4 +1,3 @@
-
 # tapio CloudConnector user interface
 
 Starting with the sdk version TODO, the tapio CloudConnector

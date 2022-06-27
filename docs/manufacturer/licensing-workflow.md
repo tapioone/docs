@@ -1,4 +1,3 @@
-
 # General licensing workflow
 
 This document describes:  

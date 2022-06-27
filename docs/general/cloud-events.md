@@ -1,4 +1,3 @@
-
 # CloudEvents
 
 # Motivation

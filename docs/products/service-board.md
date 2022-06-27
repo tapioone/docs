@@ -1,4 +1,3 @@
-
 # ServiceBoard
 
 ServiceBoard is an app for managing service cases with minimal effort. The following core features are included:

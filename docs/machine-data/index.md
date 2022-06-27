@@ -1,4 +1,3 @@
-
 # Machine data
 
 * [**How does tapio's Connectivity work?**](./connectivity)

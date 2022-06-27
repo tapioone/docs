@@ -1,4 +1,3 @@
-
 # Create and manage machines on tapio
 
 ## Introduction

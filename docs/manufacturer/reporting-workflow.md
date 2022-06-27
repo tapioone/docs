@@ -1,4 +1,3 @@
-
 # Machine Reporting
 
 As a manufacturer, you can query information about your manufactured machines, to see how the machine is used and which applications are assigned to it. This will enable you to retrieve information about the customer usage of your machines.

@@ -1,4 +1,3 @@
-
 # Read Historical Data of a Machine
 
 ## Introduction

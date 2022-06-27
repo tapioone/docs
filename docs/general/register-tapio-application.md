@@ -1,4 +1,3 @@
-
 # Register your tapio Application
 
 When your company has successfully registered as a tapio partner, someone in your organization will receive access to a tapio subscription. This subscription is the basis for the administration of applications, machines and users trough [my tapio](https://my.tapio.one). The administrator of your company's subscription can [invite you to the subscription](https://www.youtube.com/watch?v=GDBBNllL-Q8).  

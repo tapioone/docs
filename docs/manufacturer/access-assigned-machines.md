@@ -1,4 +1,3 @@
-
 # Accessing assigned machines
 
 As an application developer you can query whether a specific machine is assigned to one of your applications. This is especially useful, if you write applications that run in the context of a machine. The workflow below can be used to verify your application has been assigned to the machine in question and is therefore allowed to run.

@@ -1,4 +1,3 @@
-
 # Customer Data
 
 As tapio we believe in storing customer data only as long as we need it. As such, we delete all customer data when a customer stops using a product. The duration after which data gets deleted is defined in our terms and conditions.

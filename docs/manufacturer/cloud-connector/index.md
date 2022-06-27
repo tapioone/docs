@@ -1,4 +1,3 @@
-
 # tapio CloudConnector
 
 tapio CloudConnector is a piece of software, which we're using to connect the physical world of woodworking machinery, with our digital ecosystem. It gets installed on the machine itself, or on a computer, which has network access to the machine. The CloudConnector (**CC**) runs as a service and provides an [**OPC UA Interface**](https://opcfoundation.org/about/opc-technologies/opc-ua/) to receive state and notifications from a machine.

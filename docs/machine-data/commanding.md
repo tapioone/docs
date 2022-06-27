@@ -1,4 +1,3 @@
-
 # Sending Commands to Machines
 
 ## Introduction

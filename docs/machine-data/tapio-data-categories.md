@@ -1,4 +1,3 @@
-
 # tapio Data Categories
 
 There are several types of data available through the tapio ecosystem.

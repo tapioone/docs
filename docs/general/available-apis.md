@@ -1,4 +1,3 @@
-
 # Available tapio APIs to use in your Applications
 
 This page contains an overview on all APIs that are currently available for third party developers, to integrate tapio ecosystem features within their applications.

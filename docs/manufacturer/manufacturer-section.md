@@ -1,4 +1,3 @@
-
 # Manufacturer Routes
 
 This is the section of api which is used by manufacturers. It contains routes which allow a manufacturer to manage their machines and customers in the tapio ecosystem.

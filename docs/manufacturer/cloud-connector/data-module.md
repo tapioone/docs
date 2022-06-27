@@ -1,4 +1,3 @@
-
 # DataModule
 
 The data module transfers data from OPC UA servers to the cloud.

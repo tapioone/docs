@@ -1,4 +1,3 @@
-
 # Constraints for Aggregation of Historic Data
 
 To be able to detect the lifetime of a condition (time frame where a condition is active) the are some rules how the conditions should be reported by the OPC UA server:
