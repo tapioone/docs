@@ -18,7 +18,7 @@ module.exports = {
       defaultMode: 'dark'
     },
     navbar: {
-      title: 'Docs',
+      title: 'DevPortal',
       logo: {
         alt: 'tapio Logo',
         src: 'img/logo_light.svg',
@@ -27,9 +27,9 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'intro',
+          docId: 'Index',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {
           href: 'https://www.tapio.one/en/blog',
@@ -52,11 +52,11 @@ module.exports = {
     footer: {
       links: [
         {
-          title: 'Docs',
+          title: 'Links',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Docs',
+              to: '/',
             },
           ],
         },
@@ -118,6 +118,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/tapioone/docs/edit/master/',
           showLastUpdateTime: true,
+          routeBasePath: '/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
