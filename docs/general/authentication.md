@@ -127,7 +127,7 @@ Your application code needs to handle these errors and react accordingly.
 ##### Canceled signin
 In some situations like password reset, a user can cancel the signin journey. If that happens, your application will be notified with this error:
 
-```
+```text
 AADB2C90091: The user has cancelled entering self-asserted information.
 ```
 
