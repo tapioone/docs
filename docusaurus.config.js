@@ -133,7 +133,8 @@ module.exports = {
       {
         hashed: true,
         language: ["en"],
-        indexBlog: false
+        indexBlog: false,
+        docsRouteBasePath: '/',
       },
     ],
   ],
