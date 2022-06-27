@@ -172,7 +172,7 @@ curl -X POST \
 
 ##### Sample request (NodeJs)
 
-```JavaScript
+```javascript
 var request = require("request");
 
 var options = { method: 'POST',
