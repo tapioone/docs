@@ -18,7 +18,7 @@ user@host: ~ $ rsync -v TapioCloudConnector.xml pi@host:/home/pi
 
 ## Install the required runtimes
 
-[Download](https://dotnet.microsoft.com/download/dotnet-core) the [officially supported](./index)  `ASP.NET Core` and `.NET Core` `ARM32`-Binaries. You can copy the download links of the binaries and use `wget` to download them to your Pi. Extract the binaries to a new directory e.g. `/usr/share/dotnet` and link the `dotnet`-Binary to `/usr/bin/dotnet`:
+[Download](https://dotnet.microsoft.com/download/dotnet-core) the officially supported `ASP.NET Core` and `.NET Core` `ARM32`-Binaries. You can copy the download links of the binaries and use `wget` to download them to your Pi. Extract the binaries to a new directory e.g. `/usr/share/dotnet` and link the `dotnet`-Binary to `/usr/bin/dotnet`:
 
 ```shell
 pi@raspberrypi:~ $ sudo mkdir /usr/share/dotnet
@@ -59,7 +59,7 @@ To install additional .NET Core runtimes or SDKs:
 
 ## Install CloudConnector
 
-Follow the [installation guide for linux](./index#installation-guide-for-linux).
+Follow the [installation guide for linux](./#installation-guide-for-linux).
 
 ## Access CloudConnector UI
 
