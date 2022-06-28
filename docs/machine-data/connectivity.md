@@ -1,3 +1,7 @@
+---
+sidebar_label: Connectivity
+---
+
 # tapio Connectivity
 
 ## tapio CloudConnector

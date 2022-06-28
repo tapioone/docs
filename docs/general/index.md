@@ -1,5 +1,5 @@
 ---
-sidebar_label: General
+sidebar_label: Introduction
 ---
 
 # tapio Developer Guide
