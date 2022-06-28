@@ -14,6 +14,7 @@ variables:
   appDirectory: $(System.DefaultWorkingDirectory)
   appArtifactName: app
   infrastructureArtifactName: infrastructure
+  nodeJsVersionSpec: 16.x
 
 pool:
   # AzureStaticWebApp@0 requires Docker to be installed
@@ -28,6 +29,10 @@ stages:
         steps:
           - checkout: self
             clean: true
+
+          - task: NodeTool@0
+            inputs:
+              versionSpec: ${{ variables.nodeJsVersionSpec }}
 
           - task: Npm@1
             displayName: "npm ci"
