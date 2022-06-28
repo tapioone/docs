@@ -1,3 +1,7 @@
+---
+sidebar_label: Global Customer Settings
+---
+
 # Access global customer settings via the Global Discovery Service
 
 tapio's Global Discovery Service API enables to retrieve information of subscriptions. For example, you can retrieve information about application settings which the customer has set, like paper format if you want to print something via a tapio connected application.

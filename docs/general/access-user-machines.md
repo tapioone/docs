@@ -1,3 +1,7 @@
+---
+sidebar_label: Retrieve Machines of a User
+---
+
 # Accessing Machines that are assigned to a User
 
 Before we can retrieve actual machine data, we need to know which user is logged in and which machines are accessible by this user. To retrieve this information we use the `tapio Global Discovery Service`. This service is the pivotal point when it comes to relationships between machines, applications, users and their permissions. [My tapio](https://my.tapio.one) also uses this service very extensively.

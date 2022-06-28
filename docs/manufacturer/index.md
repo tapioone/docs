@@ -1,3 +1,7 @@
+---
+sidebar_label: Manufacturer
+---
+
 # Create and manage machines on tapio
 
 ## Introduction

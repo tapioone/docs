@@ -1,3 +1,7 @@
+---
+sidebar_label: Products
+---
+
 # tapio Products
 
 tapio provides a number of applications. To provide guidance for interoperability with single applications is the purpose of this section. Please follow the guides listed below:

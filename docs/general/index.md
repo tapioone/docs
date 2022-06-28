@@ -1,6 +1,8 @@
-# tapio Developer Guide
+---
+sidebar_label: Introduction
+---
 
-tapio is the digital ecosystem for the woodworking industry. It enables both small carpenters and industrial furniture productions to digitalize their production in a short period of time. It even allows third party developers, to implement new solutions, based on the data of tapio-connected machines.
+# tapio Developer Guide
 
 To understand the concept behind tapio and to develop applications based on our ecosystem, follow the guides listed below.
 

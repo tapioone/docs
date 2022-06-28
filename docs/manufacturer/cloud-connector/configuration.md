@@ -152,7 +152,7 @@ It is also possible to disable logging on the file system. You need to add the p
 
 ## Module Configuration
 
-Each module has a unique configuration model. Have a look at the [documentation](./index#module-structure) of the module you want to configure.
+Each module has a unique configuration model. Have a look at the [documentation](./#module-structure) of the module you want to configure.
 
 ### OPC UA Client Configuration
 
