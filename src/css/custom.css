@@ -31,6 +31,11 @@ html[data-theme='dark'] {
   --search-local-highlight-color: #4d4d4d;
 }
 
+html[data-theme='dark'] .hitWrapper_sAK8 mark {
+  background: none;
+  color: #ccc;
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
