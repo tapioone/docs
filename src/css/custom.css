@@ -27,6 +27,8 @@ html[data-theme='dark'] {
   --ifm-footer-background-color: #333333;
   --ifm-code-background: #333333;
   --ifm-navbar-search-input-background-color: #666666;
+  
+  --search-local-highlight-color: #4d4d4d;
 }
 
 .docusaurus-highlight-code-line {
