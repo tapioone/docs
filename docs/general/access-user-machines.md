@@ -219,6 +219,12 @@ You may have noticed the list of `MachineInfo` objects, which is the actual data
         public string DeviceSubType { get; set; } = string.Empty;
 
         /// <summary>
+        /// The serial number given to the machine by its manufacturer.
+        /// </summary>
+        [JsonProperty("manufacturerSerialNumber")]
+        public string ManufacturerSerialNumber { get; set; }
+
+        /// <summary>
         /// The name to display for machine
         /// </summary>
         [JsonProperty("displayName")]
