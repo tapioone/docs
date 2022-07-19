@@ -25,7 +25,6 @@ module.exports = {
         'general/authentication-experience',
         'general/user-profile',
         'general/register-tapio-application',
-        'general/check-licenses',
         'general/cloud-events',
         'general/global-discovery-service',
         'general/customer-data',
