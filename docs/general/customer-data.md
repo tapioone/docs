@@ -6,7 +6,7 @@ To facilitate reliable data deletion in our applications, we have set up a proce
 
 ## Notification by tapio
 
-When a customer cancels their last application license, a 90 day grace period begins. If a customer does not acquire a new license within this timespan, an event is triggered and sent to the application. You will receive the notification multiple times, unless you explicitly confirm the data deletion (see next section).
+When a customer cancels their last application license, a 90 day grace period begins. If a customer does not acquire a new license within this timespan, an event is triggered and sent to the application. You will receive the notification multiple times (once a day at midnight), unless you explicitly confirm the data deletion (see next section). 
 
 `one.tapio.selfservice.application.customerdatadeletionrequired`
 
