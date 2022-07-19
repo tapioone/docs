@@ -1,10 +1,10 @@
 ---
-sidebar_label: Retrieve Machines of a User
+sidebar_label: User-Profile
 ---
 
 # Accessing Machines that are assigned to a User
 
-Before we can retrieve actual machine data, we need to know which user is logged in and which machines are accessible by this user. To retrieve this information we use the `tapio Global Discovery Service`. This service is the pivotal point when it comes to relationships between machines, applications, users and their permissions. [My tapio](https://my.tapio.one) also uses this service very extensively.
+Before we can retrieve actual machine data, we need to know which user is logged in and which machines are accessible by this user. To retrieve this information we use the `tapio Global Discovery Service`. This service is the pivotal point when it comes to relationships between machines, applications, users and their permissions. [My tapio][my-tapio] also uses this service very extensively.
 
 > This route is rate limited based on client id.
 
@@ -314,3 +314,27 @@ Possible values for `deviceType`:
 - `Handling`
 
 When iterating over all subscriptions from above, we can get all the machines the user has access to. We don't have any data sent from the machine yet, but what we have would be enough to built apps for machines with [limited tapio connectivity](../machine-data/connectivity)
+
+## Check licenses for your tapio-Application
+
+`Licenses` can be acquired through different sales channels (e.g. the [tapio store](https://store.tapio.one)) in the scope of a `Subscription`.
+A `Subscription` is the equivalent of an account of a company which uses tapio.
+
+### Check if a user has a license
+
+Retrieve the user profile, [as described above](#retrieve-the-userprofile).
+
+:::caution
+The Global Discovery Service API returns information based on the set of `tapio-Applications` that are assigned to the calling `AAD-Application`. Make sure that the `AAD-Application` you are using is assigned to the `tapio-Application` you want to check licenses for in [my tapio][my-tapio].
+:::
+
+To check if the `User` has a `License` for your `tapio-Application` you have to go through all `Licenses` of of all `Subscriptions` in the response and check if there is a `License` with the id of your `tapio-Application` (`subscriptions[].licenses[].applicationId` [JMESPath][jmes-path]).
+
+### Detect license changes
+
+`Licenses` can expire or be unassigned from a certain `User` or `Machine`.
+It is not recommended to poll the **Global Discovery Service API** and detect those changes yourself.
+Instead we encourage you [to setup a CloudEvent endpoint](./cloud-events) and listen for `License`-related changes.
+
+[jmes-path]: https://jmespath.org/
+[my-tapio]: https://my.tapio.one
