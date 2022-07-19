@@ -2,7 +2,7 @@
 
 This document aims to explain what user experience should be possible when using tapio authentication.
 
-# Overview
+## Overview
 
 | Application Type                              | OAuth Grant        | Interactive authentication                                  | Password entry required    |
 | --------------------------------------------- | ------------------ | ----------------------------------------------------------- | -------------------------- |
@@ -14,10 +14,10 @@ This document aims to explain what user experience should be possible when using
 
 > 💡 For most applications, "*without authentication*" is equivalent to "*without using the application*".
 
-- <sup>1</sup>: When using PKCE, refresh tokens can be used to get new tokens for up to 24hrs, after which silent token renewal via iFrames can be used ([MSAL.js documentation](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/token-lifetimes.md#token-renewal)). This was chosen as a balance between user experience and security. See also "[Security implications of refresh tokens in the browser](https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-third-party-cookies-spas#security-implications-of-refresh-tokens-in-the-browser)".
-
+1: When using PKCE, refresh tokens can be used to get new tokens for up to 24hrs, after which silent token renewal via iFrames can be used ([MSAL.js documentation](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/token-lifetimes.md#token-renewal)). This was chosen as a balance between user experience and security. See also "[Security implications of refresh tokens in the browser](https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-third-party-cookies-spas#security-implications-of-refresh-tokens-in-the-browser)".
 
 ## Interactive Authentication
+
 Whenever a user experiences a redirect or sees a popup, we call this *interactive authentication*. If the user has a preexisting session, they will not have to enter a password and will immediately be redirected back to the application. This can be influenced by controlling "[*prompt behavior*](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-js-prompt-behavior)"
 
 If the user has a valid session, interactive authentication can be avoided by using *silent token renewal*. This will acquire new tokens by using a hidden iFrame (implicit flow) or refresh tokens(PKCE). If you use MSAL.js, the method to use is called `acquireTokenSilent`. MSAL.js handles token caching and expiry internally, you do not check the expiry time of the token yourself.
