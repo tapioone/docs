@@ -14,7 +14,7 @@ In order to use the Global Discovery Service API you first have to [register you
 :::
 
 :::caution
-The Global Discovery Service API returns information based on the set of `tapio-Applications` that are assigned to the calling `AAD-Application`. Make sure that the `AAD-Application` you are using is assigned to the `tapio-Application` you want to check licenses for in [my tapio](https://my.tapio.one).
+The Global Discovery Service API returns information based on the set of `tapio-Applications` that are assigned to the calling `AAD-Application`. Make sure that the `AAD-Application` you are using is assigned to the `tapio-Application` you want to check licenses for in [my tapio][my-tapio].
 :::
 
 ## Check if a subscription has a license
@@ -29,10 +29,19 @@ Call the `GET /api/subscriptionOverview` route with the `offset` and `limit` que
 
 To check if a `Machine` has a `License` for your `tapio-Application` you have to go through all assigned `Machines` of all `Subscriptions` and check if your `tapio-Application` is assigned to a `Machine` with the `TapioMachineId` of the `Machine` you are looking for (`subscriptions[].assignedMachines[].assignedApplications[].id` [JMESPath][jmes-path]).
 
+:::info
+This is only applicable if your `tapio-Application` has the `Machine-assignable` capability set in [my tapio][my-tapio].
+:::
+
 ## Check if a user has a license
 
 Call the `GET /api/userProfile/{email}` route with the email address of the `User` in the route.
 
 To check if the `User` has a `License` for your `tapio-Application` you have to go through all `Licenses` of of all `Subscriptions` in the response and check if there is a `License` with the id of your `tapio-Application` (`subscriptions[].licenses[].applicationId` [JMESPath][jmes-path]).
 
+:::info
+This is only applicable if your `tapio-Application` has the `User-assignable` capability set in [my tapio][my-tapio].
+:::
+
 [jmes-path]: https://jmespath.org/
+[my-tapio]: https://my.tapio.one
