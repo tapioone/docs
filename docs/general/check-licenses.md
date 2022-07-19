@@ -43,5 +43,11 @@ To check if the `User` has a `License` for your `tapio-Application` you have to 
 This is only applicable if your `tapio-Application` has the `User-assignable` capability set in [my tapio][my-tapio].
 :::
 
+## Detect license changes
+
+`Licenses` can expire or be unassigned from a certain `User` or `Machine`.
+It is not recommended to poll the **Global Discovery Service API** and detect those changes yourself.
+Instead we encourage you [to setup a CloudEvent endpoint](./cloud-events) and listen for `License`-related changes.
+
 [jmes-path]: https://jmespath.org/
 [my-tapio]: https://my.tapio.one
