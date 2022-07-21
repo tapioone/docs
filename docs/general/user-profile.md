@@ -2,9 +2,9 @@
 sidebar_label: User-Profile
 ---
 
-# Accessing Machines that are assigned to a User
+# Get the profile of a user to check for app license and retrieve assigned machines
 
-Before we can retrieve actual machine data, we need to know which user is logged in and which machines are accessible by this user. To retrieve this information we use the `tapio Global Discovery Service`. This service is the pivotal point when it comes to relationships between machines, applications, users and their permissions. [My tapio][my-tapio] also uses this service very extensively.
+After a user has successfully logged in, we first need to check that the logged in user has a valid license for our app. Then we can get further information about the scope a user is allowed to see, e. g. which machines are accessible by this user. To retrieve this information we use the `tapio Global Discovery Service`. This service is the pivotal point when it comes to relationships between machines, applications, users and their permissions. [My tapio][my-tapio] also uses this service very extensively.
 
 > This route is rate limited based on client id.
 
