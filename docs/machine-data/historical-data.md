@@ -7,8 +7,6 @@ An example use case of this feature would be analyzing the electrical power cons
 
 The historic data processing may not contain the most recent data due offline machine state or ongoing processing procedure.
 
-> **Important:** our historic data API is currently in a preview state. More features are under development and will be published soon.
-
 ## General
 
 To be able to make requests to the historic data API, you first need to [register a tapio application](../general/register-tapio-application) and assign machines to the application. **You won't receive data** for machines that are not assigned to your application.  
@@ -29,7 +27,7 @@ You can retrieve the source keys that occurred in the past for a machine, using 
 
 > Use the ResourceId `https://tapiousers.onmicrosoft.com/CoreApi` for the token request otherwise you get an Unauthorized.
 
-The {tmid} represents the ID your tapio machine.
+The {tmid} represents the ID of your tapio machine.
 
 > Each request to the historic data API addresses only one tapio machine. To get data for multiple tapio machines you need to call the API multiple times.
 
@@ -66,6 +64,7 @@ To do so, we use the `/items` route within the historic data API. Once again, we
 `POST https://core.tapio.one/api/machines/historic/tmids/{tmid}/items`
 
 > NOTE: Use `Content-Type: application/json;charset=UTF-8` in your request headers
+<!-- -->
 > Use the ResourceId `https://tapiousers.onmicrosoft.com/CoreApi` for the token request otherwise you get an Unauthorized.
 
 ### Request Model Definition
@@ -175,6 +174,7 @@ The condition data api allows to receive the state of conditions over a specific
 `POST https://core.tapio.one/api/machines/historic/tmids/{tmid}/conditions`
 
 > NOTE: Use `Content-Type: application/json;charset=UTF-8` in your request headers
+<!-- -->
 > Use the ResourceId `https://tapiousers.onmicrosoft.com/CoreApi` for the token request otherwise you get an Unauthorized.
 
 ### Historic conditions Request Model
@@ -275,7 +275,8 @@ The following picture represents the logic behind the condition query:
 
 ![Virtualization of the condition aggregation data](../../static/img/docs/condition-query.png "-virtualization of the condition aggregation data")
 
-The RTS start and RTS end timestamps of the condition defining the lifetime of one condition, if the value is outside of the queried range it will be set to `null`, also the rts end quality marker is set to `null` in this case.
+The RTS start and RTS end timestamps of the condition define the lifetime of one condition. If the value is outside of the queried range it will be set to `null`, also the rts end quality marker is set to `null` in this case.
+
 The quality marker of the rts end is used to differ between a explicit end send by the machine and an assumed
 end by the tapio core system. This uncertain quality marker can occur when the `inactive`-notification is lost,
 e.g. network errors. The other condition data represents the data received by the messages.
