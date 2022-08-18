@@ -105,11 +105,12 @@ The `ConnectorConfig` will contain the following information. You will get the i
 | `AuthSecret`           | :white_check_mark: | App secret for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                         |
 | `ResourceId`           | :white_check_mark: | Resource id for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                        |
 | `Authority`            | :white_check_mark: | Authority for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                          |
-| `InstrumentationKey`   | :white_check_mark: | Instrumentation key for logging into [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)                                   |
+| `InstrumentationKey`   | :white_check_mark: | Instrumentation key for logging into [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)                               |
 | `LogLevel`             |      optional      | Verbosity of the logs. There are [six log levels](#log-level) available. Default is `Error`.                                                                                  |
+| `LoggingSinkLocation`  |      optional      | Where log messages go to. See [log sink location](#log-sink-location) for possible options.                                                                                    |
 | `LogFileCount`         |      optional      | The count of log files to use, at least 1, default 10.                                                                                                                        |
 | `LogFileSize`          |      optional      | The max size per log file, min `4K` (4 KiB)  , default `10M` (10 MiB), format `{number}{unit}`, allowed units:  `K` - KiB, `M` - MiB, `G` - GiB. See below for more examples. |
-| `OpcUaServerUrl`       |      optional      | OPC UA server address. Default is `opc.tcp://localhost/CloudConnectorDiagnostic/`. You can set a specific port with this tag.                                                 |
+| `OpcUaServerUrl`       |      optional      | OPC UA server address. Default is `opc.tcp://localhost/CloudConnectorDiagnostic/`. You can set a specific port with this tag.                                                   |
 
 Examples for **`LogFileSize`**:
 
@@ -117,8 +118,8 @@ Examples for **`LogFileSize`**:
 | ---------------- | -------------------------------------------- |
 | `{number}{unit}` |                                              |
 | `4K`             | 4 Kilobyte = 4096 Byte                       |
-| `1M`             | 1 Megabyte = 1024 Kilobyte = ‭1048576‬ Bytes |
-| `10M`            | 10 Megabyte = ‭10240‬ Kilobyte               |
+| `1M`             | 1 Megabyte = 1024 Kilobyte = ‭1048576‬ Bytes   |
+| `10M`            | 10 Megabyte = ‭10240‬ Kilobyte                 |
 | `1G`             | 1 Gigabyte = 1024 Megabyte                   |
 
 ### Log level
@@ -131,6 +132,8 @@ Examples for **`LogFileSize`**:
 | Warning     | Error logs and expected exceptions.              |
 | Error       | Critical logs and unexpected exceptions.         |
 | Critical    | Only critical events.                            |
+
+### Log Sink Location
 
 It is also possible to disable logging on the file system. You need to add the property `LoggingSinkLocation` to the `ConnectorConfig`.
 
