@@ -56,6 +56,8 @@ By calling the route you can create a new customer in tapio ecosystem.
 
 > `timeZone` expected [as windows standard](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones).
 
+> `companyVat` gets validated via [VIES](https://ec.europa.eu/taxation_customs/vies/#/vat-validation) for EU countries.
+
 ### Response model
 
 ```json
