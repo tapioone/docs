@@ -17,7 +17,7 @@ The large file upload module transfers files from a directory in the local files
             <MaxFileSizeForUploadInKb>25000</MaxFileSizeForUploadInKb> 
             <MaxAgeOfFilesInHours>192</MaxAgeOfFilesInHours> 
             <FilePattern>*.zip</FilePattern>
-            <CreateConfirmOrErrorFile>true</CreateConfirmOrErrorFile>
+            <FileNameHandling>UniqueFilenameWithConfirmation</FileNameHandling>
         </Directory>
         <Directory>
             <Name>Saw-Cutter</Name>
@@ -65,7 +65,7 @@ Inside the configuration there are the following options:
 | `MaxFileSizeForUploadInKb`  | integer | Max. file size. If the file is larger it will be deleted (and upload fails).                                                                                  |
 | `MaxAgeOfFilesInHours`      | integer | Max. age of files before they get deleted, even if not uploaded.                                                                                              |
 | `FilePattern`               | string  | Opt.: Restrict to specific file pattern. Default value is `*.*`.                                                                                              |
-| `CreateConfirmOrErrorFile`  | boolean | true: CC creates a {filename}.confirm or {filename}.error file for success / failure. These files are also automatically deleted with the "max-age" parameter.|
+| `FileNameHandling`  | string | `UniqueFilenameWithConfirmation`: Uses the original file name for upload and creates confirm or error files. CC creates a {filename}.confirm or {filename}.error file for success / failure. These files are also automatically deleted with the "max-age" parameter. Filenames must be unique. `GenerateUniqueFilename`: Generates a unique filename on upload. No confirm or error files are created. default: `UniqueFilenameWithConfirmation`|
 | `CompressFilesBeforeUpload` | boolean | If set to true the files will be zip compressed before they are uploaded. Default `false`.                                                                    |
 
 ### `Mode`
