@@ -91,5 +91,15 @@ module.exports = {
         'products/service-board',
       ],
     },
-  ],
+    {
+      type: "category",
+      label: "Global Discovery Service API",
+      link: {
+        type: "generated-index",
+        title: "Global Discovery Service API",
+        slug: "/api/gds",
+      },
+      items: require("./docs/api/gds/sidebar.js"),
+    },
+  ]
 };

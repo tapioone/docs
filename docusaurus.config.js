@@ -120,6 +120,8 @@ module.exports = {
           editUrl: 'https://github.com/tapioone/docs/edit/master/',
           showLastUpdateTime: true,
           routeBasePath: '/',
+          docLayoutComponent: "@theme/DocPage",
+          docItemComponent: "@theme/ApiItem"
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -137,5 +139,23 @@ module.exports = {
         docsRouteBasePath: '/',
       },
     ],
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "apiDocsGds",
+        docsPluginId: "classic",
+        config: {
+          gds: {
+            specPath: "openapi/gds.json",
+            outputDir: "docs/api/gds",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag"
+            }
+          },
+        },
+      }
+    ],
   ],
+  themes: ["docusaurus-theme-openapi-docs"]
 };
