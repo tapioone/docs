@@ -1,16 +1,17 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "tapio SelfService GlobalDiscoveryService API Version 1",
-    "description": "tapio SelfService GlobalDiscoveryService API Version 1",
+    "title": "Global Discovery Service API",
+    "description": "tapio's Global Discovery Service API enables to retrieve information of subscriptions. For example, you can retrieve information about application settings which the customer has set, like paper format if you want to print something via a tapio connected application. If your application makes too many requests, HTTP status code 429 is returned. A Retry-After header is included in this response which indicates how long to wait before making the next request. HTTP 429 standard is followed.",
+    "termsOfService": "https://tapio.one/en/tapio-terms-of-use",
     "contact": {
-      "name": "tapio",
-      "url": "https://www.tapio.one/de",
-      "email": "info@tapio.one"
+      "name": "tapio GmbH",
+      "url": "https://tapio.one",
+      "email": "developer@tapio.one"
     },
     "license": {
       "name": "tapio GmbH",
-      "url": "https://www.tapio.one/de/policy"
+      "url": "https://tapio.one/en/policy"
     },
     "version": "1"
   },
@@ -20,7 +21,9 @@
         "tags": [
           "Application"
         ],
-        "summary": "Provides for a specified application the corresponding developer subscription information",
+        "summary": "Get Application Info",
+        "description": "Provides for a specified application the corresponding developer subscription information",
+        "operationId": "GetApplicationInfo",
         "parameters": [
           {
             "name": "clientId",
@@ -100,12 +103,14 @@
         "tags": [
           "ApplicationCapability"
         ],
-        "summary": "Allows retrieval of application information in the context of given machines.",
+        "summary": "Get Application Capability",
+        "description": "Allows the retrieval of application information in the context of given machines.",
+        "operationId": "GetApplicationCapability",
         "parameters": [
           {
             "name": "capabilityType",
             "in": "path",
-            "description": "the capabilitiyType",
+            "description": "Capabilitiy type",
             "required": true,
             "schema": {
               "type": "string"
@@ -113,7 +118,7 @@
           }
         ],
         "requestBody": {
-          "description": "the capabilities request",
+          "description": "Capabilities request",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -215,7 +220,9 @@
         "tags": [
           "ApplicationMachines"
         ],
-        "summary": "Provides for a specified application the corresponding developer subscription information",
+        "summary": "Get Machine Assignments",
+        "description": "Provides for a specified application the corresponding developer subscription information",
+        "operationId": "GetApplicationMachine",
         "parameters": [
           {
             "name": "tmid",
@@ -297,7 +304,9 @@
         "tags": [
           "ApplicationSettings"
         ],
-        "summary": "Get application settings",
+        "summary": "Get Application Settings",
+        "description": "Provides the application settings for a specific subscription or multiple subscriptions",
+        "operationId": "GetApplicationSettings",
         "parameters": [
           {
             "name": "subscriptionId",
@@ -398,7 +407,9 @@
         "tags": [
           "ApplicationTokenProfile"
         ],
-        "summary": "Returns a filtered subscription overview based on the provided application token",
+        "summary": "Get Application Token Profile",
+        "description": "Returns a filtered subscription overview based on the provided application token",
+        "operationId": "GetApplicationTokenProfile",
         "parameters": [
           {
             "name": "tapio-application-token",
@@ -510,7 +521,9 @@
         "tags": [
           "CloudConnectorOnboarding"
         ],
-        "summary": "Post the cloud connector information for machine onboarding",
+        "summary": "Onboard CloudConnector",
+        "description": "Onboard a CloudConnector",
+        "operationId": "OnboardCloudConnector",
         "requestBody": {
           "description": "The onboarding information of the cloud connector",
           "content": {
@@ -645,9 +658,11 @@
         "tags": [
           "CloudConnectorProfile"
         ],
-        "summary": "GetAsync the user profile via email address",
+        "summary": "Get CloudConnector Profile",
+        "description": "Gets the CloudConnector profile",
+        "operationId": "GetCloudConnectorProfile",
         "requestBody": {
-          "description": "the requested cloud connector profile",
+          "description": "Requested CloudConnector profile",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -740,12 +755,14 @@
         "tags": [
           "MachineMetadata"
         ],
-        "summary": "Lists all metadata for the specific machine.",
+        "summary": "Get My Metadata Keys",
+        "description": "Lists all metadata for the specific machine",
+        "operationId": "GetMyMetadataKeys",
         "parameters": [
           {
             "name": "tmid",
             "in": "path",
-            "description": "The machine tmid.",
+            "description": "TapioMachineId",
             "required": true,
             "schema": {
               "type": "string",
@@ -822,12 +839,14 @@
         "tags": [
           "MachineMetadata"
         ],
-        "summary": "Gets a specific metadata for the specific machine.",
+        "summary": "Get My Metadata By Key",
+        "description": "Gets a specific metadata for the specific machine",
+        "operationId": "GetMyMetadataByKey",
         "parameters": [
           {
             "name": "tmid",
             "in": "path",
-            "description": "The machine tmid.",
+            "description": "TapioMachineId",
             "required": true,
             "schema": {
               "type": "string",
@@ -837,7 +856,7 @@
           {
             "name": "key",
             "in": "path",
-            "description": "The key.",
+            "description": "Key",
             "required": true,
             "schema": {
               "type": "string"
@@ -846,7 +865,7 @@
           {
             "name": "etag",
             "in": "header",
-            "description": "Optional etag header",
+            "description": "ETag",
             "schema": {
               "type": "string"
             }
@@ -904,12 +923,14 @@
         "tags": [
           "MachineMetadata"
         ],
-        "summary": "Lists all global metadata for the specific machine.",
+        "summary": "Get Global Metadata Keys",
+        "description": "Lists all global metadata for the specific machine",
+        "operationId": "GetGlobalMetadataKeys",
         "parameters": [
           {
             "name": "tmid",
             "in": "path",
-            "description": "The machine tmid.",
+            "description": "TapioMachineId",
             "required": true,
             "schema": {
               "type": "string",
@@ -969,12 +990,14 @@
         "tags": [
           "MachineMetadata"
         ],
-        "summary": "Gets a specific global metadata for the specific machine.",
+        "summary": "Get Global Metadata By Key",
+        "description": "Gets a specific global metadata for the specific machine",
+        "operationId": "GetGlobalMetadataByKey",
         "parameters": [
           {
             "name": "tmid",
             "in": "path",
-            "description": "The machine tmid.",
+            "description": "TapioMachineId",
             "required": true,
             "schema": {
               "type": "string",
@@ -984,7 +1007,7 @@
           {
             "name": "key",
             "in": "path",
-            "description": "The key.",
+            "description": "Key",
             "required": true,
             "schema": {
               "type": "string"
@@ -993,7 +1016,7 @@
           {
             "name": "etag",
             "in": "header",
-            "description": "Optional etag header",
+            "description": "Etag",
             "schema": {
               "type": "string"
             }
@@ -1051,9 +1074,11 @@
         "tags": [
           "SubscriptionDataDeletion"
         ],
-        "summary": "To confirm the app deleted the data",
+        "summary": "Confirm Data Deletion",
+        "description": "Used to confirm that the requested data deletion has been completed",
+        "operationId": "ConfirmDataDeletion",
         "requestBody": {
-          "description": "Request model to confirm data deletion",
+          "description": "Data deletion confirmation request",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -1129,12 +1154,14 @@
         "tags": [
           "SubscriptionOverview"
         ],
-        "summary": "Get an overview of all subscriptions that authorized the application",
+        "summary": "Get Subscription Overview",
+        "description": "Get an overview of all subscriptions that authorized the application",
+        "operationId": "GetSubscriptionOverview",
         "parameters": [
           {
             "name": "subscriptionId",
             "in": "query",
-            "description": "Optional subscription to filter to",
+            "description": "Subscription id",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -1143,7 +1170,7 @@
           {
             "name": "offset",
             "in": "query",
-            "description": "Optional offset",
+            "description": "Offset",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1153,7 +1180,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Optional limit",
+            "description": "Limit",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1163,7 +1190,7 @@
           {
             "name": "etag",
             "in": "header",
-            "description": "Optional etag header",
+            "description": "Etag",
             "schema": {
               "type": "string"
             }
@@ -1241,12 +1268,14 @@
         "tags": [
           "UserProfile"
         ],
-        "summary": "GetAsync the user profile via email address",
+        "summary": "Get User Profile",
+        "description": "Get the profile of a user via email address",
+        "operationId": "GetUserProfile",
         "parameters": [
           {
             "name": "email",
             "in": "path",
-            "description": "the email address",
+            "description": "Email address",
             "required": true,
             "schema": {
               "type": "string"
@@ -1333,19 +1362,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/api/warmup": {
-      "get": {
-        "tags": [
-          "Warmup"
-        ],
-        "summary": "Execute warmup",
-        "responses": {
-          "200": {
-            "description": "Success"
           }
         }
       }
@@ -1484,7 +1500,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The list of tmids to request the capabilities for",
+            "description": "The list of tmids (TapioMachineIds) to request the capabilities for",
             "nullable": true
           },
           "applicationIds": {
@@ -1493,12 +1509,12 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "Optional: If present, the response is filtered by application id",
+            "description": "Optional: If present, the response is filtered by this list of application ids",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "The request model for the capability API. This one is different than the one used in the logic."
+        "description": "Capability request"
       },
       "CapabilityResponse": {
         "type": "object",
@@ -2127,9 +2143,6 @@
     },
     {
       "name": "UserProfile"
-    },
-    {
-      "name": "Warmup"
     }
   ]
 }
