@@ -27,7 +27,7 @@ module.exports = {
           link: {
             type: "generated-index",
             title: "Global Discovery Service API",
-            slug: "/api/gds",
+            slug: "/general/gds",
           },
           items: require("./docs/general/gds/sidebar.js"),
         },
