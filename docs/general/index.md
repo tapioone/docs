@@ -9,7 +9,6 @@ To understand the concept behind tapio and to develop applications based on our 
 * [**How does tapio's Connectivity work?**](../machine-data/connectivity)
 * [**Register your tapio Application**](./register-tapio-application)
 * [**Authenticate via tapio**](./authentication)
-* [**Access the profile of a user**](./user-profile)
 * [**Access machine states as an application**](../machine-data/state-api)
 * [**Sending commands to machine**](../machine-data/Commanding)
 

@@ -147,7 +147,7 @@ module.exports = {
         config: {
           gds: {
             specPath: "openapi/gds.json",
-            outputDir: "docs/api/gds",
+            outputDir: "docs/general/gds",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag"

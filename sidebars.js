@@ -21,12 +21,20 @@ module.exports = {
       },
       items: [
         'general/available-apis',
+        {
+          type: "category",
+          label: "Global Discovery Service API",
+          link: {
+            type: "generated-index",
+            title: "Global Discovery Service API",
+            slug: "/api/gds",
+          },
+          items: require("./docs/general/gds/sidebar.js"),
+        },
         'general/authentication',
         'general/authentication-experience',
-        'general/user-profile',
         'general/register-tapio-application',
         'general/cloud-events',
-        'general/global-discovery-service',
         'general/customer-data',
       ],
     },
@@ -90,16 +98,6 @@ module.exports = {
       items: [
         'products/service-board',
       ],
-    },
-    {
-      type: "category",
-      label: "Global Discovery Service API",
-      link: {
-        type: "generated-index",
-        title: "Global Discovery Service API",
-        slug: "/api/gds",
-      },
-      items: require("./docs/api/gds/sidebar.js"),
     },
   ]
 };
