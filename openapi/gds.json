@@ -15,6 +15,11 @@
     },
     "version": "1"
   },
+  "servers": [
+    {
+      "url": "https://apissgdstapiossint2.azurewebsites.net/"
+    }
+  ],
   "paths": {
     "/api/application/info": {
       "get": {
@@ -227,7 +232,7 @@
           {
             "name": "tmid",
             "in": "query",
-            "description": "Mandatory filter parameter to filter the assigned tapio machine ids.",
+            "description": "TapioMachineId",
             "required": true,
             "schema": {
               "type": "string",
@@ -305,7 +310,7 @@
           "ApplicationSettings"
         ],
         "summary": "Get Application Settings",
-        "description": "Provides the application settings for a specific subscription or multiple subscriptions",
+        "description": "Provides the application settings for a specific subscription or multiple subscriptions.\r\nIf your application is configured to receive CloudEvents, it will receive an Application-Settings-Changed-CloudEvent when there are new application settings available.",
         "operationId": "GetApplicationSettings",
         "parameters": [
           {
@@ -320,7 +325,7 @@
           {
             "name": "offset",
             "in": "query",
-            "description": "offset of page",
+            "description": "Offset for paging",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -330,7 +335,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "limit of page size",
+            "description": "Limit for paging",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -414,7 +419,7 @@
           {
             "name": "tapio-application-token",
             "in": "header",
-            "description": "the application token (UTF-8) encoded as base64",
+            "description": "Application token (UTF-8) encoded as base64",
             "required": true,
             "schema": {
               "type": "string"
@@ -525,7 +530,7 @@
         "description": "Onboard a CloudConnector",
         "operationId": "OnboardCloudConnector",
         "requestBody": {
-          "description": "The onboarding information of the cloud connector",
+          "description": "Onboarding information of the cloud connector",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -662,7 +667,7 @@
         "description": "Gets the CloudConnector profile",
         "operationId": "GetCloudConnectorProfile",
         "requestBody": {
-          "description": "Requested CloudConnector profile",
+          "description": "CloudConnector profile",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -1170,7 +1175,7 @@
           {
             "name": "offset",
             "in": "query",
-            "description": "Offset",
+            "description": "Offset for paging",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1180,7 +1185,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Limit",
+            "description": "Limit for paging",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1269,7 +1274,7 @@
           "UserProfile"
         ],
         "summary": "Get User Profile",
-        "description": "Get the profile of a user via email address",
+        "description": "Get the profile of a user via email address.\r\n\r\nYou can use this request to check if a user has a license for an application:\r\n\r\nThe Global Discovery Service API returns information based on the set of `tapio-Applications` that are assigned to the calling `AAD-Application`. Make sure that the `AAD-Application` you are using is assigned to the `tapio-Application` you want to check licenses for in [my tapio](https://my.tapio.one).\r\n            \r\nTo check if the `User` has a `License` for your `tapio-Application` you have to go through all `Licenses` of of all `Subscriptions` in the response and check if there is a `License` with the id of your `tapio-Application` (`subscriptions[].licenses[].applicationId` [JMESPath](https://jmespath.org/)).\r\n            \r\n`Licenses` can expire or be unassigned from a certain `User` or `Machine`.\r\nIt is not recommended to poll the **Global Discovery Service API** and detect those changes yourself.\r\nInstead we encourage you [to setup a CloudEvent endpoint](./cloud-events) and listen for `License`-related changes.",
         "operationId": "GetUserProfile",
         "parameters": [
           {
@@ -1374,19 +1379,23 @@
         "properties": {
           "applicationId": {
             "type": "string",
+            "description": "Application id",
             "format": "uuid"
           },
           "subscriptionId": {
             "type": "string",
+            "description": "Corresponding developer subscription id",
             "format": "uuid",
             "nullable": true
           },
           "subscriptionName": {
             "type": "string",
+            "description": "Corresponding developer subscription name",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Application information"
       },
       "ApplicationInfoResponse": {
         "type": "object",
@@ -1396,32 +1405,36 @@
           }
         },
         "additionalProperties": false,
-        "description": "Response to an application info request."
+        "description": "Application information response"
       },
       "ApplicationMachineInfo": {
         "type": "object",
         "properties": {
           "tmid": {
             "type": "string",
+            "description": "TapioMachineId of the assigned machine",
             "format": "string"
           },
           "subscriptionId": {
             "type": "string",
+            "description": "Id of the subscription of the machine",
             "format": "uuid"
           },
           "applicationId": {
             "type": "string",
+            "description": "Id of the application, to which the machine is assigned",
             "format": "uuid"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Contains information about machines assigned to an application"
       },
       "ApplicationMachineResponse": {
         "type": "object",
         "properties": {
           "totalCount": {
             "type": "integer",
-            "description": "Total count of items.",
+            "description": "Total count of items",
             "format": "int32",
             "readOnly": true
           },
@@ -1430,22 +1443,24 @@
             "items": {
               "$ref": "#/components/schemas/ApplicationMachineInfo"
             },
-            "description": "List of data items.",
+            "description": "List of application machine information",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Api response for multiple items"
+        "description": "Application machine response"
       },
       "ApplicationResponse": {
         "type": "object",
         "properties": {
           "applicationId": {
             "type": "string",
+            "description": "Application id",
             "format": "uuid"
           },
           "displayName": {
             "type": "string",
+            "description": "Display name",
             "nullable": true
           },
           "aadClientIds": {
@@ -1453,6 +1468,7 @@
             "items": {
               "type": "string"
             },
+            "description": "Assigned AAD client ids",
             "nullable": true
           },
           "endpoints": {
@@ -1460,16 +1476,19 @@
             "items": {
               "$ref": "#/components/schemas/EndpointResponse"
             },
+            "description": "List of endpoints",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Application"
       },
       "ApplicationSettingsResponseModel": {
         "type": "object",
         "properties": {
           "totalCount": {
             "type": "integer",
+            "description": "Total count of items",
             "format": "int32"
           },
           "data": {
@@ -1477,20 +1496,24 @@
             "items": {
               "$ref": "#/components/schemas/SettingsEntry"
             },
+            "description": "List of application settings",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Application settings response"
       },
       "AssignedApplication": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+            "description": "Application id",
             "format": "uuid"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Assigned application"
       },
       "CapabilityApiRequest": {
         "type": "object",
@@ -1509,7 +1532,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "Optional: If present, the response is filtered by this list of application ids",
+            "description": "If present, the response is filtered by this list of application ids",
             "nullable": true
           }
         },
@@ -1521,10 +1544,12 @@
         "properties": {
           "tmid": {
             "type": "string",
+            "description": "TapioMachineId",
             "nullable": true
           },
           "capabilityType": {
             "type": "string",
+            "description": "Capability type",
             "nullable": true
           },
           "applications": {
@@ -1532,54 +1557,65 @@
             "items": {
               "$ref": "#/components/schemas/ApplicationResponse"
             },
+            "description": "Applications assigned to this TapioMachineId",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Describes the relationship between a machine and applications with regards to a certain application capability"
       },
       "CloudConnectorMachine": {
         "type": "object",
         "properties": {
           "tmid": {
             "type": "string",
+            "description": "TapioMachineId",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A machine assigned to CloudConnector"
       },
       "CloudConnectorOnboardingRequest": {
         "type": "object",
         "properties": {
           "ccid": {
             "type": "string",
+            "description": "CloudConnector id",
             "nullable": true
           },
           "uiCode": {
             "type": "string",
+            "description": "8 digit oboarding code",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "CloudConnector onboarding request"
       },
       "CloudConnectorOnboardingResponse": {
         "type": "object",
         "properties": {
           "activationCode": {
             "type": "string",
+            "description": "The 12-digit activation code for the machine onboarding",
             "nullable": true
           },
           "expiry": {
             "type": "string",
+            "description": "Expiry date",
             "format": "date-time"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "CloudConnector onboarding response"
       },
       "CloudConnectorProfile": {
         "type": "object",
         "properties": {
           "ccid": {
             "type": "string",
+            "description": "CloudConnector id",
             "nullable": true
           },
           "tmids": {
@@ -1587,10 +1623,12 @@
             "items": {
               "$ref": "#/components/schemas/CloudConnectorMachine"
             },
+            "description": "Machines assigend to the CloudConnector",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Cloud connector profile"
       },
       "ConfirmDataDeletionRequest": {
         "required": [
@@ -1605,13 +1643,13 @@
           },
           "applicationId": {
             "type": "string",
-            "description": "Optional application id",
+            "description": "Application id",
             "format": "uuid",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Request model to confirm data deletion"
+        "description": "Data deletion request"
       },
       "DeviceType": {
         "enum": [
@@ -1619,20 +1657,24 @@
           "Machine",
           "SmartDevice"
         ],
-        "type": "string"
+        "type": "string",
+        "description": "Device type"
       },
       "EndpointResponse": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+            "description": "Internal id",
             "format": "uuid"
           },
           "endpointType": {
             "type": "string",
+            "description": "Endpoint type, \"eventhub\" or \"storageAccount\"",
             "nullable": true
           },
           "endpointValue": {
+            "description": "Connection information for the endpoint",
             "nullable": true
           },
           "tags": {
@@ -1640,53 +1682,64 @@
             "items": {
               "type": "string"
             },
+            "description": "Tags",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Endpoint"
       },
       "EquipmentGroupInfo": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+            "description": "Equipment group id",
             "nullable": true
           },
           "parentId": {
             "type": "string",
+            "description": "Id of the parent equipment group, or null if there is no parent.",
             "nullable": true
           },
           "displayName": {
             "type": "string",
+            "description": "Display name",
             "nullable": true
           },
           "groupPosition": {
             "type": "integer",
+            "description": "Position of the machine within the group",
             "format": "int32"
           },
           "placesCount": {
             "type": "integer",
+            "description": "Number of places in the equipment group",
             "format": "int32"
           },
           "type": {
             "$ref": "#/components/schemas/GroupType"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Equipment group information"
       },
       "EquipmentGroupMachineInfo": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+            "description": "Id of the equipment group.",
             "nullable": true
           },
           "groupPosition": {
             "type": "integer",
+            "description": "Position of the machine within the group.",
             "format": "int32"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Information about a group in the context of a machine, assigned to it."
       },
       "ErrorInformation": {
         "type": "object",
@@ -1718,76 +1771,93 @@
         "properties": {
           "locale": {
             "type": "string",
+            "description": "Locale",
             "nullable": true
           },
           "timeZone": {
             "type": "string",
+            "description": "Time zone (Windows format)",
             "nullable": true
           },
           "currency": {
             "type": "string",
+            "description": "Currency id based on ISO 4217",
             "nullable": true
           },
           "systemOfUnits": {
             "type": "string",
+            "description": "System of units, possible values: \"metric\" or \"imperial\"",
             "nullable": true
           },
           "paperFormat": {
             "type": "string",
+            "description": "Paper format, possible values: \"A4\" or \"letter\"",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Internationalization"
       },
       "LicenseInfo": {
         "type": "object",
         "properties": {
           "licenseId": {
             "type": "string",
+            "description": "License id",
             "format": "uuid"
           },
           "applicationId": {
             "type": "string",
+            "description": "Application id",
             "format": "uuid"
           },
           "createdDate": {
             "type": "string",
+            "description": "License creation date",
             "format": "date-time"
           },
           "billingStartDate": {
             "type": "string",
+            "description": "Billing start date",
             "format": "date-time"
           },
           "billingInterval": {
             "type": "string",
+            "description": "Billing interval",
             "nullable": true
           },
           "licenseCount": {
             "type": "integer",
+            "description": "License count",
             "format": "int32"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "License information"
       },
       "Logo": {
         "type": "object",
         "properties": {
           "uri": {
             "type": "string",
+            "description": "Uri to the logo (PNG).\r\nThe URL path will change when the customer changes their logo.\r\nBe aware that the URLs expire. They are valid for a minimum of two weeks. New urls will be returned at least two weeks before the previous ones expire.",
             "nullable": true
           },
           "thumbnail": {
             "type": "string",
+            "description": "Uri to a thumbnail of the logo, Max 64px (height or width)",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Logo information"
       },
       "MachineInfo": {
         "type": "object",
         "properties": {
           "tmid": {
             "type": "string",
+            "description": "TapioMachineId",
             "nullable": true
           },
           "deviceType": {
@@ -1795,18 +1865,22 @@
           },
           "deviceSubType": {
             "type": "string",
+            "description": "Device sub-type. If Device type is set to \"Machine\", Device sub-type will only contain one the following values: \"Unknown\", \"Edge\", \"Saw\", \"Cnc\", \"Sanding\", \"Drilling\", \"Assembly\", \"Storing\", \"Stock\", \"Sorting\", \"Shipping\", \"PreAssembly\", \"Lamination\", \"Moulding\", \"Packaging\", \"Handling\"",
             "nullable": true
           },
           "displayName": {
             "type": "string",
+            "description": "Display name",
             "nullable": true
           },
           "manufacturerSerialNumber": {
             "type": "string",
+            "description": "Serial number given to the machine by its manufacturer.",
             "nullable": true
           },
           "onboardingDate": {
             "type": "string",
+            "description": "The date, when the machine has been added to the subscription",
             "format": "date-time"
           },
           "equipmentGroup": {
@@ -1817,16 +1891,19 @@
             "items": {
               "$ref": "#/components/schemas/AssignedApplication"
             },
+            "description": "List of assigned applications for this machine",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Machine information"
       },
       "MachineMetadataListResponse": {
         "type": "object",
         "properties": {
           "totalCount": {
             "type": "integer",
+            "description": "Total count of items",
             "format": "int32"
           },
           "results": {
@@ -1834,75 +1911,90 @@
             "items": {
               "$ref": "#/components/schemas/MachineMetadataResponse"
             },
+            "description": "List of machine metadata response",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Machine metadata list response"
       },
       "MachineMetadataResponse": {
         "type": "object",
         "properties": {
           "contentType": {
             "type": "string",
+            "description": "Content type",
             "nullable": true
           },
           "key": {
             "type": "string",
+            "description": "Metadata key",
             "nullable": true
           },
           "etag": {
             "type": "string",
+            "description": "Etag",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Machine metadata response"
       },
       "ServicePartner": {
         "type": "object",
         "properties": {
           "subscriptionId": {
             "type": "string",
+            "description": "Subscription id",
             "format": "uuid"
           },
           "name": {
             "type": "string",
+            "description": "Service partner name",
             "nullable": true
           },
           "customerNumber": {
             "type": "string",
+            "description": "Customer number",
             "nullable": true
           },
           "parentSubscriptionId": {
             "type": "string",
+            "description": "Parent id",
             "format": "uuid",
             "nullable": true
           },
           "providerNo": {
             "type": "string",
+            "description": "Provider number",
             "nullable": true
           },
           "servicePartnerType": {
             "$ref": "#/components/schemas/ServicePartnerType"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Service partner"
       },
       "ServicePartnerType": {
         "enum": [
           "MachineService",
           "SharpeningService"
         ],
-        "type": "string"
+        "type": "string",
+        "description": "Service partner type"
       },
       "SettingsEntry": {
         "type": "object",
         "properties": {
           "subscriptionId": {
             "type": "string",
+            "description": "Subscription id",
             "format": "uuid"
           },
           "countryId": {
             "type": "string",
+            "description": "Country id ISO 3166-1 alpha-2 code",
             "nullable": true
           },
           "internationalization": {
@@ -1912,26 +2004,31 @@
             "$ref": "#/components/schemas/Logo"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Application settings"
       },
       "SubscriptionInfo": {
         "type": "object",
         "properties": {
           "subscriptionId": {
             "type": "string",
+            "description": "Subscription id",
             "format": "uuid"
           },
           "parentSubscriptionId": {
             "type": "string",
+            "description": "Parent subscription id",
             "format": "uuid",
             "nullable": true
           },
           "name": {
             "type": "string",
+            "description": "Subscription name",
             "nullable": true
           },
           "tapioId": {
             "type": "string",
+            "description": "Tapio id",
             "nullable": true
           },
           "assignedMachines": {
@@ -1939,6 +2036,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineInfo"
             },
+            "description": "Assigned machines",
             "nullable": true
           },
           "subscriptionTypes": {
@@ -1946,6 +2044,7 @@
             "items": {
               "type": "string"
             },
+            "description": "Subscription Types",
             "nullable": true,
             "readOnly": true,
             "deprecated": true
@@ -1955,6 +2054,7 @@
             "items": {
               "type": "string"
             },
+            "description": "Subscription Features",
             "nullable": true
           },
           "servicePartners": {
@@ -1962,6 +2062,7 @@
             "items": {
               "$ref": "#/components/schemas/ServicePartner"
             },
+            "description": "Service partners",
             "nullable": true
           },
           "licenses": {
@@ -1969,6 +2070,7 @@
             "items": {
               "$ref": "#/components/schemas/LicenseInfo"
             },
+            "description": "Licenses",
             "nullable": true
           },
           "equipmentGroups": {
@@ -1976,20 +2078,22 @@
             "items": {
               "$ref": "#/components/schemas/EquipmentGroupInfo"
             },
+            "description": "Equipment groups",
             "nullable": true
           },
           "servicePartnerType": {
             "$ref": "#/components/schemas/ServicePartnerType"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Subscription information"
       },
       "SubscriptionOverviewResponse": {
         "type": "object",
         "properties": {
           "totalCount": {
             "type": "integer",
-            "description": "Total count of items;",
+            "description": "Total count of items",
             "format": "int32"
           },
           "subscriptions": {
@@ -1997,35 +2101,40 @@
             "items": {
               "$ref": "#/components/schemas/SubscriptionInfo"
             },
-            "description": "Included subscriptions.",
+            "description": "List of subscription information",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Response for subscription overview requests."
+        "description": "Subscription overview response"
       },
       "SubscriptionUserProfileInfo": {
         "type": "object",
         "properties": {
           "role": {
             "type": "string",
+            "description": "User role",
             "nullable": true
           },
           "subscriptionId": {
             "type": "string",
+            "description": "Subscription id",
             "format": "uuid"
           },
           "parentSubscriptionId": {
             "type": "string",
+            "description": "Parent subscription id",
             "format": "uuid",
             "nullable": true
           },
           "name": {
             "type": "string",
+            "description": "Subscription name",
             "nullable": true
           },
           "tapioId": {
             "type": "string",
+            "description": "Tapio id",
             "nullable": true
           },
           "assignedMachines": {
@@ -2033,6 +2142,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineInfo"
             },
+            "description": "Assigned machines",
             "nullable": true
           },
           "subscriptionTypes": {
@@ -2040,6 +2150,7 @@
             "items": {
               "type": "string"
             },
+            "description": "Subscription Types",
             "nullable": true,
             "readOnly": true,
             "deprecated": true
@@ -2049,6 +2160,7 @@
             "items": {
               "type": "string"
             },
+            "description": "Subscription Features",
             "nullable": true
           },
           "servicePartners": {
@@ -2056,6 +2168,7 @@
             "items": {
               "$ref": "#/components/schemas/ServicePartner"
             },
+            "description": "Service partners",
             "nullable": true
           },
           "licenses": {
@@ -2063,6 +2176,7 @@
             "items": {
               "$ref": "#/components/schemas/LicenseInfo"
             },
+            "description": "Licenses",
             "nullable": true
           },
           "equipmentGroups": {
@@ -2070,19 +2184,22 @@
             "items": {
               "$ref": "#/components/schemas/EquipmentGroupInfo"
             },
+            "description": "Equipment groups",
             "nullable": true
           },
           "servicePartnerType": {
             "$ref": "#/components/schemas/ServicePartnerType"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Subscription information"
       },
       "UserProfile": {
         "type": "object",
         "properties": {
           "email": {
             "type": "string",
+            "description": "Email address",
             "nullable": true
           },
           "subscriptions": {
@@ -2090,10 +2207,12 @@
             "items": {
               "$ref": "#/components/schemas/SubscriptionUserProfileInfo"
             },
+            "description": "List of user profiles",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "User profile"
       }
     },
     "securitySchemes": {
