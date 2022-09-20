@@ -10,7 +10,7 @@ To install the tapio CloudConnector on your machine, you can use the .msi setup 
 
 The installer will ask you to accept our [legal information](#legal-information-of-the-cloudconnector).
 
-- [.NET Core](https://github.com/tapioone/CloudConnector/releases/latest/download/tapio.cloudconnector.netcoreapp31.tar.gz)
+- [.NET 6.0](https://github.com/tapioone/CloudConnector/releases/latest/download/tapio.cloudconnector.net60.tar.gz)
 - [Linux x64](https://github.com/tapioone/CloudConnector/releases/latest/download/tapio.cloudconnector.linux-x64.tar.gz)
 - [Linux ARM](https://github.com/tapioone/CloudConnector/releases/latest/download/tapio.cloudconnector.linux-arm.tar.gz)
 - [Windows x86](https://github.com/tapioone/CloudConnector/releases/latest/download/Tapio.CloudConnector.Setup.msi)
@@ -21,13 +21,11 @@ The installer will ask you to accept our [legal information](#legal-information-
 
 **Windows:**
 
-* Windows 7 SP 2 or newer
-* .NET Framework 4.6.2
+- Windows 7 SP 2 or newer
 
 **Linux:**
 
-* .NET Core: .NET Core 3.1 runtime + ASP .NET Core 3.1 runtime
-* Platform specific builds: Standard C/C++ Libraries + OpenSSL, ICU
+- Platform specific builds: Standard C/C++ Libraries + OpenSSL, ICU
 
 ## Legal information of the CloudConnector
 
@@ -56,8 +54,8 @@ Unzip the archive on your machine and follow the step. You can also find those s
 Before starting the installation make sure to prepare a CloudConnector configuration for the target machine to have all OPC UA server settings in place.
 
 ```console
-user@example:~$ tar xzvf Tapio.CloudConnector.<platform>.tar.gz
-user@example:~$ cd Tapio.CloudConnector.Service.Core
+user@example:~$ tar xzvf tapio.cloudconnector.<platform>.tar.gz
+user@example:~$ cd Tapio.CloudConnector.Service
 user@example:~$ chmod +x install.sh # optional to make sure executable bit is set
 user@example:~$ sudo ./install.sh TapioCloudConnector.xml # path to a valid tapio CloudConnector configuration
 ```
@@ -97,8 +95,8 @@ To run the tapio CloudConnector on your machine, you can use the `run.sh` script
 > Be aware when you only run the CloudConnector without installing, you also accept our [legal information](#legal-information-of-the-cloudconnector).
 
 ```console
-user@example:~$ cp ./TapioCloudConnector.xml Tapio.CloudConnector.Service.Core
-user@example:~$ cd Tapio.CloudConnector.Service.Core
+user@example:~$ cp ./TapioCloudConnector.xml Tapio.CloudConnector.Service
+user@example:~$ cd Tapio.CloudConnector.Service
 user@example:~$ chmod +x run.sh
 user@example:~$ ./run.sh
 ```
