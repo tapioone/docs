@@ -112,7 +112,7 @@ It is crucial that the parameter value from the **appsettings.json** is matching
 
 The value of the parameter *OpcUaServerUrl* in the **TapioCloudconnector.xml** header area should look like the following.
 If the entry is missing you can copy that line form the example here and place it into the file on the machine. If the
-parameter is not present in the  **TapioCloudconnector.xml** the cloudconnector will try to resolve *CloudConnectorDiagnostic* by
+parameter is not present in the  **TapioCloudconnector.xml** the CloudConnector will try to resolve *CloudConnectorDiagnostic* by
 the OPC UA Local Discovery Service.  
 
 Excerpt of TapioCloudConnector.xml:

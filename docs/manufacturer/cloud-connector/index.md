@@ -54,8 +54,8 @@ Unzip the archive on your machine and follow the step. You can also find those s
 Before starting the installation make sure to prepare a CloudConnector configuration for the target machine to have all OPC UA server settings in place.
 
 ```console
-user@example:~$ tar xzvf Tapio.CloudConnector.<platform>.tar.gz
-user@example:~$ cd Tapio.CloudConnector.Service.Core
+user@example:~$ tar xzvf tapio.cloudConnector.<platform>.tar.gz
+user@example:~$ cd Tapio.CloudConnector.Service
 user@example:~$ chmod +x install.sh # optional to make sure executable bit is set
 user@example:~$ sudo ./install.sh TapioCloudConnector.xml # path to a valid tapio CloudConnector configuration
 ```
@@ -95,8 +95,8 @@ To run the tapio CloudConnector on your machine, you can use the `run.sh` script
 > Be aware when you only run the CloudConnector without installing, you also accept our [legal information](#legal-information-of-the-cloudconnector).
 
 ```console
-user@example:~$ cp ./TapioCloudConnector.xml Tapio.CloudConnector.Service.Core
-user@example:~$ cd Tapio.CloudConnector.Service.Core
+user@example:~$ cp ./TapioCloudConnector.xml Tapio.CloudConnector.Service
+user@example:~$ cd Tapio.CloudConnector.Service
 user@example:~$ chmod +x run.sh
 user@example:~$ ./run.sh
 ```
