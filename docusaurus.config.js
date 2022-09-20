@@ -146,7 +146,7 @@ module.exports = {
         docsPluginId: "classic",
         config: {
           gds: {
-            specPath: "openapi/gds.json",
+            specPath: "https://globaldisco.tapio.one/swagger/v1/swagger.json",
             outputDir: "docs/general/gds",
             sidebarOptions: {
               groupPathsBy: "tag",
