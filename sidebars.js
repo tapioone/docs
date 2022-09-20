@@ -21,18 +21,9 @@ module.exports = {
       },
       items: [
         'general/available-apis',
-        {
-          type: "category",
-          label: "Global Discovery Service API",
-          link: {
-            type: "generated-index",
-            title: "Global Discovery Service API",
-            slug: "/general/gds",
-          },
-          items: require("./docs/general/gds/sidebar.js"),
-        },
         'general/authentication',
         'general/authentication-experience',
+        'general/user-profile',
         'general/register-tapio-application',
         'general/cloud-events',
         'general/customer-data',
@@ -86,6 +77,26 @@ module.exports = {
         'manufacturer/manufacturer-section',
         'manufacturer/reporting-workflow',
         'manufacturer/access-assigned-machines',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'API Reference',
+      link: {
+        type: 'doc',
+        id: 'apis/index'
+      },
+      items: [
+        {
+          type: "category",
+          label: "Global Discovery Service API",
+          link: {
+            type: "generated-index",
+            title: "Global Discovery Service API",
+            slug: "/apis/gds",
+          },
+          items: require("./docs/apis/gds/sidebar.js"),
+        },
       ],
     },
     {
