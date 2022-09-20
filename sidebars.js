@@ -26,7 +26,6 @@ module.exports = {
         'general/user-profile',
         'general/register-tapio-application',
         'general/cloud-events',
-        'general/global-discovery-service',
         'general/customer-data',
       ],
     },
@@ -82,6 +81,26 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'API Reference',
+      link: {
+        type: 'doc',
+        id: 'api/index'
+      },
+      items: [
+        {
+          type: "category",
+          label: "Global Discovery Service API",
+          link: {
+            type: "generated-index",
+            title: "Global Discovery Service API",
+            slug: "/api/gds",
+          },
+          items: require("./docs/api/gds/sidebar.js"),
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Products',
       link: {
         type: 'doc',
@@ -91,5 +110,5 @@ module.exports = {
         'products/service-board',
       ],
     },
-  ],
+  ]
 };
