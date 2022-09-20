@@ -49,7 +49,7 @@ If you don't want to write your own function that decodes the access token, ther
 
 ## Retrieve the UserProfile
 
-See [Get User Profile](../apis/gds/get-user-profile.api.mdx).
+See [Get User Profile](../api/gds/get-user-profile.api.mdx).
 
 When iterating over all subscriptions from above, we can get all the machines the user has access to. We don't have any data sent from the machine yet, but what we have would be enough to built apps for machines with [limited tapio connectivity](../machine-data/connectivity)
 

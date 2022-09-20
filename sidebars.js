@@ -84,7 +84,7 @@ module.exports = {
       label: 'API Reference',
       link: {
         type: 'doc',
-        id: 'apis/index'
+        id: 'api/index'
       },
       items: [
         {
@@ -93,9 +93,9 @@ module.exports = {
           link: {
             type: "generated-index",
             title: "Global Discovery Service API",
-            slug: "/apis/gds",
+            slug: "/api/gds",
           },
-          items: require("./docs/apis/gds/sidebar.js"),
+          items: require("./docs/api/gds/sidebar.js"),
         },
       ],
     },
