@@ -39,7 +39,10 @@ You will be asked to accept our legal information when installing the CloudConne
 
 ## How to activate a CloudConnector
 
-In order to connect your device to the tapio ecosystem you need to activate your tapio CloudConnector. On Windows and Linux, you can use your browser to activate your CloudConnector. Find more information about browser based activation [here](./uI).
+In order to connect your device to the tapio ecosystem you need to activate your tapio CloudConnector. Depending on your OS and CloudConnector version, you can choose between different options
+
+1. On Windows, you can use the activator application that is installed alongside the tapio CloudConnector. Find more information about the Activator application [here](./activator).
+2. On Windows and Linux, you can use your browser to activate your CloudConnector. Find more information about browser based activation [here](./uI).
 
 > In any case, you can also use **EasyAdd** if you know the manufacturer serial number of your device.
 
