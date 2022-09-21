@@ -1,9 +1,8 @@
 # tapio CloudConnector user interface
 
 Starting with the sdk version TODO, the tapio CloudConnector
-comes with a browser based user interface that combines and
-replaces the previously used [Activator UI](../activator)
-and Diagnostic UI.
+comes with a browser based user interface that combines a
+Activator UI and Diagnostic UI.
 
 By default the user interface is available at port 5555 of the
 machine the tapio CloudConnector is installed on - eg.

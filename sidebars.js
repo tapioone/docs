@@ -68,8 +68,7 @@ module.exports = {
             'manufacturer/cloud-connector/call-endpoint',
             'manufacturer/cloud-connector/condition-constraints',
             'manufacturer/cloud-connector/cloud-connector-pi',
-            'manufacturer/cloud-connector/ui/index',
-            'manufacturer/cloud-connector/activator/index',
+            'manufacturer/cloud-connector/ui/index'
           ],
         },
         'manufacturer/licensing-workflow',
