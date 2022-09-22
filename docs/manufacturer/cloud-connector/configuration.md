@@ -4,12 +4,12 @@
 
 The tapio CloudConnector can be configured through a [.xml](https://www.w3.org/TR/xml/)-file named `TapioCloudConnector.xml`. The configuration provides two different ways to store the information. It is also possible to mix both ways together.
 
+1. Store all information in one xml file. (see example 1)
+2. Use a [Distributed Configuration](#distributed-configuration) where different sections are in different files. See example 2 with `ManufacturerConfig` and `CloudConnectorConfig` in different files.
+
 > If a section, e.g. `Modules` contains content in the `GlobalConfig` the tapio CloudConnector will take these information and will ignore the file behind the given file path. If you want to use the information from the file, you need to remove the content from the `GlobalConfig` file in the specific section like `Modules`.
 
-1. Store all information in one xml file. (see example 1)
-2. Split the different sections like ManufacturerConfig and CloudConnectorConfig in different files. (see example 2)
-
-> By default it's located at: `C:\ProgramData\tapio\CloudConnector\`
+> By default it's located at `C:\ProgramData\tapio\CloudConnector\` for Windows and `/opt/tapio/cloudconnector/config` for Linux.
 
 Example 1:
 
