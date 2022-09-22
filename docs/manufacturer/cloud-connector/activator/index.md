@@ -1,6 +1,10 @@
 # tapio Activator
 
-tapio Activator is a piece of software, which we're using to onboard your CloudConnector ( the physical world of woodworking machinery), with our digital ecosystem. It gets installed on the machine itself, or on a computer, which has network access to the machine.
+tapio Activator is a piece of software, which we're using to onboard your CloudConnector (the physical world of woodworking machinery), with our digital ecosystem. It gets installed on the machine itself, or on a computer, which has network access to the machine.
+
+:::note
+The Activator was replaced by the browser based [CloudConnector UI](../Ui/). It is only available in older versions of the CloudConnector.
+:::
 
 ## Installation
 
@@ -12,7 +16,7 @@ You can launch the Activator window in three different ways. If you do not add a
 
 1. Start Activator without a parameter -> Activator starts as seen in the picture below
 2. When you pass the parameter "-Maximized" -> Activator will start maximized
-3. Wenn you pass the parameter "-Minimized" -> Activator will start minimized
+3. When you pass the parameter "-Minimized" -> Activator will start minimized
 
 For example execute the command in the correct directory "Activation.exe -Maximized".
 
