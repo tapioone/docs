@@ -28,14 +28,6 @@ To call another tapio resource through the CloudConnector, you first need to ada
 
 The `NodeId` xml node defines the NodeId within OPC UA, that will accept a synchronous OPC UA call containing information about the tapio API to call.
 
-The actual OPC UA call will look like this:
-
-```csharp
-
-// We will provide a working C# example in the near future.
-
-```
-
 ### OPC UA Method Call Parameters
 
 The following parameters can be defined within the OPC UA Call:

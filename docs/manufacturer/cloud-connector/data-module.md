@@ -45,17 +45,17 @@ Inside the DataModule multiple sources (OPC UA server) can be configured, the fo
 
 Inside the configuration there are the following options:
 
-| Entry             | Type                  | Description                                                                                    |
-| ----------------- | --------------------- | ---------------------------------------------------------------------------------------------- |
-| `Id`              | string                | Unique identifier of the module. Simultaneously used as the OPC UA server identifier.          |
-| `ApplicationUri`§ | string                | OPC UA server address to connect using a local discovery service (OPC UA LDS).                 |
-| `OpcServer`§      | string                | OPC UA server address to connect directly. `<OpcServer>opc.tcp://localhost:4553</OpcUaServer>` |
-| `RemoteLds`       | string                | OPTIONAL OPC UA server address to connect using a remote discovery service.                    |
-| `Authentication`  | object                | OPTIONAL: See [OPC UA Client Configuration](./configuration#opc-ua-client-configuration)       |
-| `Groups`          | List of `SourceGroup` | See [`SourceGroup`](#sourcegroup)                                                              |
-| `Commanding`      | object                | For Commanding see [Commanding Configuration](../../machine-data/commanding#configuration)     |
+| Entry            | Type                  | Description                                                                                    |
+| ---------------- | --------------------- | ---------------------------------------------------------------------------------------------- |
+| `Id`             | string                | Unique identifier of the module. Simultaneously used as the OPC UA server identifier.          |
+| `ApplicationUri` | string                | OPC UA server address to connect using a local discovery service (OPC UA LDS).                 |
+| `OpcServer`      | string                | OPC UA server address to connect directly. `<OpcServer>opc.tcp://localhost:4553</OpcUaServer>` |
+| `RemoteLds`      | string                | OPTIONAL OPC UA server address to connect using a remote discovery service.                    |
+| `Authentication` | object                | OPTIONAL: See [OPC UA Client Configuration](./configuration#opc-ua-client-configuration)       |
+| `Groups`         | List of `SourceGroup` | See [`SourceGroup`](#sourcegroup)                                                              |
+| `Commanding`     | object                | For Commanding see [Commanding Configuration](../../machine-data/commanding#configuration)     |
 
-**§ Only one of the Options `ApplicationUri` or `OpcServer` has to be configured.**
+** Only one of the Options `ApplicationUri` or `OpcServer` has to be configured.**
 
 > For more Information about OPC UA LDS see [Unified Architecture Part 12: Discovery and Global Services](https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-12-discovery/)
 
@@ -117,11 +117,11 @@ The event type handles the non-persistent events and produces the [event data me
 
 The `SelectClause` has the following XML attributes (OPC UA):
 
-| Entry         | Type    | Description                                                                                                    |
-| ------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| Entry         | Type    | Description                                                                                                       |
+| ------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
 | `eventTypeId` | string  | the event type node id, see [full node id](./configuration#full-notation); default is `i=2041` (-base-event-type) |
-| `browsePath`  | string  | the browse path to select; default is `""`                                                                     |
-| `attribute`   | integer | the attribute to be used; default `13` (Value)                                                                 |
+| `browsePath`  | string  | the browse path to select; default is `""`                                                                        |
+| `attribute`   | integer | the attribute to be used; default `13` (Value)                                                                    |
 
 A value without attributes is **not allowed**:
 
@@ -153,7 +153,7 @@ The select clauses defines the properties which will be transferred via the [Eve
 | Entry              | Type             | Description                                                                                                                                     |
 | ------------------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `NodeId`           | object           | The node id of the data value; see [supported formats](./configuration#node-identifier).                                                        |
-| `SrcKey`           | string           | The identifier(key) used for transferring the values to the tapio system [See `k`](../../machine-data/tapio-data-categories#item-data)            |
+| `SrcKey`           | string           | The identifier(key) used for transferring the values to the tapio system [See `k`](../../machine-data/tapio-data-categories#item-data)          |
 | `TrimStrings`      | bool             | Optionally trim the string and remove whitespace and nul-characters; default is `false`                                                         |
 | `QueueSize`        | unsigned integer | Optional queue size of the item/event changes queue on the server; will be cleared on every receive from the client; default is `-1` (max(int)) |
 | `SamplingInterval` | integer          | Optional server sampling interval of the OPC UA item in ms; default is `-1` (sampling is the same as `UpdateIntervallInMs` )                    |
