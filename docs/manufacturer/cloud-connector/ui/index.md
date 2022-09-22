@@ -1,6 +1,6 @@
 # tapio CloudConnector user interface
 
-Starting with the sdk version TODO, the tapio CloudConnector
+Starting with the SDK version 5.1, the tapio CloudConnector
 comes with a browser based user interface that combines and
 replaces the previously used [Activator UI](../activator)
 and Diagnostic UI.
