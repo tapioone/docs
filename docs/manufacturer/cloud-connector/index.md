@@ -139,21 +139,21 @@ The CloudConnector is divided into several modules, which extend the CloudConnec
 
 | Module                                                            | Location | Config Type | Description                                                                                                                                                             |
 | ----------------------------------------------------------------- | -------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Call Endpoint Module](./call-endpoint)                            | SDK      | XML         | Is used to communicate with tapio applications from software that's running on a tapio connected machine                                                                |
-| [Data Module](./data-module)                                       | SDK      | XML/AUTO    | This Modules contains the OPC UA Source Modules, the Ping Module and the routing to the data endpoints                                                                  |
+| [Call Endpoint Module](./call-endpoint)                           | SDK      | XML         | Is used to communicate with tapio applications from software that's running on a tapio connected machine                                                                |
+| [Data Module](./data-module)                                      | SDK      | XML/AUTO    | This Modules contains the OPC UA Source Modules, the Ping Module and the routing to the data endpoints                                                                  |
 | Azure Iot Hub Module                                              | SDK      | XML         | This module is an endpoint for the data module to send the data via azure iot hub                                                                                       |
 | Batch Aggregation Module                                          | SDK      | XML         | This module is an endpoint for the data module to collect the data in zip archives and upload it via a batch upload module                                              |
 | Batch Upload Module                                               | SDK      | XML         | The module handles the upload of batch aggregation zip archives via core field api                                                                                      |
 | Backup Source Module                                              | SDK      | XML         | The is an OPC UA client based module to upload/list/download backup data from a OPC UA server, it uses a backup endpoint module for cloud communication                 |
 | Backup Endpoint Module                                            | SDK      | XML         | This module type handles the cloud communication with field api to upload/list/download backup files                                                                    |
-| [tapio Update Module](./update-module)                             | SVC      | AUTO        | This module is part of the tapio CloudConnector and provide an auto update for the CloudConnector service. How to disable the auto update is described in this section. |
+| [tapio Update Module](./update-module)                            | SVC      | AUTO        | This module is part of the tapio CloudConnector and provide an auto update for the CloudConnector service. How to disable the auto update is described in this section. |
 | (Onboarding Module)                                               | SDK      | INTERNAL    | The onboarding module will run as default module to provide the onboarding functions for the activation ui                                                              |
 | (Diagnostic Module)                                               | SDK      | INTERNAL    | Provide diagnostic information via the OPC UA server built into the CloudConnector                                                                                      |
 | (Discovery Service Module)                                        | SDK      | INTERNAL    | Provide access to the core discovery service                                                                                                                            |
 | (OPC UA Server Module)                                            | SDK      | INTERNAL    | Host the internal OPC UA server parts like diagnostic info, onboarding and call endpoint module                                                                         |
 | [Health State Module](#internal-cloudconnector-diagnostic-server) | SDK      | INTERNAL    | This module provides the health state of the CloudConnector.                                                                                                            |
-| [File Transfer Module](../../machine-data/file-transfer)           | SDK      | XML         | This module provides a function to receive large files (like a cutting plan) from tapio environment.                                                                    |
-| [Large File Upload Module](./large-file-upload-module)               | SDK      | XML         | This module provides a function to upload large files (like a high frequency measurement data) from tapio environment.                                                  |
+| [File Transfer Module](../../machine-data/file-transfer)          | SDK      | XML         | This module provides a function to receive large files (like a cutting plan) from tapio environment.                                                                    |
+| [Large File Upload Module](./large-file-upload-module)            | SDK      | XML         | This module provides a function to upload large files (like a high frequency measurement data) from tapio environment.                                                  |
 
 Location:
 
@@ -198,14 +198,16 @@ The following diagram helps to understand the configuration loading flow.
 
 ### Diagnostic information under Windows
 
-After starting the service you can also have a look in the DiagnosticUI which configuration is loaded.
-There are four new fields.
-| FieldName                | Description                                                 |
-| ------------------------ | ----------------------------------------------------------- |
-| LastConfigChangeDate     | Show the last date/time a config was successfully loaded    |
-| LastConfigErrorMessage   | Show the last error when try to load new configuration file |
-| LastExceptionMessageDate | Show the date/time of the last error                        |
-| LoadedConfigFile         | Shows if a new/fallback/default configuration was loaded    |
+After starting the service you can also have a look in the Diagnostic UI which configuration is loaded.
+
+| FieldName                | Description                                                          |
+| ------------------------ | -------------------------------------------------------------------- |
+| LastConfigChangeDate     | Show the last date/time a config was successfully loaded             |
+| LastConfigErrorMessage   | Show the last error when try to load new configuration file          |
+| LastExceptionMessageDate | Show the date/time of the last error                                 |
+| LoadedConfigFile         | Shows if a new/fallback/default configuration was loaded (see below) |
+
+LoadedConfigFile description:
 
 * `Default config` is the case when no new configuration was provided and the service starts with the default config.
 * `New config` is the case when the loading and starting of a new configuration was successfully
@@ -213,7 +215,7 @@ There are four new fields.
 
 ## Internal CloudConnector Diagnostic server
 
-The CloudConnector provides a diagnostic server to for information about the internal state. Therefore provides the tapio CloudConnector a section for public information. All the public informations are behind the folder node `HealthStateInformation`.
+The CloudConnector provides a diagnostic server to get information about the internal state. Therefore the tapio CloudConnector provides a section for public information. All the public information are behind the folder node `HealthStateInformation`.
 
 ![image info](../../../static/img/docs/public-diagnostic-nodes.png)
 
