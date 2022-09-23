@@ -2,7 +2,7 @@
 
 tapio CloudConnector is a piece of software, which we're using to connect the physical world of woodworking machinery, with our digital ecosystem. It gets installed on the machine itself, or on a computer, which has network access to the machine. The CloudConnector (**CC**) runs as a service and provides an [**OPC UA Interface**](https://opcfoundation.org/about/opc-technologies/opc-ua/) to receive state and notifications from a machine.
 
-This version of the tapio CloudConnector supports the operating systems Windows and Linux. For both operation systems we support a installer so you are able to choose the correct one. If you want to use the tapio CloudConnector on Linux you have to provide a dotnet core runtime, please note the [system requirements](#system-requirements).
+The tapio CloudConnector supports the operating systems Windows and Linux. For both operation systems we support a installer so you are able to choose the correct one. Please note the [system requirements](#system-requirements).
 
 ## Installation
 
