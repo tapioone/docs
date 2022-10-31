@@ -19,7 +19,7 @@
     "@docusaurus/preset-classic": "2.2.0",
     "@easyops-cn/docusaurus-search-local": "^0.33.5",
     "@mdx-js/react": "^1.6.21",
-    "@svgr/webpack": "^6.5.0",
+    "@svgr/webpack": "^6.5.1",
     "clsx": "^1.2.0",
     "docusaurus-plugin-openapi-docs": "^1.4.1",
     "docusaurus-theme-openapi-docs": "^1.4.1",
