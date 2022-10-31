@@ -272,6 +272,20 @@ Fired for all events which affect the customer's view in the shopfloor editor in
 }
 ```
 
+## Application Terms of Use Published Event
+
+Fired when new terms of use have been published for an application in a developer subscription.
+The application then may get the latest terms of use through the [Get Terms Of Use](../api/gds/get-terms-of-use.api.mdx) Global Discovery Service API route.
+
+`one.tapio.selfservice.applicaton.termsofuse.published`
+
+```json
+{
+    "subscriptionId": "f6651146-2803-4ec0-8594-fd0fa8f0db19",
+    "applicationId": "9d311e9d-b8ff-491a-b558-cbe7293ee936"
+}
+```
+
 ## Service Partner Relation Changed Event
 
 Fired when something about the service partner relation of a subscription has been changed.
@@ -303,4 +317,3 @@ See [Customer Data](./customer-data).
     "applicationId": "9d311e9d-b8ff-491a-b558-cbe7293ee936"
 }
 ```
-
