@@ -66,7 +66,7 @@ By calling the route you can create a new customer in tapio ecosystem.
 }
 ```
 
-### Respone codes
+### Response codes
 
 | Code | Description                                                                                                                                                                     |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
