@@ -66,6 +66,16 @@ By calling the route you can create a new customer in tapio ecosystem.
 }
 ```
 
+### Respone codes
+
+| Code | Description                                                                                                                                                                     |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201  | The customer subscription was created successfully.                                                                                                                             |
+| 400  | Bad request. The request was malformed.                                                                                                                                         |
+| 403  | Forbidden. You are not allowed to create the customer subscription.                                                                                                             |
+| 409  | The customer subscription could not be created because there was a conflict, e.g. the user is already administrator in another subscription or the subscription already exists. |
+| 451  | Due to legal reasons it is not possible to create the customer subscription.                                                                                                    |
+
 ## Get the application settings of a customer
 
 > GET `https://api.tapio.one/manufacturer/customerSubscriptions/{customerSubscriptionId}/applicationSettings`
