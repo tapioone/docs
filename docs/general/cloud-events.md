@@ -277,7 +277,7 @@ Fired for all events which affect the customer's view in the shopfloor editor in
 Fired when new terms of use have been published for an application in a developer subscription.
 The application then may get the latest terms of use through the [Get Terms Of Use](../api/gds/get-terms-of-use.api.mdx) Global Discovery Service API route.
 
-`one.tapio.selfservice.applicaton.termsofuse.published`
+`one.tapio.selfservice.application.termsofuse.published`
 
 ```json
 {
