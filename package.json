@@ -15,8 +15,8 @@
     "generate-openapi-docs": "docusaurus clean-api-docs all && docusaurus gen-api-docs all"
   },
   "dependencies": {
-    "@docusaurus/core": "2.3.0",
-    "@docusaurus/preset-classic": "2.3.0",
+    "@docusaurus/core": "2.3.1",
+    "@docusaurus/preset-classic": "2.3.1",
     "@easyops-cn/docusaurus-search-local": "^0.33.6",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^6.5.1",
