@@ -162,7 +162,7 @@ Please make sure to properly url encode all parameters.
 
 ```bash
 curl -X POST \
-  https://login.windows.net/tapiousers.onmicrosoft.com/oauth2/token \
+  https://login.microsoftonline.com/tapiousers.onmicrosoft.com/oauth2/token \
   -H 'Accept: application/json' \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -175,7 +175,7 @@ curl -X POST \
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://login.windows.net/tapiousers.onmicrosoft.com/oauth2/token',
+  url: 'https://login.microsoftonline.com/tapiousers.onmicrosoft.com/oauth2/token',
   headers:
    { 'Cache-Control': 'no-cache',
      'Content-Type': 'application/x-www-form-urlencoded',
