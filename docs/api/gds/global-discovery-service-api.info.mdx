@@ -9,7 +9,7 @@ custom_edit_url: null
 ---
 
 import ApiLogo from "@theme/ApiLogo";
-import Tabs from "@theme/Tabs";
+import SchemaTabs from "@theme/SchemaTabs";
 import TabItem from "@theme/TabItem";
 import Export from "@theme/ApiDemoPanel/Export";
 
@@ -21,9 +21,9 @@ import Export from "@theme/ApiDemoPanel/Export";
 
 tapio's Global Discovery Service API enables to retrieve information of subscriptions. For example, you can retrieve information about application settings which the customer has set, like paper format if you want to print something via a tapio connected application. If your application makes too many requests, HTTP status code 429 is returned. A Retry-After header is included in this response which indicates how long to wait before making the next request. HTTP 429 standard is followed.
 
-<div style={{"marginBottom":"2rem"}}><h2 id={"authentication"} style={{"marginBottom":"1rem"}}>Authentication</h2><Tabs><TabItem label={"Bearer"} value={"Bearer"}>
+<div style={{"marginBottom":"2rem"}}><h2 id={"authentication"} style={{"marginBottom":"1rem"}}>Authentication</h2><SchemaTabs className={"openapi-tabs__security-schemes"}><TabItem label={"API Key: Bearer"} value={"Bearer"}>
 
 Standard `Authorization` header using the Bearer scheme. Example: `bearer {token}`
 
-<div><table><tbody><tr><th>Security Scheme Type:</th><td>apiKey</td></tr><tr><th>Header parameter name:</th><td>Authorization</td></tr></tbody></table></div></TabItem></Tabs></div><div style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}><h3 style={{"marginBottom":"0.25rem"}}>Contact</h3><span>tapio GmbH: <a href={"mailto:developer@tapio.one"}>developer@tapio.one</a></span><span>URL: <a href={"https://tapio.one"}>https://tapio.one</a></span></div><div style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}><h3 style={{"marginBottom":"0.25rem"}}>Terms of Service</h3><a href={"https://tapio.one/en/tapio-terms-of-use"}>https://tapio.one/en/tapio-terms-of-use</a></div>
+<div><table><tbody><tr><th>Security Scheme Type:</th><td>apiKey</td></tr><tr><th>Header parameter name:</th><td>Authorization</td></tr></tbody></table></div></TabItem></SchemaTabs></div><div style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}><h3 style={{"marginBottom":"0.25rem"}}>Contact</h3><span>tapio GmbH: <a href={"mailto:developer@tapio.one"}>developer@tapio.one</a></span><span>URL: <a href={"https://tapio.one"}>https://tapio.one</a></span></div><div style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}><h3 style={{"marginBottom":"0.25rem"}}>Terms of Service</h3><a href={"https://tapio.one/en/tapio-terms-of-use"}>https://tapio.one/en/tapio-terms-of-use</a></div>
       
