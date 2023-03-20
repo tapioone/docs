@@ -106,7 +106,7 @@ By calling the route you can create a new customer in tapio ecosystem.
 #### Logo Model Description
 
 - The URL path will change when the customer changes their logo
-- Be aware that the URLs **expire**. They are valid for a minimum of two weeks. New urls will be returned at least two weeks before the previous ones expire.
+- Be aware that the URLs **expire**. They are valid for seven days starting from the beginning of the day they were requested.
 
 | Property  | Description                                                     | Datatype |
 | --------- | --------------------------------------------------------------- | -------- |
