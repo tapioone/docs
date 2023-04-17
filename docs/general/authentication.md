@@ -232,7 +232,7 @@ var token = await tokenBuilder.ExecuteAsync(CancellationToken.None);
 
 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
 
-var userProfileResponse = await httpClient.GetAsync(new Uri("api/userProfile/{userEmail}", UriKind.Relative), CancellationToken.None);
+var userProfileResponse = await httpClient.GetAsync(new Uri($"api/userProfile/{userEmail}", UriKind.Relative), CancellationToken.None);
 ```
 
 ### Secure you ASP.NET Core API with B2C authentication
