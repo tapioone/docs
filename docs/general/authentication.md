@@ -202,67 +202,37 @@ This flow is not supported at this point.
 
 ### Get a Token for GlobalDiscoveryService with Machine-to-Machine authentication
 
-This implementation sample is using the nuget package [Microsoft.IdentityModel.Clients.ActiveDirectory](
-https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/). This nuget package provides e.g. the class `AuthenticationContext`.
-
-Using **C#**:
+This implementation sample is using the nuget package [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 ```csharp
-async Task MainAsync(CancellationToken cancellationToken)
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Microsoft.Identity.Client;
+
+var authority = new Uri("https://login.microsoftonline.com/tapiousers.onmicrosoft.com");
+var clientId = "your-client-id";
+var clientSecret = "your-client-secret";
+var targetResource = "https://tapiousers.onmicrosoft.com/GlobalDiscoveryService/.default";
+var targetUrl = new Uri("https://globaldisco.tapio.one");
+var userEmail = "tapio.fair@tapio.one";
+
+var confidentialClientApplication = ConfidentialClientApplicationBuilder
+    .Create(clientId)
+    .WithAuthority(authority)
+    .WithClientSecret(clientSecret)
+    .Build();
+    
+var httpClient = new HttpClient
 {
-    string authority = "https://login.microsoftonline.com/tapiousers.onmicrosoft.com";
-    string clientId = "your-client-id";
-    string clientSecret = "your-client-secret";
-    string targetResource = "https://tapiousers.onmicrosoft.com/GlobalDiscoveryService";
-    string targetUrl = "https://globaldisco.tapio.one";
-    string userEmail = "tapio.fair@tapio.one";
+    BaseAddress = targetUrl,
+};
 
-    var authContext = new AuthenticationContext(authority);
-    var clientCredential = new ClientCredential(clientId, clientSecret);
+var tokenBuilder = confidentialClientApplication.AcquireTokenForClient(new[] { targetResource });
+var token = await tokenBuilder.ExecuteAsync(CancellationToken.None);
 
-  using ( var httpClient = new HttpClient())
-  {
-      httpClient.BaseAddress = new Uri(targetUrl);
+httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
 
-      var result = await DoAuthenticate(authContext, targetResource, clientCredential);
-      httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
-      //call global discovery service here!
-  }
-}
-
-
-async Task<AuthenticationResult> DoAuthenticateAsync(AuthenticationContext authContext, string targetResource, ClientCredential clientCredential)
-{
-    AuthenticationResult result = null;
-    int retryCount = 0;
-    bool retry = false;
-
-    do
-    {
-        retry = false;
-        try
-        {
-            // ADAL includes an in memory cache, so this call will only send a message to the server if the cached token is expired.
-            result = await authContext.AcquireTokenAsync(targetResource, clientCredential);
-        }
-        catch (AdalException ex)
-        {
-            if (ex.ErrorCode == "temporarily_unavailable")
-            {
-                retry = true;
-                retryCount++;
-                Thread.Sleep(3000);
-                continue;
-            }
-
-            throw;
-        }
-
-    } while ((retry == true) && (retryCount < 3));
-
-    return result;
-}
-
+var userProfileResponse = await httpClient.GetAsync(new Uri("api/userProfile/{userEmail}", UriKind.Relative), CancellationToken.None);
 ```
 
 ### Secure you ASP.NET Core API with B2C authentication
