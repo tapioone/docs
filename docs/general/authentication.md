@@ -40,6 +40,7 @@ GET https://login.mytapio.one/32896ed7-d559-401b-85cf-167143d61be0/TAPIO_SIGNIN_
 - **Scope**: A list of resources separated with a space (" "). Must include *"openid"*.
 - **redirect_uri**: A valid redirect URI of your application. This list is managed by tapio and can be updated upon request. We recommend keeping this list short.
 - **response_mode**: How your application would like to receive the authentication information in the redirect back to your application.*"query"*,*"fragment"*and*"form_post"* are valid values.
+- **theme**: Optional. By default a light theme is used, if you set the `theme` query parameter to `dark` a dark theme is used.
 
 #### Authorization Code Grant
 
@@ -99,6 +100,7 @@ The response will include a new *Refresh Token* which can be used for further re
 #### Authorization Code Grant + PKCE
 
 Native apps (Xamarin, UWP, ...) and since MSAL 2.0 also Single Page Applications (React, Angular) should use the *Authorization Code* flow with *PKCE* extensions. The advantage of using this flow is that you have all the benefits of silent token renewal without needing to expose the *Client Secret* to your application or providing additional infrastructure for authentication. For React we created a sample application with a basic implementation of MSAL.JS with PKCE. You can try to login with your tapio Account on this website:
+
 - [Preview Sample App](https://tapioone.github.io/tapio-auth-react/)
 - [Github Repository](https://github.com/tapioone/tapio-auth-react)
 
@@ -124,6 +126,7 @@ In general, AAD B2C will redirect the user back to your application if the authe
 Your application code needs to handle these errors and react accordingly.
 
 ##### Canceled signin
+
 In some situations like password reset, a user can cancel the signin journey. If that happens, your application will be notified with this error:
 
 ```text
@@ -424,4 +427,3 @@ https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi)
     }
 
 ```
-
