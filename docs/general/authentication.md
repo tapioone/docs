@@ -40,6 +40,7 @@ GET https://login.mytapio.one/32896ed7-d559-401b-85cf-167143d61be0/TAPIO_SIGNIN_
 - **Scope**: A list of resources separated with a space (" "). Must include *"openid"*.
 - **redirect_uri**: A valid redirect URI of your application. This list is managed by tapio and can be updated upon request. We recommend keeping this list short.
 - **response_mode**: How your application would like to receive the authentication information in the redirect back to your application.*"query"*,*"fragment"*and*"form_post"* are valid values.
+- **theme**: Optional. By default a light theme is used, if you set the `theme` query parameter to `dark` a dark theme is used.
 
 #### Authorization Code Grant
 
@@ -99,6 +100,7 @@ The response will include a new *Refresh Token* which can be used for further re
 #### Authorization Code Grant + PKCE
 
 Native apps (Xamarin, UWP, ...) and since MSAL 2.0 also Single Page Applications (React, Angular) should use the *Authorization Code* flow with *PKCE* extensions. The advantage of using this flow is that you have all the benefits of silent token renewal without needing to expose the *Client Secret* to your application or providing additional infrastructure for authentication. For React we created a sample application with a basic implementation of MSAL.JS with PKCE. You can try to login with your tapio Account on this website:
+
 - [Preview Sample App](https://tapioone.github.io/tapio-auth-react/)
 - [Github Repository](https://github.com/tapioone/tapio-auth-react)
 
@@ -124,6 +126,7 @@ In general, AAD B2C will redirect the user back to your application if the authe
 Your application code needs to handle these errors and react accordingly.
 
 ##### Canceled signin
+
 In some situations like password reset, a user can cancel the signin journey. If that happens, your application will be notified with this error:
 
 ```text
@@ -202,67 +205,37 @@ This flow is not supported at this point.
 
 ### Get a Token for GlobalDiscoveryService with Machine-to-Machine authentication
 
-This implementation sample is using the nuget package [Microsoft.IdentityModel.Clients.ActiveDirectory](
-https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/). This nuget package provides e.g. the class `AuthenticationContext`.
-
-Using **C#**:
+This implementation sample is using the nuget package [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 ```csharp
-async Task MainAsync(CancellationToken cancellationToken)
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Microsoft.Identity.Client;
+
+var authority = new Uri("https://login.microsoftonline.com/tapiousers.onmicrosoft.com");
+var clientId = "your-client-id";
+var clientSecret = "your-client-secret";
+var targetResource = "https://tapiousers.onmicrosoft.com/GlobalDiscoveryService/.default";
+var targetUrl = new Uri("https://globaldisco.tapio.one");
+var userEmail = "tapio.fair@tapio.one";
+
+var confidentialClientApplication = ConfidentialClientApplicationBuilder
+    .Create(clientId)
+    .WithAuthority(authority)
+    .WithClientSecret(clientSecret)
+    .Build();
+    
+var httpClient = new HttpClient
 {
-    string authority = "https://login.microsoftonline.com/tapiousers.onmicrosoft.com";
-    string clientId = "your-client-id";
-    string clientSecret = "your-client-secret";
-    string targetResource = "https://tapiousers.onmicrosoft.com/GlobalDiscoveryService";
-    string targetUrl = "https://globaldisco.tapio.one";
-    string userEmail = "tapio.fair@tapio.one";
+    BaseAddress = targetUrl,
+};
 
-    var authContext = new AuthenticationContext(authority);
-    var clientCredential = new ClientCredential(clientId, clientSecret);
+var tokenBuilder = confidentialClientApplication.AcquireTokenForClient(new[] { targetResource });
+var token = await tokenBuilder.ExecuteAsync(CancellationToken.None);
 
-  using ( var httpClient = new HttpClient())
-  {
-      httpClient.BaseAddress = new Uri(targetUrl);
+httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
 
-      var result = await DoAuthenticate(authContext, targetResource, clientCredential);
-      httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
-      //call global discovery service here!
-  }
-}
-
-
-async Task<AuthenticationResult> DoAuthenticateAsync(AuthenticationContext authContext, string targetResource, ClientCredential clientCredential)
-{
-    AuthenticationResult result = null;
-    int retryCount = 0;
-    bool retry = false;
-
-    do
-    {
-        retry = false;
-        try
-        {
-            // ADAL includes an in memory cache, so this call will only send a message to the server if the cached token is expired.
-            result = await authContext.AcquireTokenAsync(targetResource, clientCredential);
-        }
-        catch (AdalException ex)
-        {
-            if (ex.ErrorCode == "temporarily_unavailable")
-            {
-                retry = true;
-                retryCount++;
-                Thread.Sleep(3000);
-                continue;
-            }
-
-            throw;
-        }
-
-    } while ((retry == true) && (retryCount < 3));
-
-    return result;
-}
-
+var userProfileResponse = await httpClient.GetAsync(new Uri($"api/userProfile/{userEmail}", UriKind.Relative), CancellationToken.None);
 ```
 
 ### Secure you ASP.NET Core API with B2C authentication
@@ -454,4 +427,3 @@ https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi)
     }
 
 ```
-
