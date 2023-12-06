@@ -18,7 +18,7 @@ variables:
 
 pool:
   # AzureStaticWebApp@0 requires Docker to be installed
-  vmImage: ubuntu-20.04
+  vmImage: ubuntu-22.04
 
 stages:
   - stage: build_app
