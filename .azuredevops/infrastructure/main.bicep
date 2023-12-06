@@ -1,7 +1,10 @@
 param logAnalyticsWorkspaceResourceId string
 param environmentSuffix string
-param productPrefix string
+param customDomainName string
+
 param location string = resourceGroup().location
+
+var productPrefix = 'docs'
 
 module appInsights 'br:crtapiobicep.azurecr.io/application-insights:1.1.0' = {
   name: '${deployment().name}-appInsights'
@@ -18,8 +21,9 @@ module staticWebApp 'br:crtapiobicep.azurecr.io/static-web-app:2.1.0' = {
     branch: 'master'
     nameSuffix: '${productPrefix}${environmentSuffix}'
     repositoryUrl: 'https://github.com/tapioone/docs'
-    location: location
     skuTier: 'Free'
+    customDomainName: customDomainName
+    location: location
   }
 }
 
