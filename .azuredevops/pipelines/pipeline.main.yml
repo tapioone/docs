@@ -156,7 +156,7 @@ stages:
                     serviceConnectionName: tapio-prod(SPN)
                     artifactName: ${{ variables.infrastructureArtifactName }}
                     resourceGroupName: $(ResourceGroupName)
-                    paramFileName: main.preview.json
+                    paramFileName: main.prod.json
       - deployment: app
         dependsOn: infrastructure
         environment: Docs-prod
