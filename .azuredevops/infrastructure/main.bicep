@@ -32,5 +32,6 @@ module alerts 'modules/alerts.bicep' = {
   params: {
     appInsightsName: appInsights.outputs.name
     staticWebAppName: staticWebApp.outputs.name
+    customDomainName: customDomainName
   }
 }
