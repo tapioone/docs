@@ -72,7 +72,7 @@ stages:
               scriptLocation: inlineScript
               inlineScript: bicep restore ${{ variables.mainBicepFilePath }}
 
-          - pwsh: >
+          - pwsh: |
               az bicep build --file ${{ variables.mainBicepFilePath }}
               az bicep build-params -f ${{ variables.infrastructureDirectory }}/main.preview.bicepparam
               az bicep build-params -f ${{ variables.infrastructureDirectory }}/main.prod.bicepparam
