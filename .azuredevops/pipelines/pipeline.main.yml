@@ -13,12 +13,13 @@ trigger:
 variables:
   appDirectory: $(System.DefaultWorkingDirectory)
   appArtifactName: app
+  infrastructureDirectory: $(System.DefaultWorkingDirectory)/.azuredevops/infrastructure
   infrastructureArtifactName: infrastructure
   nodeJsVersionSpec: 16.x
 
 pool:
   # AzureStaticWebApp@0 requires Docker to be installed
-  vmImage: ubuntu-20.04
+  vmImage: ubuntu-22.04
 
 stages:
   - stage: build_app
@@ -56,28 +57,29 @@ stages:
     jobs:
       - job:
         displayName: build
+        variables:
+          mainBicepFilePath: ${{ variables.infrastructureDirectory }}/main.bicep
         steps:
           - checkout: self
             clean: true
+            fetchDepth: 1
 
-          - checkout: DeploymentRepository
-            clean: true
-
-          - task: CopyFiles@2
-            displayName: copy deployment components
+          - task: AzureCLI@2
+            displayName: az bicep restore
             inputs:
-              SourceFolder: $(System.DefaultWorkingDirectory)/tapio.Deployment/Components
-              contents: "**"
-              targetFolder: $(Build.ArtifactStagingDirectory)/${{ variables.infrastructureArtifactName }}/components
+              azureSubscription: tapio Dev/Test Subscription
+              scriptType: pscore
+              scriptLocation: inlineScript
+              inlineScript: bicep restore ${{ variables.mainBicepFilePath }}
 
-          - task: CopyFiles@2
-            displayName: copy infrastructure files
-            inputs:
-              SourceFolder: $(System.DefaultWorkingDirectory)/docs/.azuredevops/infrastructure
-              contents: "**"
-              targetFolder: $(Build.ArtifactStagingDirectory)/${{ variables.infrastructureArtifactName }}/app
+          - pwsh: |
+              az bicep build --file ${{ variables.mainBicepFilePath }}
+              az bicep build-params -f ${{ variables.infrastructureDirectory }}/main.preview.bicepparam
+              az bicep build-params -f ${{ variables.infrastructureDirectory }}/main.prod.bicepparam
+            displayName: az bicep build
+            failOnStderr: true
 
-          - publish: $(Build.ArtifactStagingDirectory)/${{ variables.infrastructureArtifactName }}
+          - publish: ${{ variables.infrastructureDirectory }}
             artifact: ${{ variables.infrastructureArtifactName }}
             displayName: publish artifact ${{ variables.infrastructureArtifactName }}
 
@@ -119,7 +121,7 @@ stages:
                     serviceConnectionName: tapio-devtest(SPN)
                     artifactName: ${{ variables.infrastructureArtifactName }}
                     resourceGroupName: $(ResourceGroupName)
-                    resourceGroupLocation: $(ResourceGroupLocation)
+                    paramFileName: main.preview.json
       - deployment: app
         dependsOn: infrastructure
         environment: Docs-preview
@@ -154,7 +156,7 @@ stages:
                     serviceConnectionName: tapio-prod(SPN)
                     artifactName: ${{ variables.infrastructureArtifactName }}
                     resourceGroupName: $(ResourceGroupName)
-                    resourceGroupLocation: $(ResourceGroupLocation)
+                    paramFileName: main.preview.json
       - deployment: app
         dependsOn: infrastructure
         environment: Docs-prod
