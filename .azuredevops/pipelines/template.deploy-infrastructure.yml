@@ -20,9 +20,4 @@ steps:
     azureSubscription: ${{ parameters.serviceConnectionName }}
     scriptType: pscore
     scriptLocation: inlineScript
-    inlineScript: > 
-      az deployment group create 
-        --name release 
-        --resource-group ${{ parameters.resourceGroupName }} 
-        --template-file $(Pipeline.Workspace)/${{ parameters.artifactName }}/main.json 
-        --parameters $(Pipeline.Workspace)/${{ parameters.artifactName }}/${{ parameters.paramFileName }}
+    inlineScript: az deployment group create --name release --resource-group ${{ parameters.resourceGroupName }} --template-file $(Pipeline.Workspace)/${{ parameters.artifactName }}/main.json --parameters $(Pipeline.Workspace)/${{ parameters.artifactName }}/${{ parameters.paramFileName }}
