@@ -354,7 +354,7 @@ After the bundle was created successfully (provisioning state), you can hand it 
 400 - Bad Request.
 401 - Unauthorized.
 404 - Bad request. Body contains the information.
-409 - Conflict e.g. a concurrent operation on this bundle or bundle alredy exists in shop.
+409 - Conflict e.g. a concurrent operation on this bundle, bundle already exists in shop, customer has multiple shop accounts or customer is not allowed to receive new bundles in shop.
 
 After the handover was successfully called, you have to query the bundle by calling the [Get bundle information](#get-bundle-information) route to check the provisioning state. The state update can take up to 1 minute. In case the state is `Failed` you have to contact the tapio support [developer@tapio.one](mailto:developer@tapio.one). If the provisioning state is `Succeeded` the handover was successful.
 
