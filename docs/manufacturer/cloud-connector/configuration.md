@@ -35,6 +35,7 @@ Example 1:
     <InstrumentationKey>00000000-0000-0000-0000-000000000000</InstrumentationKey>
     <LogLevel>Verbose</LogLevel>
     <OpcUaServerUrl>opc.tcp://somedomain:4433/CloudConnectorDiagnostic/</OpcUaServerUrl> <!-- optional -->
+    <MaxRegistrationInterval>0</MaxRegistrationInterval> <!-- optional -->
   </ConnectorConfig>
   <Modules>
     <Module xsi:type="DataModuleConfig">...</Module>
@@ -95,32 +96,33 @@ This configuration section is required if you want to use automatic machine regi
 
 The `ConnectorConfig` will contain the following information. You will get the information via a xml file download by registering a device in My tapio.
 
-| Property               |      Required      | Description                                                                                                                                                                   |
-| ---------------------- | :----------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ConnectorId`          | :white_check_mark: | Identifier of the CloudConnector instance.                                                                                                                                    |
-| `ConnectorCert`        | :white_check_mark: | CloudConnector certificate (client-certificate).                                                                                                                              |
-| `DiscoveryServiceUri`  | :white_check_mark: | Discovery service URI.                                                                                                                                                        |
-| `DiscoveryServiceCert` | :white_check_mark: | Discovery service certificate (server-certificate).                                                                                                                           |
-| `AuthAppId`            | :white_check_mark: | App identifier for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                     |
-| `AuthSecret`           | :white_check_mark: | App secret for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                         |
-| `ResourceId`           | :white_check_mark: | Resource id for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                        |
-| `Authority`            | :white_check_mark: | Authority for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                          |
-| `InstrumentationKey`   | :white_check_mark: | Instrumentation key for logging into [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)                               |
-| `LogLevel`             |      optional      | Verbosity of the logs. There are [six log levels](#log-level) available. Default is `Error`.                                                                                  |
-| `LoggingSinkLocation`  |      optional      | Where log messages go to. See [log sink location](#log-sink-location) for possible options.                                                                                    |
-| `LogFileCount`         |      optional      | The count of log files to use, at least 1, default 10.                                                                                                                        |
-| `LogFileSize`          |      optional      | The max size per log file, min `4K` (4 KiB)  , default `10M` (10 MiB), format `{number}{unit}`, allowed units:  `K` - KiB, `M` - MiB, `G` - GiB. See below for more examples. |
-| `OpcUaServerUrl`       |      optional      | OPC UA server address. Default is `opc.tcp://localhost/CloudConnectorDiagnostic/`. You can set a specific port with this tag.                                                   |
+| Property                  |      Required      | Description                                                                                                                                                                 |
+| ------------------------- | :----------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ConnectorId`             | :white_check_mark: | Identifier of the CloudConnector instance.                                                                                                                                  |
+| `ConnectorCert`           | :white_check_mark: | CloudConnector certificate (client-certificate).                                                                                                                            |
+| `DiscoveryServiceUri`     | :white_check_mark: | Discovery service URI.                                                                                                                                                      |
+| `DiscoveryServiceCert`    | :white_check_mark: | Discovery service certificate (server-certificate).                                                                                                                         |
+| `AuthAppId`               | :white_check_mark: | App identifier for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                   |
+| `AuthSecret`              | :white_check_mark: | App secret for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                       |
+| `ResourceId`              | :white_check_mark: | Resource id for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                      |
+| `Authority`               | :white_check_mark: | Authority for discovery service [OAuth2 flow](https://oauth.net/2/).                                                                                                        |
+| `InstrumentationKey`      | :white_check_mark: | Instrumentation key for logging into [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)                                 |
+| `LogLevel`                |      optional      | Verbosity of the logs. There are [six log levels](#log-level) available. Default is `Error`.                                                                                |
+| `LoggingSinkLocation`     |      optional      | Where log messages go to. See [log sink location](#log-sink-location) for possible options.                                                                                 |
+| `LogFileCount`            |      optional      | The count of log files to use, at least 1, default 10.                                                                                                                      |
+| `LogFileSize`             |      optional      | The max size per log file, min `4K` (4 KiB) , default `10M` (10 MiB), format `{number}{unit}`, allowed units: `K` - KiB, `M` - MiB, `G` - GiB. See below for more examples. |
+| `OpcUaServerUrl`          |      optional      | OPC UA server address. Default is `opc.tcp://localhost/CloudConnectorDiagnostic/`. You can set a specific port with this tag.                                               |
+| `MaxRegistrationInterval` |      optional      | The maximum time between registration attempts (in milliseconds). If set to 0 the registration will be disabled.                                                            |
 
 Examples for **`LogFileSize`**:
 
-| Value            | Description                                  |
-| ---------------- | -------------------------------------------- |
-| `{number}{unit}` |                                              |
-| `4K`             | 4 Kilobyte = 4096 Byte                       |
-| `1M`             | 1 Megabyte = 1024 Kilobyte = ‭1048576‬ Bytes   |
-| `10M`            | 10 Megabyte = ‭10240‬ Kilobyte                 |
-| `1G`             | 1 Gigabyte = 1024 Megabyte                   |
+| Value            | Description                                |
+| ---------------- | ------------------------------------------ |
+| `{number}{unit}` |                                            |
+| `4K`             | 4 Kilobyte = 4096 Byte                     |
+| `1M`             | 1 Megabyte = 1024 Kilobyte = 1048576 Bytes |
+| `10M`            | 10 Megabyte = 10240 Kilobyte               |
+| `1G`             | 1 Gigabyte = 1024 Megabyte                 |
 
 ### Log level
 
@@ -316,4 +318,3 @@ The `source` must be a valid uri. Ideally, only absolute uris are used, but rela
 if a base uri is provided while loading the configuration. When a `source` attribute is given for an element that also has children, it is ignored.
 
 By default only the `file` scheme is supported.
-
