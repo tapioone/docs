@@ -112,7 +112,7 @@ The `ConnectorConfig` will contain the following information. You will get the i
 | `LogFileCount`            |      optional      | The count of log files to use, at least 1, default 10.                                                                                                                      |
 | `LogFileSize`             |      optional      | The max size per log file, min `4K` (4 KiB) , default `10M` (10 MiB), format `{number}{unit}`, allowed units: `K` - KiB, `M` - MiB, `G` - GiB. See below for more examples. |
 | `OpcUaServerUrl`          |      optional      | OPC UA server address. Default is `opc.tcp://localhost/CloudConnectorDiagnostic/`. You can set a specific port with this tag.                                               |
-| `MaxRegistrationInterval` |      optional      | The maximum time between registration attempts (in milliseconds). If set to 0 the registration will be disabled.                                                            |
+| `MaxRegistrationInterval` |      optional      | The maximum time between registration attempts (in milliseconds). If set to 0 the registration will be disabled. If not set the default value 30000 ms is used.                                                           |
 
 Examples for **`LogFileSize`**:
 
