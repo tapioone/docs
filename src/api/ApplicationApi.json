@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Application API",
-    "description": "tapio's Application API enables third party application to interact with tapio on behalf of their users.",
+    "description": "tapio's Application API enables third party applications to interact with tapio on behalf of their users.",
     "termsOfService": "https://tapio.one/en/tapio-terms-of-use",
     "contact": {
       "name": "tapio GmbH",
@@ -13,7 +13,7 @@
   },
   "servers": [
     {
-      "url": "https://apissappsspprodwe01.azurewebsites.net/"
+      "url": "https://api.tapio.one/application/"
     }
   ],
   "paths": {
@@ -37,7 +37,19 @@
           {
             "name": "tapio-application-id",
             "in": "header",
-            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application."
+            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "schema": {
+              "$ref": "#/components/schemas/ApplicationIdHeader"
+            }
+          },
+          {
+            "name": "api-version",
+            "required": true,
+            "in": "header",
+            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
+            "schema": {
+              "$ref": "#/components/schemas/ApiVersionHeader"
+            }
           }
         ],
         "responses": {
@@ -136,7 +148,19 @@
           {
             "name": "tapio-application-id",
             "in": "header",
-            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application."
+            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "schema": {
+              "$ref": "#/components/schemas/ApplicationIdHeader"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ApiVersionHeader"
+            }
           }
         ],
         "requestBody": {
@@ -300,7 +324,19 @@
           {
             "name": "tapio-application-id",
             "in": "header",
-            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application."
+            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "schema": {
+              "$ref": "#/components/schemas/ApplicationIdHeader"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ApiVersionHeader"
+            }
           }
         ],
         "requestBody": {
@@ -435,6 +471,18 @@
   },
   "components": {
     "schemas": {
+      "ApplicationIdHeader": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application."
+      },
+      "ApiVersionHeader": {
+        "type": "string",
+        "enum": [
+          "v1"
+        ],
+        "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported."
+      },
       "ConsentSubjectResponse": {
         "type": "object",
         "properties": {
