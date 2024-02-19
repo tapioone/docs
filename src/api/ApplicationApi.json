@@ -142,7 +142,7 @@
           "Me"
         ],
         "summary": "Grant Consent",
-        "description": "Grant consent to a subject on behalf of a user.",
+        "description": "Grant consent to a subject on behalf of a user. Get the result from EvaluateConsent. Note that\r\n this route is eventually consistent. So EvaluateConsent might take some time to take over the granting of the consent.",
         "operationId": "GrantConsent",
         "parameters": [
           {
