@@ -24,6 +24,7 @@ We're using some services provided by Microsoft, to authenticate applications an
 | Core API                     | Retrieve machine states and send commands to a machine                        | `https://core.tapio.one/`          | [Access Machine States](../machine-data/state-api), [-read Historical Data](../machine-data/historical-data), [Send Commands to a Machine](../machine-data/Commanding) | Client Credential Flow | `https://tapiousers.onmicrosoft.com/CoreApi`                |
 | Global Discovery Service API | Retrieve the profile of a user, including assigned subscriptions and machines | `https://globaldisco.tapio.one/`   | [Retrieve Profile of a User](./user-profile), [API Reference](../api/gds)                                    | Client Credential Flow | `https://tapiousers.onmicrosoft.com/GlobalDiscoveryService` |
 | Management API               | Create and manage your tapio machines                                         | `https://api.tapio.one/management` | [Manage your Machines](../manufacturer)                                                                                                                                | Client Credential Flow | `https://tapiousers.onmicrosoft.com/ManagementApiGateway`   |
+| Application API | Enables third party applications to interact with tapio on behalf of their users | https://api.tapio.one/application | [API Reference](../api/application-api) | Authorization Code Flow | `https://tapiousers.onmicrosoft.com/7ee7f1b0-d030-4d20-9691-9752bdb44315` |
 
 Policies
 ______

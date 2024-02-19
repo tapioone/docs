@@ -13,11 +13,11 @@
   },
   "servers": [
     {
-      "url": "https://api.tapio.one/application/"
+            "url": "https://api.tapio.one/application"
     }
   ],
   "paths": {
-    "/api/v1/consentSubjects": {
+        "/consentSubjects": {
       "get": {
         "tags": [
           "ConsentSubject"
@@ -136,7 +136,7 @@
         }
       }
     },
-    "/api/v1/me/grantConsent": {
+        "/me/grantConsent": {
       "post": {
         "tags": [
           "Me"
@@ -312,7 +312,7 @@
         }
       }
     },
-    "/api/v1/me/evaluateConsent": {
+        "/me/evaluateConsent": {
       "post": {
         "tags": [
           "Me"
