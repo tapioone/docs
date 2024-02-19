@@ -1,0 +1,610 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Application API",
+    "description": "tapio's Application API enables third party applications to interact with tapio on behalf of their users.",
+    "termsOfService": "https://tapio.one/en/tapio-terms-of-use",
+    "contact": {
+      "name": "tapio GmbH",
+      "url": "https://tapio.one",
+      "email": "developer@tapio.one"
+    },
+    "version": "1"
+  },
+  "servers": [
+    {
+            "url": "https://api.tapio.one/application"
+    }
+  ],
+  "paths": {
+        "/consentSubjects": {
+      "get": {
+        "tags": [
+          "ConsentSubject"
+        ],
+        "summary": "Gets Consent Subjects",
+        "description": "Gets all consent subjects that the calling user and application are authorized for.",
+        "operationId": "GetConsentSubjects",
+        "parameters": [
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Optional locale.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tapio-application-id",
+            "in": "header",
+            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "schema": {
+              "$ref": "#/components/schemas/ApplicationIdHeader"
+            }
+          },
+          {
+            "name": "api-version",
+            "required": true,
+            "in": "header",
+            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
+            "schema": {
+              "$ref": "#/components/schemas/ApiVersionHeader"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+        "/me/grantConsent": {
+      "post": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Grant Consent",
+        "description": "Grant consent to a subject on behalf of a user.",
+        "operationId": "GrantConsent",
+        "parameters": [
+          {
+            "name": "tapio-application-id",
+            "in": "header",
+            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "schema": {
+              "$ref": "#/components/schemas/ApplicationIdHeader"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ApiVersionHeader"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Grant consent body.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrantConsentRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrantConsentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrantConsentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrantConsentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Precondition Failed",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+        "/me/evaluateConsent": {
+      "post": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Evaluate Consent",
+        "description": "Evaluates if the user has consented to the given subject.",
+        "operationId": "EvaluateConsent",
+        "parameters": [
+          {
+            "name": "tapio-application-id",
+            "in": "header",
+            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "schema": {
+              "$ref": "#/components/schemas/ApplicationIdHeader"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ApiVersionHeader"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Evaluate consent body.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateConsentRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateConsentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateConsentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateConsentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApplicationIdHeader": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application."
+      },
+      "ApiVersionHeader": {
+        "type": "string",
+        "enum": [
+          "v1"
+        ],
+        "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported."
+      },
+      "ConsentSubjectResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Subject ID.",
+            "format": "uuid"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the subject.",
+            "nullable": true
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JToken"
+            },
+            "description": "Localized content of the subject to be displayed to the user.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Consent subject response."
+      },
+      "ConsentSubjectResponseCollectionResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConsentSubjectResponse"
+            },
+            "description": "Data.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection response."
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message.",
+            "nullable": true
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Error details.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Error response."
+      },
+      "EvaluateConsentRequest": {
+        "type": "object",
+        "properties": {
+          "consentSubjectId": {
+            "type": "string",
+            "description": "Consent subject ID.",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Evaluate consent request."
+      },
+      "GrantConsentRequest": {
+        "type": "object",
+        "properties": {
+          "consentSubjectId": {
+            "type": "string",
+            "description": "Consent subject ID.",
+            "format": "uuid"
+          },
+          "text": {
+            "type": "string",
+            "description": "The text the user has seen while consenting.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Grant consent request."
+      },
+      "JToken": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/JToken"
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://login.mytapio.one/32896ed7-d559-401b-85cf-167143d61be0/B2C_1A_Tapio_Signin/oauth2/v2.0/authorize",
+            "scopes": {
+              "openid": "openid",
+              "https://tapiousers.onmicrosoft.com/7ee7f1b0-d030-4d20-9691-9752bdb44315/Consent.ReadWrite": "read and write consent"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "ConsentSubject"
+    },
+    {
+      "name": "Me"
+    }
+  ]
+}

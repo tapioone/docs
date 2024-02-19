@@ -97,6 +97,16 @@ module.exports = {
           },
           items: require("./docs/api/gds/sidebar.js"),
         },
+        {
+          type: "category",
+          label: "Application API",
+          link: {
+            type: "generated-index",
+            title: "Application API",
+            slug: "/api/application-api",
+          },
+          items: require("./docs/api/application-api/sidebar.js"),
+        },
       ],
     },
     {
