@@ -142,12 +142,20 @@ module.exports = {
     [
       'docusaurus-plugin-openapi-docs',
       {
-        id: "apiDocsGds",
+        id: "apiDocs",
         docsPluginId: "classic",
         config: {
           gds: {
             specPath: "https://globaldisco.tapio.one/swagger/v1/swagger.json",
             outputDir: "docs/api/gds",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag"
+            }
+          },
+          applicationApi: {
+            specPath: "src/api/ApplicationApi.json",
+            outputDir: "docs/api/application-api",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag"
