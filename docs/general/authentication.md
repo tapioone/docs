@@ -33,9 +33,7 @@ GET https://login.mytapio.one/32896ed7-d559-401b-85cf-167143d61be0/TAPIO_SIGNIN_
 ```
 
 - **ClientId**: Your client id (guid)
-- **TAPIO_SIGNIN_POLICY_NAME**: The policy to use.
-  - *B2C_1A_Tapio_Signin* for signin.
-  - *B2C_1A_Tapio_ResetPW* for password reset.
+- **TAPIO_SIGNIN_POLICY_NAME**: The policy to use: *B2C_1A_Tapio_Signin* for signin.
 - **response_type**: Either*"code"*for*Authorization Code Grant*or*"id_token"* for *Implicit Grant*.
 - **Scope**: A list of resources separated with a space (" "). Must include *"openid"*.
 - **redirect_uri**: A valid redirect URI of your application. This list is managed by tapio and can be updated upon request. We recommend keeping this list short.
