@@ -8,6 +8,8 @@ To facilitate reliable data deletion in our applications, we have set up a proce
 
 When a customer cancels their last application license, a 90 day grace period begins. If a customer does not acquire a new license within this timespan, an event is triggered and sent to the application. You will receive the notification multiple times (once a day at midnight), unless you explicitly confirm the data deletion (see next section).
 You might also receive this notification within the grace period already, if a customer explicitly requests the deletion of their data.
+In this case, be aware that you might not be able to fetch the [subscription overview](../api/gds/get-subscription-overview.api.mdx) of the customer or the [user profile](../api/gds/get-user-profile.api.mdx) of the user, because they have already been deleted.
+To be prepared for that situation we recommend tagging a customers data with their `subscriptionId`.
 
 `one.tapio.selfservice.application.customerdatadeletionrequired`
 
