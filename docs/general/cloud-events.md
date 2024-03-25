@@ -286,6 +286,29 @@ The application then may get the latest terms of use through the [Get Terms Of U
 }
 ```
 
+## Consent update events
+
+Fired whenever a user grants or revokes a consent. A whole deletion of a consent triggers a revoked event.
+Applications that are part of any of the users subscriptions receive a notification. The application can then retrieve the latest consense status of the user.
+
+`tapio.consentinator.consent.revoked`
+
+```json
+{
+    "subjectId": "c2650bda-d88e-471b-b4b0-5da770ad03ba",
+    "userEmail": "consenter@tapio.one"
+}
+```
+
+`tapio.consentinator.consent.granted`
+
+```json
+{
+    "subjectId": "c2650bda-d88e-471b-b4b0-5da770ad03ba",
+    "userEmail": "consenter@tapio.one"
+}
+```
+
 ## Service Partner Relation Changed Event
 
 Fired when something about the service partner relation of a subscription has been changed.
