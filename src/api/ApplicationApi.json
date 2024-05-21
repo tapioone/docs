@@ -13,11 +13,11 @@
   },
   "servers": [
     {
-            "url": "https://api.tapio.one/application"
+      "url": "https://api.tapio.one/application"
     }
   ],
   "paths": {
-        "/consentSubjects": {
+    "/consentSubjects": {
       "get": {
         "tags": [
           "ConsentSubject"
@@ -37,16 +37,15 @@
           {
             "name": "tapio-application-id",
             "in": "header",
-            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "description": "Format - uuid.",
             "schema": {
               "$ref": "#/components/schemas/ApplicationIdHeader"
             }
           },
           {
             "name": "api-version",
-            "required": true,
             "in": "header",
-            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
+            "required": true,
             "schema": {
               "$ref": "#/components/schemas/ApiVersionHeader"
             }
@@ -79,16 +78,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -99,16 +115,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -119,16 +152,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -136,19 +186,19 @@
         }
       }
     },
-        "/me/grantConsent": {
+    "/me/grantConsent": {
       "post": {
         "tags": [
           "Me"
         ],
         "summary": "Grant Consent",
-        "description": "Grant consent to a subject on behalf of a user. Get the result from EvaluateConsent. Note that\r\n this route is eventually consistent. So EvaluateConsent might take some time to take over the granting of the consent.",
+        "description": "Grant consent to a subject on behalf of a user. Get the result from EvaluateConsent.",
         "operationId": "GrantConsent",
         "parameters": [
           {
             "name": "tapio-application-id",
             "in": "header",
-            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "description": "Format - uuid.",
             "schema": {
               "$ref": "#/components/schemas/ApplicationIdHeader"
             }
@@ -156,7 +206,6 @@
           {
             "name": "api-version",
             "in": "header",
-            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ApiVersionHeader"
@@ -169,45 +218,44 @@
             "application/json-patch+json": {
               "schema": {
                 "$ref": "#/components/schemas/GrantConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string",
+                "text": "string"
               }
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/GrantConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string",
+                "text": "string"
               }
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/GrantConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string",
+                "text": "string"
               }
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/GrantConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string",
+                "text": "string"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
-                }
-              }
-            }
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request",
@@ -215,16 +263,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -235,16 +300,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -255,16 +337,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -275,16 +374,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -295,16 +411,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -312,19 +445,19 @@
         }
       }
     },
-        "/me/evaluateConsent": {
+    "/me/evaluateConsent": {
       "post": {
         "tags": [
           "Me"
         ],
-        "summary": "Evaluate Consent",
+        "summary": "Evaluate user consent",
         "description": "Evaluates if the user has consented to the given subject.",
         "operationId": "EvaluateConsent",
         "parameters": [
           {
             "name": "tapio-application-id",
             "in": "header",
-            "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+            "description": "Format - uuid.",
             "schema": {
               "$ref": "#/components/schemas/ApplicationIdHeader"
             }
@@ -332,7 +465,6 @@
           {
             "name": "api-version",
             "in": "header",
-            "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported.",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ApiVersionHeader"
@@ -345,21 +477,33 @@
             "application/json-patch+json": {
               "schema": {
                 "$ref": "#/components/schemas/EvaluateConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
               }
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EvaluateConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
               }
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/EvaluateConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
               }
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/EvaluateConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
               }
             }
           }
@@ -370,17 +514,28 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                  "$ref": "#/components/schemas/EvaluateConsentResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                  "$ref": "#/components/schemas/EvaluateConsentResponse"
+                },
+                "example": {
+                  "hasConsented": true
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConsentSubjectResponseCollectionResponse"
+                  "$ref": "#/components/schemas/EvaluateConsentResponse"
+                },
+                "example": {
+                  "hasConsented": true
                 }
               }
             }
@@ -391,16 +546,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -411,16 +583,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -431,16 +620,33 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -451,16 +657,252 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/evaluateConsent": {
+      "post": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Evaluate subscription consent",
+        "description": "Evaluates if there is consent for the given subscription and consent subject.",
+        "operationId": "EvaluateSubscriptionConsent",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Format - uuid. Subscription ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tapio-application-id",
+            "in": "header",
+            "description": "Format - uuid.",
+            "schema": {
+              "$ref": "#/components/schemas/ApplicationIdHeader"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ApiVersionHeader"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Evaluate consent body.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateSubscriptionConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateSubscriptionConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateSubscriptionConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateSubscriptionConsentRequest"
+              },
+              "example": {
+                "consentSubjectId": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluateSubscriptionConsentResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluateSubscriptionConsentResponse"
+                },
+                "example": {
+                  "hasConsented": true
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluateSubscriptionConsentResponse"
+                },
+                "example": {
+                  "hasConsented": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "message": "string",
+                  "details": [
+                    "string"
+                  ]
                 }
               }
             }
@@ -473,14 +915,14 @@
     "schemas": {
       "ApplicationIdHeader": {
         "type": "string",
-        "format": "uuid",
-        "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application."
+        "description": "Use to specify a tapio application ID, in case your Entra ID client application is assigned to more than one tapio application.",
+        "format": "uuid"
       },
       "ApiVersionHeader": {
-        "type": "string",
         "enum": [
           "v1"
         ],
+        "type": "string",
         "description": "Use to specify the version of the API you want to use. Currently, only \"v1\" is supported."
       },
       "ConsentSubjectResponse": {
@@ -555,6 +997,40 @@
         "additionalProperties": false,
         "description": "Evaluate consent request."
       },
+      "EvaluateConsentResponse": {
+        "type": "object",
+        "properties": {
+          "hasConsented": {
+            "type": "boolean",
+            "description": "True when the user has given consent."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Evaluate consent response."
+      },
+      "EvaluateSubscriptionConsentRequest": {
+        "type": "object",
+        "properties": {
+          "consentSubjectId": {
+            "type": "string",
+            "description": "Consent subject ID.",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Evaluate subscription consent request."
+      },
+      "EvaluateSubscriptionConsentResponse": {
+        "type": "object",
+        "properties": {
+          "hasConsented": {
+            "type": "boolean",
+            "description": "True when a user has given consent for the subscription."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Evaluate subscription consent response."
+      },
       "GrantConsentRequest": {
         "type": "object",
         "properties": {
@@ -596,7 +1072,7 @@
   },
   "security": [
     {
-      "oauth2": [ ]
+      "oauth2": []
     }
   ],
   "tags": [
@@ -605,6 +1081,9 @@
     },
     {
       "name": "Me"
+    },
+    {
+      "name": "Subscription"
     }
   ]
 }
