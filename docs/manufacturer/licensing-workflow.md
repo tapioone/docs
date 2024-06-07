@@ -310,7 +310,7 @@ After you created a bundle you can query the bundle and can check the state of t
 
 ### Delete bundle
 
-After a bundle was created (bundle exist and provisioning state is `Succeeded`), you also can delete it. Delete of a bundle means all containing licenses are deleted afterwards. This is possible until you called [Handover the bundle to the shop](#handover-a-bundle-to-shop). After a bundle was handed over to shop, you can no longer delete it. You have to [cancel it](#cancel-a-bundle-in-shop) instead.
+After a bundle was created (bundle exist and provisioning state is `Succeeded`), you also can delete it. Delete of a bundle means all containing licenses are deleted afterwards. This is possible until you called [Handover the bundle to the shop](#handover-a-bundle-to-shop). After a bundle was handed over to shop, you can no longer delete it.
 
 > DELETE `https://api.tapio.one/management/bundles​/{id}?subscriptionId=<subscriptionId>`
 
@@ -357,23 +357,6 @@ After the bundle was created successfully (provisioning state), you can hand it 
 409 - Conflict e.g. a concurrent operation on this bundle, bundle already exists in shop, customer has multiple shop accounts or customer is not allowed to receive new bundles in shop.
 
 After the handover was successfully called, you have to query the bundle by calling the [Get bundle information](#get-bundle-information) route to check the provisioning state. The state update can take up to 1 minute. In case the state is `Failed` you have to contact the tapio support [developer@tapio.one](mailto:developer@tapio.one). If the provisioning state is `Succeeded` the handover was successful.
-
-### Cancel a bundle in shop
-
-Shop-managed bundles can be canceled. Calling this route will suspend the given bundle in the shop. This means the customer can not longer use this bundle. The customer will be notified of this bundle cancel by the shop.
-
-> DELETE `https://api.tapio.one/management/bundles​/{id}/inshop?subscriptionId=<subscriptionId>`
-
-| Property       | Description              | Datatype | Required |
-| -------------- | ------------------------ | -------- | -------- |
-| id             | bundle id                | Guid     | yes      |
-| subscriptionId | customer subscription id | Guid     | yes      |
-
-> The canceled bundle will be available as pause bundle for a grace-period. After the grace-period, it will be delteted in the system.
-
-#### Response model
-
-202 - No Content.
 
 ### Get the shop expiry date of a bundle
 
