@@ -317,3 +317,20 @@ See [Customer Data](./customer-data).
     "applicationId": "9d311e9d-b8ff-491a-b558-cbe7293ee936"
 }
 ```
+
+## Customer Data Changed Event
+
+Two events:
+
+- `one.tapio.selfservice.subscription.companyinfo.changed` on changes of a subscriptions's:
+  - name
+  - VAT number
+  - address
+  - preferred language
+- `one.tapio.selfservice.subscription.billingcontact.changed` on changes of a suscription's billing contact
+
+```json
+{
+    "subscriptionId": "f6651146-2803-4ec0-8594-fd0fa8f0db19"
+}
+```
