@@ -318,7 +318,7 @@ See [Customer Data](./customer-data).
 }
 ```
 
-## Customer Data Changed Event
+## Subscription Data Changed Event
 
 Two events:
 
