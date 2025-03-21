@@ -57,46 +57,7 @@ The PartnerConnector Service, provided by ServiceBoard, enables partners to inte
 
 ## Architecture Diagram
 
-```plantuml
-@startuml azure-architecture
-!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/master/dist
-
-!includeurl AzurePuml/AzureCommon.puml
-!includeurl AzurePuml/Compute/AzureFunction.puml
-!includeurl AzurePuml/Compute/AzureAppService.puml
-!includeurl AzurePuml/Integration/AzureServiceBusTopic.puml
-!includeurl AzurePuml/Integration/AzureServiceBus.puml
-!includeurl AzurePuml/Storage/AzureBlobStorage.puml
-!includeurl AzurePuml/Web/AzureWebApp.puml
-!includeurl AzurePuml/Databases/AzureCosmosDb.puml
-
-title Azure Infrastructure Overview
-
-package "AzureServiceBus" as AzureServiceBus {
-AzureServiceBusTopic(sbservicebusC2P, "ConnectorToPartner", "sbservicepartner", "connetortopartner")
-AzureServiceBusTopic(sbservicebusP2C, "PartnerToConnector", "sbservicepartner", "partnertoconnector")
-}
-
-package "PartnerConnector" as pc {
-    AzureFunction(faconnectortopartner, "ConnectorToPartner", "faconnectortopartner")
-    AzureFunction(fapartnertoconnector, "PartnerToConnector", "fapartnertoconnector")
-}
-
-package "ServiceBoardCore" as core {
-    AzureServiceBusTopic(internalChannel, "InternalEventsChannel", "coevents", "coevents")
-    AzureCosmosDb(cosdb, "ServiceCases", "cosdb")
-}
-
-fapartnertoconnector <-up- sbservicebusP2C
-faconnectortopartner -up-> sbservicebusC2P
-
-fapartnertoconnector --> sbservicebusC2P : read-request responses & exception messages
-
-fapartnertoconnector --> cosdb
-internalChannel --> faconnectortopartner : trigger
-
-@enduml
-```
+![Partner Connector Architecture](../../static/img/docs/partner-connector-arch.png)
 
 ## Primary message requirements
 
