@@ -118,6 +118,7 @@ module.exports = {
       },
       items: [
         'products/service-board',
+        'products/partner-connector'
       ],
     },
   ]
