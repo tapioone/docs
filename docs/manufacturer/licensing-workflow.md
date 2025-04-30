@@ -243,8 +243,6 @@ You can call this route to query all your created bundles.
         "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",  // Id of the bundle
         "salesChannel": { // Current sales channel
             "type": "API",  // Type of the channel (API, CloudBlueCommerce, Admin)
-            "channelId": "string", // String of the channel Id
-            "referenceId": "string" // String of the reference id, e.g. could be the external id 
         },
         "bundleDefinitionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Bundle definition id
         "subscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Subscription id of the owner of the bundle.
@@ -284,8 +282,6 @@ After you created a bundle you can query the bundle and can check the state of t
   "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",  // Id of the bundle
   "salesChannel": { // Current sales channel
     "type": "API",  // Type of the channel (API, CloudBlueCommerce, Admin)
-    "channelId": "string", // String of the channel Id
-    "referenceId": "string" // String of the reference id, e.g. could be the external id 
   },
   "bundleDefinitionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Bundle definition id
   "subscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Subscription id of the owner of the bundle.
@@ -379,27 +375,6 @@ Only works for shop-managed bundles. Gets the current shop expiry date of the bu
 
 200 - OK.
 
-### Set the shop expiry date of a bundle
-
-Only works for shop-managed bundles. Sets the shop expiry date of the bundle.
-
-> POST `https://api.tapio.one/management/bundles​/{bundleId}/shopExpiryDate`
-
-| Property | Description | Datatype | Required |
-| -------- | ----------- | -------- | -------- |
-| id       | bundle id   | Guid     | yes      |
-
-```json
-{
-  "subscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Subscription id of the bundle owner. (required)
-  "expiryDate": "2021-10-26T06:49:57.976Z" // Expiry date (relative to Coordinated Universal Time (UTC)). Must be at least 24h in the future(ISO 8601) (required). The system will just adapt the date and will ignore the concrete time. 
-}
-```
-
-#### Response model
-
-200 - OK.
-
 ## Accept terms of use for a specific application
 
 After creating a license for an application, the next step is to accept the terms of use of an application on behalf of the customer. Afterwards, it is possible to assign a machine to an application.
@@ -473,4 +448,3 @@ For a successful unassignment, the machine must be assigned to the application.
 204 - Deleted. Machine was successful unassigned from the application.
 
 404 - NotFound. Machine is already unassigned.
-
