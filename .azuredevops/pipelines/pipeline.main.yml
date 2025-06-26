@@ -1,6 +1,6 @@
 resources:
   repositories:
-    - repository: DeploymentRepository
+    - repository: deployment
       type: git
       name: tapio.Deployment
       ref: master
@@ -15,12 +15,6 @@ variables:
   appArtifactName: app
   infrastructureArtifactName: infrastructure
   nodeJsVersionSpec: 16.x
-
-resources:
-  repositories:
-    - repository: deployment
-      type: git
-      name: tapio/tapio.Deployment
 
 pool:
   # AzureStaticWebApp@0 requires Docker to be installed
@@ -74,7 +68,7 @@ stages:
     dependsOn: []
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     jobs:
-      - template: BuildTemplates/jobs/whitesource.yml@DeploymentRepository
+      - template: BuildTemplates/jobs/whitesource.yml@deployment
         parameters:
           productName: github.com/tapioone
           projectName: github.com/tapioone/docs
