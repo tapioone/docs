@@ -1,6 +1,6 @@
 resources:
   repositories:
-    - repository: DeploymentRepository
+    - repository: deployment
       type: git
       name: tapio.Deployment
       ref: master
@@ -13,7 +13,6 @@ trigger:
 variables:
   appDirectory: $(System.DefaultWorkingDirectory)
   appArtifactName: app
-  infrastructureDirectory: $(System.DefaultWorkingDirectory)/.azuredevops/infrastructure
   infrastructureArtifactName: infrastructure
   nodeJsVersionSpec: 16.x
 
@@ -54,40 +53,22 @@ stages:
 
   - stage: build_infrastructure
     dependsOn: []
+    variables:
+      infrastructureDirectory: $(System.DefaultWorkingDirectory)/.azuredevops/infrastructure
     jobs:
-      - job:
-        displayName: build
-        variables:
-          mainBicepFilePath: ${{ variables.infrastructureDirectory }}/main.bicep
-        steps:
-          - checkout: self
-            clean: true
-            fetchDepth: 1
-
-          - task: AzureCLI@2
-            displayName: az bicep restore
-            inputs:
-              azureSubscription: tapio Dev/Test Subscription
-              scriptType: pscore
-              scriptLocation: inlineScript
-              inlineScript: bicep restore ${{ variables.mainBicepFilePath }}
-
-          - pwsh: |
-              az bicep build --file ${{ variables.mainBicepFilePath }}
-              az bicep build-params -f ${{ variables.infrastructureDirectory }}/main.preview.bicepparam
-              az bicep build-params -f ${{ variables.infrastructureDirectory }}/main.prod.bicepparam
-            displayName: az bicep build
-            failOnStderr: true
-
-          - publish: ${{ variables.infrastructureDirectory }}
-            artifact: ${{ variables.infrastructureArtifactName }}
-            displayName: publish artifact ${{ variables.infrastructureArtifactName }}
+      - template: BuildTemplates/jobs/build-bicep.yml@deployment
+        parameters:
+          ArtifactName: ${{ variables.infrastructureArtifactName }}
+          BicepFilePath: ${{ variables.infrastructureDirectory }}/main.bicep
+          BicepParamFilePaths:
+            - ${{ variables.infrastructureDirectory }}/main.preview.bicepparam
+            - ${{ variables.infrastructureDirectory }}/main.prod.bicepparam
 
   - stage: whitesource
     dependsOn: []
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     jobs:
-      - template: BuildTemplates/jobs/whitesource.yml@DeploymentRepository
+      - template: BuildTemplates/jobs/whitesource.yml@deployment
         parameters:
           productName: github.com/tapioone
           projectName: github.com/tapioone/docs
