@@ -61,7 +61,7 @@ stages:
           ArtifactName: ${{ variables.infrastructureArtifactName }}
           BicepFilePath: ${{ variables.infrastructureDirectory }}/main.bicep
           BicepParamFilePaths:
-            - ${{ variables.infrastructureDirectory }}/main.int.bicepparam
+            - ${{ variables.infrastructureDirectory }}/main.preview.bicepparam
             - ${{ variables.infrastructureDirectory }}/main.prod.bicepparam
 
   - stage: whitesource
