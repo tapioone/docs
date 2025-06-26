@@ -13,9 +13,14 @@ trigger:
 variables:
   appDirectory: $(System.DefaultWorkingDirectory)
   appArtifactName: app
-
   infrastructureArtifactName: infrastructure
   nodeJsVersionSpec: 16.x
+
+resources:
+  repositories:
+    - repository: deployment
+      type: git
+      name: tapio/tapio.Deployment
 
 pool:
   # AzureStaticWebApp@0 requires Docker to be installed
@@ -64,26 +69,6 @@ stages:
           BicepParamFilePaths:
             - ${{ variables.infrastructureDirectory }}/main.int.bicepparam
             - ${{ variables.infrastructureDirectory }}/main.prod.bicepparam
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   - stage: whitesource
     dependsOn: []
