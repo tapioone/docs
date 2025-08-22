@@ -15,13 +15,13 @@ module appInsights 'br:crtapiobicep.azurecr.io/application-insights:1.1.0' = {
   }
 }
 
-module staticWebApp 'br:crtapiobicep.azurecr.io/static-web-app:2.1.0' = {
+module staticWebApp 'br:crtapiobicep.azurecr.io/static-web-app:3.2.0' = {
   name: '${deployment().name}-staticWebApp'
   params: {
     branch: 'master'
     nameSuffix: '${productPrefix}${environmentSuffix}'
     repositoryUrl: 'https://github.com/tapioone/docs'
-    skuTier: 'Free'
+    sku: 'Free'
     customDomainName: customDomainName
     location: location
   }
