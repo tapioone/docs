@@ -35,7 +35,6 @@ Keys are scoped to the customer subscription and application.
 
 - Paste the key into your integration system configuration.
 
-
 ## 🔄 Data Flow
 
 - ERP / Measurement / ToolManager → calls TADAMO or MaintenanceService with AuthorizationKey.
@@ -100,6 +99,7 @@ AzureWebApp(apiMaintenanceService, "MaintenanceService", "asms")
 [applicationGateway] --> [apiMaintenanceService]
 @enduml
 ```
+
 ## 💻 Code Samples
 
 For practical implementation examples of how to configure authentication for the TadamoApiClient and MaintenanceServiceApiClient, see the code samples and documentation at:
