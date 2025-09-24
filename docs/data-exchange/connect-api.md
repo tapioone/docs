@@ -43,62 +43,9 @@ Keys are scoped to the customer subscription and application.
 
 - SharpeningUI and Twinio act as the customer-facing add-ons where keys are managed.
 
-```plantuml
-@startuml azure-architecture
-
-' azure symbols
-!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/master/dist
-!includeurl AzurePuml/AzureCommon.puml
-!includeurl AzurePuml/Databases/AzureSqlDatabase.puml
-!includeurl AzurePuml/Networking/AzureCDNProfile.puml
-!includeurl AzurePuml/Compute/AzureFunction.puml
-!includeurl AzurePuml/Web/AzureWebApp.puml
-!includeurl AzurePuml/Security/AzureKeyVault.puml
-!includeurl AzurePuml/Integration/AzureServiceBus.puml
-!includeurl AzurePuml/DevOps/AzureApplicationInsights.puml
-!includeurl AzurePuml/Storage/AzureStorage.puml
-!includeurl AzurePuml/Analytics/AzureEventHub.puml
-!includeurl AzurePuml/Analytics/AzureDataExplorer.puml
-!includeurl AzurePuml/Compute/AzureServiceFabric.puml
-!includeurl AzurePuml/Databases/AzureRedisCache.puml
-!includeurl AzurePuml/Storage/AzureBlobStorage.puml
-!includeurl AzurePuml/Storage/AzureQueueStorage.puml
-!includeurl AzurePuml/Compute/AzureFunction.puml
-!includeurl AzurePuml/Web/AzureSearch.puml
-!includeurl AzurePuml/Integration/AzureServiceBus.puml
-!includeurl AzurePuml/Web/AzureAPIManagement.puml
+![Data Flow](./assets/dataflow.png)
 
 
-left to right direction
-' skinparam linetype ortho
-skinparam linetype polyline
-
-skinparam actor {
-  BorderColor DeepSkyBlue
-  BackgroundColor #d6eaf8
-}
-skinparam component {
-  BorderColor DeepSkyBlue
-  BackgroundColor #d6eaf8
-}
-
-actor ERP
-actor Measurement
-actor ToolManagerOffice
-
-AzureAPIManagement(applicationGateway, "Application Gateway", applicationGateway)
-AzureWebApp(apiTadamo, "Tadamo", "astdm")
-AzureWebApp(apiMaintenanceService, "MaintenanceService", "asms")
-
-[ERP] -->"AuthorizationKey" [applicationGateway]
-[Measurement] -->"AuthorizationKey" [applicationGateway]
-[ToolManagerOffice] "AuthorizationKey"--> [applicationGateway]
-
-
-[applicationGateway] --> [apiTadamo]
-[applicationGateway] --> [apiMaintenanceService]
-@enduml
-```
 
 ## 💻 Code Samples
 
