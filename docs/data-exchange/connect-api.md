@@ -51,6 +51,6 @@ Keys are scoped to the customer subscription and application.
 
 For practical implementation examples of how to configure authentication for the TadamoApiClient and MaintenanceServiceApiClient, see the code samples and documentation at:
 
-**[tapio Auth API Documentation](https://tapioone.github.io/tapio-auth-api/)**
+**[tapio Auth API Documentation](https://tapioone.github.io/tapio-samples/)**
 
 This resource provides detailed examples and best practices for implementing authentication configuration for both API clients.
