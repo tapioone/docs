@@ -45,8 +45,6 @@ Keys are scoped to the customer subscription and application.
 
 ![Data Flow](./assets/dataflow.png)
 
-
-
 ## 💻 Code Samples
 
 For practical implementation examples of how to configure authentication for the TadamoApiClient and MaintenanceServiceApiClient, see the code samples and documentation at:
