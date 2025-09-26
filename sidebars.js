@@ -121,5 +121,16 @@ module.exports = {
         'products/partner-connector'
       ],
     },
+    {
+      type: 'category',
+      label: 'Data Exchange',
+      link: {
+        type: 'doc',
+        id: 'data-exchange/index'
+      },
+      items: [
+        'data-exchange/connect-api'
+      ],
+    },
   ]
 };
