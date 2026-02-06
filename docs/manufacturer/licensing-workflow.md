@@ -232,6 +232,7 @@ You can call this route to query all your created bundles.
 | -------------- | ------------------------------- | -------- | -------- |
 | applicationId  | Application id                  | Guid     | no       |
 | subscriptionId | Subscription id of the customer | Guid     | no       |
+| externalId     | External ID                     | string   | no       |
 
 #### Response model
 
