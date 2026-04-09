@@ -99,8 +99,7 @@ The response will include a new *Refresh Token* which can be used for further re
 
 Native apps (Xamarin, UWP, ...) and since MSAL 2.0 also Single Page Applications (React, Angular) should use the *Authorization Code* flow with *PKCE* extensions. The advantage of using this flow is that you have all the benefits of silent token renewal without needing to expose the *Client Secret* to your application or providing additional infrastructure for authentication. For React we created a sample application with a basic implementation of MSAL.JS with PKCE. You can try to login with your tapio Account on this website:
 
-- [Preview Sample App](https://tapioone.github.io/tapio-auth-react/)
-- [Github Repository](https://github.com/tapioone/tapio-auth-react)
+- [Sample](https://github.com/tapioone/samples/auth-react)
 
 Useful links:
 
