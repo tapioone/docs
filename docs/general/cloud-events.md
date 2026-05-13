@@ -299,9 +299,17 @@ Fired when something about the service partner relation of a subscription has be
 
 `one.tapio.selfservice.servicepartner.relation.changed`
 
+| Field | Description |
+|---|---|
+| `subscriptionId` | The subscription id of the actor who triggered the event — either the customer or the service partner, depending on who emitted the event. |
+| `customerSubscriptionId` | The customer subscription id. |
+| `servicePartnerSubscriptionId` | The service partner subscription id. |
+
 ```json
 {
-    "subscriptionId": "f6651146-2803-4ec0-8594-fd0fa8f0db19"
+    "subscriptionId": "f6651146-2803-4ec0-8594-fd0fa8f0db19",
+    "customerSubscriptionId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "servicePartnerSubscriptionId": "b2c3d4e5-f6a7-8901-bcde-f12345678901"
 }
 ```
 
