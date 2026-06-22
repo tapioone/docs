@@ -1,0 +1,1 @@
+{"parameters":[{"name":"subscriptionId","in":"query","description":"Subscription ID.","schema":{"type":"string","format":"uuid"}},{"name":"applicationId","in":"query","description":"Optional list of application IDs.","schema":{"type":"array","items":{"type":"string","format":"uuid"}}}]}

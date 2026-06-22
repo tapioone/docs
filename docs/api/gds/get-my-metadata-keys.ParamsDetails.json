@@ -1,0 +1,1 @@
+{"parameters":[{"name":"tmid","in":"path","description":"TapioMachineId","required":true,"schema":{"type":"string","format":"string"}}]}

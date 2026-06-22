@@ -1,0 +1,1 @@
+{"parameters":[{"name":"tapio-application-token","in":"header","description":"Application token (UTF-8) encoded as base64","required":true,"schema":{"type":"string"}},{"name":"etag","in":"header","description":"ETag of previous response for cache validation","schema":{"type":"string"}}]}

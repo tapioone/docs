@@ -5,38 +5,65 @@ description: "Gets a specific global metadata for the specific machine"
 sidebar_label: "Get Global Metadata By Key"
 hide_title: true
 hide_table_of_contents: true
-api: {"tags":["MachineMetadata"],"description":"Gets a specific global metadata for the specific machine","operationId":"GetGlobalMetadataByKey","parameters":[{"name":"tmid","in":"path","description":"TapioMachineId","required":true,"schema":{"type":"string","format":"string"}},{"name":"key","in":"path","description":"Key","required":true,"schema":{"type":"string"}},{"name":"etag","in":"header","description":"Etag","schema":{"type":"string"}}],"responses":{"200":{"description":"Successful"},"400":{"description":"Bad request","content":{"text/plain":{"schema":{"type":"object","properties":{"message":{"type":"string","nullable":true},"details":{"type":"array","items":{"type":"string"},"nullable":true}},"additionalProperties":false,"title":"ErrorInformation"}},"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","nullable":true},"details":{"type":"array","items":{"type":"string"},"nullable":true}},"additionalProperties":false,"title":"ErrorInformation"}},"text/json":{"schema":{"type":"object","properties":{"message":{"type":"string","nullable":true},"details":{"type":"array","items":{"type":"string"},"nullable":true}},"additionalProperties":false,"title":"ErrorInformation"}}}},"401":{"description":"Unauthorized","content":{"text/plain":{"schema":{"type":"object","properties":{"message":{"type":"string","nullable":true},"details":{"type":"array","items":{"type":"string"},"nullable":true}},"additionalProperties":false,"title":"ErrorInformation"}},"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","nullable":true},"details":{"type":"array","items":{"type":"string"},"nullable":true}},"additionalProperties":false,"title":"ErrorInformation"}},"text/json":{"schema":{"type":"object","properties":{"message":{"type":"string","nullable":true},"details":{"type":"array","items":{"type":"string"},"nullable":true}},"additionalProperties":false,"title":"ErrorInformation"}}}}},"method":"get","path":"/api/machine/{tmid}/metadata/global/key/{key}","servers":[{"url":"https://globaldisco.tapio.one/"}],"security":[{"Bearer":[]}],"securitySchemes":{"Bearer":{"type":"apiKey","description":"Standard `Authorization` header using the Bearer scheme. Example: `bearer {token}`","name":"Authorization","in":"header"}},"info":{"title":"Global Discovery Service API","description":"tapio's Global Discovery Service API enables to retrieve information of subscriptions. For example, you can retrieve information about application settings which the customer has set, like paper format if you want to print something via a tapio connected application. If your application makes too many requests, HTTP status code 429 is returned. A Retry-After header is included in this response which indicates how long to wait before making the next request. HTTP 429 standard is followed.","termsOfService":"https://tapio.one/en/tapio-terms-of-use","contact":{"name":"tapio GmbH","url":"https://tapio.one","email":"developer@tapio.one"},"version":"1"},"postman":{"name":"Get Global Metadata By Key","description":{"content":"Gets a specific global metadata for the specific machine","type":"text/plain"},"url":{"path":["api","machine",":tmid","metadata","global","key",":key"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) TapioMachineId","type":"text/plain"},"type":"any","value":"","key":"tmid"},{"disabled":false,"description":{"content":"(Required) Key","type":"text/plain"},"type":"any","value":"","key":"key"}]},"header":[{"disabled":false,"description":{"content":"Etag","type":"text/plain"},"key":"etag","value":""},{"key":"Accept","value":"text/plain"}],"method":"GET"}}
+api: eJztV1Fv20YM/isEX7YBit0WfZmflmBZGgzFgjZ9CgyElijraulOvaOceIb++8A7KVYSZ9i6t2AvtuU7kt/H4/Gj9ii0Dri4wY+UV8byRxYqSAiXGRYccm9aMc7iAi9YAhCElnNTmhzWtVtRDc1gAKXzIBUfNjTJI2boWvakbi6L5Ogi2o6xzna/8w4zbMlTw8JeAe3RUsO4QGlMgRkaxdCSVPgU2DW1xg3wL3Wr52+d8VzgQnzHGYa84oZwsUfZteoyiDd2jRmWzjckh3/6PnuIu4mYXg6bMP/TWFPPLLQeXVdMBftnzs/Tlpe9LTV0aJ0NHHT93Zs3+vXYy+cuzzmEsquxz/D9sS1nVIBy4CCYYe6ssJUYkO9l3takKPfPgbjVV87VpPV6umISjIZDoDUfy7Xt6ppWNadM9cpYyNRhspe8p5h04SYcYf3MSZ8hFYVRLlRfTZCUVAfOUIzoXjz33vlLm45biUfLtq1NHp/nX4N7tTzjSb5egn0s7bfPS/uLpU4q582fXPxf26+T56uv7T7DhqVyKpxrjlxUjBY4p9bMB4md71Uk+/moxfOkzfMN7+b7De96lRL221FZO1+r9Ii0YTEfNhcm5G4mqqUzZ3mOKjGB884b2UWrMybPHhc3y+nSZ016yuu44ZCq1iSVfCJLQrYgX8Dt6XBBI99bSGIIXTB2HWeJ5BHiwfIMzu+paWtewO0qLezFbdj2t3pySVsfeXwisppMY0sXEQ5JT5MI/Krst+x38Jn91uQMp1eXz4DH7PwQ4O+MgK2efQBx4Fm84S2DOZwquBJCt3pwG2bwm/PAiVoGO9dBTva4La1cJzC53BBYxNh1gLvK5FVMWt4FcQ17qCjoega12TC01LKH5AtMGQPdkRUF2npjBYLTUtPcbw0BQaQLubOWc+FiGncGl9GDfwSmoU0k7qAhuxvnipDBh+vrKwhC0gXIXcHw/t3PYIKS7LzlYgan8InF705OS1HkqRBMAGPzuiu4AGNBqmiSpp6BsLGFRucAlbuD2mnhOLgjI7Di0nlWUGM5Wb6XEdUsgVIgYaxHE6B0de3uuJihNhffhD/K4XAnN+ZwS9imh5O498SVJ13gQWwoj2IzjrExmRfN6gNmTy7ggzvMkBsyulbwlmttFb8cVvsM9QqnWnyrj60L0pCdhLlgGctzHK/hbAdHruH+oIj/ZbYfrvpEUvuB335oVTfaBzDDg81imOlH/5hhiojZMHYv9GuZYeWCqIf9fkWBv/i67/Xvbx17bUrLDLfkTWq2N3ssTNDfxUNvfZHxj5+Gwf0nePb+cJTS2NKswttS3enTgHd4SdER/7sQpNP5jrD62S/7bOxw/y4Hw0vG0bjJ//Cm8hBXGaaV0zznViZrU/PlRLQuzq+x7/8C7eYH+g==
 sidebar_class_name: "get api-method"
 info_path: api/gds/global-discovery-service-api
 custom_edit_url: null
 ---
 
-import ApiTabs from "@theme/ApiTabs";
-import MimeTabs from "@theme/MimeTabs";
-import ParamsItem from "@theme/ParamsItem";
-import ResponseSamples from "@theme/ResponseSamples";
-import SchemaItem from "@theme/SchemaItem";
-import SchemaTabs from "@theme/SchemaTabs";
-import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
 
-## Get Global Metadata By Key
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Global Metadata By Key"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/machine/{tmid}/metadata/global/key/{key}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
 
 
 
 Gets a specific global metadata for the specific machine
 
-<details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Path Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"tmid","in":"path","description":"TapioMachineId","required":true,"schema":{"type":"string","format":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"key","in":"path","description":"Key","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Header Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"etag","in":"header","description":"Etag","schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
 
-Successful
+<ParamsDetails
+  {...require("./get-global-metadata-by-key.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
 
-</div><div></div></TabItem><TabItem label={"400"} value={"400"}><div>
+<RequestSchema
+  {...require("./get-global-metadata-by-key.RequestSchema.json")}
+>
+  
+</RequestSchema>
 
-Bad request
+<StatusCodes
+  {...require("./get-global-metadata-by-key.StatusCodes.json")}
+>
+  
+</StatusCodes>
 
-</div><div><MimeTabs schemaType={"response"}><TabItem label={"text/plain"} value={"text/plain"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true}}></SchemaItem><SchemaItem collapsible={false} name={"details"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"},"nullable":true}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"string\",\n  \"details\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true}}></SchemaItem><SchemaItem collapsible={false} name={"details"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"},"nullable":true}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"string\",\n  \"details\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem><TabItem label={"text/json"} value={"text/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true}}></SchemaItem><SchemaItem collapsible={false} name={"details"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"},"nullable":true}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"string\",\n  \"details\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
 
-Unauthorized
-
-</div><div><MimeTabs schemaType={"response"}><TabItem label={"text/plain"} value={"text/plain"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true}}></SchemaItem><SchemaItem collapsible={false} name={"details"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"},"nullable":true}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"string\",\n  \"details\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true}}></SchemaItem><SchemaItem collapsible={false} name={"details"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"},"nullable":true}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"string\",\n  \"details\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem><TabItem label={"text/json"} value={"text/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true}}></SchemaItem><SchemaItem collapsible={false} name={"details"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"},"nullable":true}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"string\",\n  \"details\": [\n    \"string\"\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div>
       

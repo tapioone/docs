@@ -27,7 +27,7 @@ You can retrieve the source keys that occurred in the past for a machine, using 
 
 > Use the ResourceId `https://tapiousers.onmicrosoft.com/CoreApi` for the token request otherwise you get an Unauthorized.
 
-The {tmid} represents the ID of your tapio machine.
+The `tmid` represents the ID of your tapio machine.
 
 > Each request to the historic data API addresses only one tapio machine. To get data for multiple tapio machines you need to call the API multiple times.
 

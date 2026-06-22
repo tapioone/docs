@@ -11,7 +11,7 @@ To understand the concept behind tapio and to develop applications based on our 
 * [**Authenticate via tapio**](./authentication)
 * [**Access the profile of a user**](./user-profile)
 * [**Access machine states as an application**](../machine-data/state-api)
-* [**Sending commands to machine**](../machine-data/Commanding)
+* [**Sending commands to machine**](../machine-data/commanding)
 
 ____
 

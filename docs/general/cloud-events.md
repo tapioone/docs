@@ -15,7 +15,7 @@ Extracts from the [CloudEvents Primer](https://github.com/cloudevents/spec/blob/
 
 We recommend you take a look at the specification first:
 
-<https://github.com/cloudevents/spec>
+[CloudEvents specification](https://github.com/cloudevents/spec)
 
 - [Core Specification](https://github.com/cloudevents/spec/blob/v1.0/spec.md)
 - [JSON Event Format](https://github.com/cloudevents/spec/blob/v1.0/json-format.md)

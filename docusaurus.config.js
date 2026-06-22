@@ -1,5 +1,6 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { themes } = require('prism-react-renderer');
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 darkCodeTheme.plain.backgroundColor = "#333333";
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -120,7 +121,6 @@ module.exports = {
           editUrl: 'https://github.com/tapioone/docs/edit/master/',
           showLastUpdateTime: true,
           routeBasePath: '/',
-          docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem"
         },
         theme: {
