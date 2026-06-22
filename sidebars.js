@@ -95,7 +95,7 @@ module.exports = {
             title: "Global Discovery Service API",
             slug: "/api/gds",
           },
-          items: require("./docs/api/gds/sidebar.js"),
+          items: require("./docs/api/gds/sidebar.ts").default,
         },
         {
           type: "category",
@@ -105,7 +105,7 @@ module.exports = {
             title: "Application API",
             slug: "/api/application-api",
           },
-          items: require("./docs/api/application-api/sidebar.js"),
+          items: require("./docs/api/application-api/sidebar.ts").default,
         },
       ],
     },

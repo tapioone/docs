@@ -1,0 +1,1 @@
+{"parameters":[{"name":"tmid","in":"path","description":"TapioMachineId","required":true,"schema":{"type":"string","format":"string"}},{"name":"key","in":"path","description":"Key","required":true,"schema":{"type":"string"}},{"name":"etag","in":"header","description":"ETag","schema":{"type":"string"}}]}

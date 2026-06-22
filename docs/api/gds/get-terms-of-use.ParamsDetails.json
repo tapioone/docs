@@ -1,0 +1,1 @@
+{"parameters":[{"name":"applicationId","in":"query","description":"Id of the tapio application","schema":{"type":"array","items":{"type":"string","format":"uuid"}}},{"name":"locale","in":"query","description":"Two letter language code according to ISO 639-1:2002","schema":{"type":"array","items":{"type":"string"}}}]}

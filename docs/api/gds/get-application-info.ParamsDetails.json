@@ -1,0 +1,1 @@
+{"parameters":[{"name":"clientId","in":"query","description":"AAD-client id of the application","schema":{"type":"string"}}]}

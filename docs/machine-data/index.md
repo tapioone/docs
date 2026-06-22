@@ -3,7 +3,7 @@
 * [**How does tapio's Connectivity work?**](./connectivity)
 * [**Machine data categories**](./tapio-data-categories)
 * [**Access machine states as an application**](./state-api)
-* [**Sending commands to machine**](./Commanding)
+* [**Sending commands to machine**](./commanding)
 * [**Transfer files from to a machine**](./file-transfer)
 * [**Access machine historical data of a machine**](./historical-data)
 
