@@ -3,6 +3,8 @@ param environmentSuffix string
 param customDomainName string
 
 param location string = resourceGroup().location
+param availabilityTestFrequencyInSeconds int
+param availabilityTestLocationSet 'northAndWestEurope' | 'northEurope'
 
 var productPrefix = 'docs'
 
@@ -33,5 +35,8 @@ module alerts 'modules/alerts.bicep' = {
     appInsightsName: appInsights.outputs.name
     staticWebAppName: staticWebApp.outputs.name
     customDomainName: customDomainName
+    location: location
+    availabilityTestFrequencyInSeconds: availabilityTestFrequencyInSeconds
+    availabilityTestLocationSet: availabilityTestLocationSet
   }
 }
