@@ -11,7 +11,6 @@ import { northAndWestEuropeTestLocations, northEuropeTestLocations } from 'br:cr
 var availabilityTestLocationIds = availabilityTestLocationSet == 'northAndWestEurope' ? northAndWestEuropeTestLocations : northEuropeTestLocations
 
 module availabilityTest 'br:crtapiobicep.azurecr.io/availability-standard-test:2.0.1' = {
-  name: '${deployment().name}-availabilityTest'
   params: {
     nameSuffix: staticWebAppName
     appInsightsName: appInsightsName
