@@ -1,0 +1,11 @@
+{
+  "analyzers": {
+    "core": {
+      "rules": {
+        "no-module-name": {
+          "level": "error"
+        }
+      }
+    }
+  }
+}

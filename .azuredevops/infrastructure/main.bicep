@@ -9,7 +9,6 @@ param availabilityTestLocationSet 'northAndWestEurope' | 'northEurope'
 var productPrefix = 'docs'
 
 module appInsights 'br:crtapiobicep.azurecr.io/application-insights:1.1.0' = {
-  name: '${deployment().name}-appInsights'
   params: {
     logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceResourceId
     nameSuffix: '${productPrefix}${environmentSuffix}'
@@ -18,7 +17,6 @@ module appInsights 'br:crtapiobicep.azurecr.io/application-insights:1.1.0' = {
 }
 
 module staticWebApp 'br:crtapiobicep.azurecr.io/static-web-app:2.1.0' = {
-  name: '${deployment().name}-staticWebApp'
   params: {
     branch: 'master'
     nameSuffix: '${productPrefix}${environmentSuffix}'
@@ -30,7 +28,6 @@ module staticWebApp 'br:crtapiobicep.azurecr.io/static-web-app:2.1.0' = {
 }
 
 module alerts 'modules/alerts.bicep' = {
-  name: '${deployment().name}-alerts'
   params: {
     appInsightsName: appInsights.outputs.name
     staticWebAppName: staticWebApp.outputs.name
