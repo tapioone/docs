@@ -56,6 +56,12 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/gds/get-application-machine",
           label: "Get Machine Assignments",
+          className: "menu__list-item--deprecated api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/gds/get-assigned-machines-by-application",
+          label: "Get machine assignments for one application.",
           className: "api-method get",
         },
       ],
