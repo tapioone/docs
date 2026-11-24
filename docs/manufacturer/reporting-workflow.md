@@ -2,9 +2,66 @@
 
 As a manufacturer, you can query information about your manufactured machines, to see how the machine is used and which applications are assigned to it. This will enable you to retrieve information about the customer usage of your machines.
 
+## Reporting with cursor pagination
+
+> POST `https://api.tapio.one/management/v2/manufacturer/machineinfo`
+
+This endpoint returns a page of machine information, ordered by tapio machine ID. It supports both querying all eligible machines and filtering by a list of IDs. A JSON request body is required; use `{}` to request the first page with the default settings.
+
+| Request property         | Description                                                                                         | Default               |
+| ------------------------ | --------------------------------------------------------------------------------------------------- | --------------------- |
+| `tapioMachineIds`        | Optional list of tapio machine IDs. An omitted or empty list requests all eligible machines.        | All eligible machines |
+| `includeLimitedMachines` | Whether to include limited machines.                                                                | `false`               |
+| `limit`                  | Maximum number of machines per page, from 1 to 200.                                                 | `200`                 |
+| `cursor`                 | Exclusive tapio machine ID returned by the previous page. Omit it or use `null` for the first page. | `null`                |
+
+For example, request the first page of a filtered list:
+
+```json
+{
+  "tapioMachineIds": ["testmachine12", "testmachine13"],
+  "includeLimitedMachines": false,
+  "limit": 1
+}
+```
+
+Example response when another page is available:
+
+```json
+{
+  "data": [
+    {
+      "tmid": "testmachine12",
+      "isCcInformationAvailable": true,
+      "deviceType": "Machine",
+      "deviceSubtype": null,
+      "createdAt": "2026-01-01T10:00:00Z",
+      "subscriptions": [],
+      "isTapioReady": true
+    }
+  ],
+  "cursor": "testmachine12",
+  "invalidMachineInformation": []
+}
+```
+
+To retrieve the next page, send the same request with `"cursor": "testmachine12"`. Keep `tapioMachineIds` and `includeLimitedMachines` unchanged across pages. Continue until the response `cursor` is `null`. The cursor is the last machine ID on the current page; the next page starts after it. Results are live reads, not a snapshot, so changes while paging can affect the results.
+
+The response contains:
+
+| Property                    | Description                                                                                                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `data`                      | Machine information for this page. See [ManufacturerMachineInformation](#manufacturermachineinformation).                                                          |
+| `cursor`                    | Cursor for the next page, or `null` when no more results are available.                                                                                            |
+| `invalidMachineInformation` | Errors for requested machine IDs not found in the eligible result set. These are returned on the first page only; collect them before requesting subsequent pages. |
+
+An invalid machine ID format, cursor, or limit results in a `400 Bad Request`. A well-formed requested machine ID that is not found is reported in `invalidMachineInformation` instead.
+
 ## Reporting
 
 > GET `https://api.tapio.one/management/manufacturer/machineinfo`
+
+This legacy endpoint is deprecated. Use [cursor pagination](#reporting-with-cursor-pagination) for new integrations.
 
 The following properties can be set via query parameter.
 
@@ -42,14 +99,15 @@ An example `JSON` response will then look like this:
         }
       ]
     }
-  ],
-  "invalidMachineInformation" : []
+  ]
 }
 ```
 
 ## Reporting defined list of Tapio machine Ids
 
 > POST `https://api.tapio.one/management/manufacturer/machineinfo`
+
+This legacy endpoint is deprecated. Use [cursor pagination](#reporting-with-cursor-pagination) for new integrations.
 
 The following properties can be set via query parameter.
 
@@ -63,7 +121,7 @@ The following properties can be set via query parameter.
 
 **Request body**
 
-An example `JSON` response will then look like this:
+An example `JSON` request looks like this:
 
 ``` json
 {
@@ -99,30 +157,34 @@ An example `JSON` response will then look like this:
     }
   ],
   "invalidMachineInformation" : [
-    "message" : "Machine is not found testmachine13",
-    "details" : [""]
+    {
+      "message" : "Machine is not found testmachine13",
+      "details" : []
+    }
   ]
 }
 ```
 
 ### Response Model Description
 
-As a response to this query, you will retrieve an array of manufacturerMachineInformations.
+The legacy POST response contains the following properties:
 
-| Property                   | Description                                                 | Datatype                                                          |
-| -------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------- |
-| validMachineInformations   | list of valid manufacturer machine information              | [ManufacturerMachineInformation](#manufacturermachineinformation) |
-| invalidMachineInformations | list of invalid requested tapio machine id and there reason | [ErrorInformation](#errorinformation)                             |
+| Property                   | Description                                                 | Datatype                                                            |
+| -------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------- |
+| validMachineInformation    | List of valid manufacturer machine information              | [ManufacturerMachineInformation](#manufacturermachineinformation)[] |
+| invalidMachineInformation  | Errors for requested machine IDs not found                  | [ErrorInformation](#errorinformation)[]                             |
 
 #### ManufacturerMachineInformation
 
-| Property                 | Description                               | Datatype                                              |
-| ------------------------ | ----------------------------------------- | ----------------------------------------------------- |
-| tapioMachineId           | tapio machine id                          | string                                                |
-| isCcInformationAvailable | this machines has an CloudConnector       | bool                                                  |
-| deviceType               | Kind of the device (Machine, SmartDevice) | enum                                                  |
-| deviceSubtype            | Device subtype of the device              | string                                                |
-| subscriptions            | list of customer subscriptions            | [SubscriptionInformation](#subscriptioninformation)[] |
+| Property                 | Description                                     | Datatype                                              |
+| ------------------------ | ----------------------------------------------- | ----------------------------------------------------- |
+| tmid                     | tapio machine id                                | string                                                |
+| isCcInformationAvailable | this machines has an CloudConnector             | bool                                                  |
+| deviceType               | Kind of the device (Machine, SmartDevice)       | enum                                                  |
+| deviceSubtype            | Device subtype of the device                    | string                                                |
+| createdAt                | Creation time of the manufacturer machine       | date-time                                             |
+| subscriptions            | list of customer subscriptions                  | [SubscriptionInformation](#subscriptioninformation)[] |
+| isTapioReady             | Whether the manufacturer machine is tapio ready | bool                                                  |
 
 #### SubscriptionInformation
 
@@ -132,7 +194,6 @@ As a response to this query, you will retrieve an array of manufacturerMachineIn
 | customerMachineName | Name of the machine in the customer subscription                 | string                                              |
 | state               | State of the machine (Pending, Active, Declined, Limited, Error) | string                                              |
 | assignedApps        | List of apps assigned to the machine                             | [ApplicationInformation](#applicationinformation)[] |
-| customerMachineName | Name of the customer subscription                                | string                                              |
 
 #### ApplicationInformation
 
@@ -147,4 +208,3 @@ As a response to this query, you will retrieve an array of manufacturerMachineIn
 | -------- | ----------------------------------------- | -------------- |
 | message  | reason why this is an error               | string         |
 | details  | optional set details why this is an error | list of string |
-
